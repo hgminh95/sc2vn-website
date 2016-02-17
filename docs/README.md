@@ -1,8 +1,8 @@
 # SC2VN Website - Project overview
 This document is under heavy development.
 
-### About this document
----
+## About this document
+
 This document provides outline functional specifications and requirements for
 Starcraft 2 VN website. It is designed to guide system development and design,
 including database structure, site architecture, functionality and use cases.
@@ -11,14 +11,14 @@ This document will change, continuously, as the project proceeds. We will add
 details and edit existing information as database structure, site architecture
 and use cases evolve in the course of the project.
 
-### Introduction
----
+## Introduction
+
 This project is a web based application which aim to help Vietnamese Starcraft 2
 event organizers, teams, and players to run, compete in, and follow tournament
 and event in the easiest way possible.
 
-### Functional Description
----
+## Functional Description
+
 The following are the major functionalities:
 - Provide tools that help event organizers create, manage and schedule a
 Starcraft 2 tournament.
@@ -33,8 +33,8 @@ Non-functional requirements:
 
 For more information on use cases see [use_cases](google.com).
 
-### Site Structure and Navigation
----
+## Site Structure and Navigation
+
 First level navigation will be as follows:
 - News. Current news.
 - Tournaments.
@@ -49,6 +49,6 @@ All pages will include a set of secondary 'standard' links, as well:
 
 Site map here.
 
-### Plan
----
+## Plan
+
 Not yet implemented.
