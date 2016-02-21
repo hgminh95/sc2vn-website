@@ -31,7 +31,8 @@ Non-functional requirements:
 - Easy to use interface
 - Mobile friendly
 
-For more information on use cases see [use_cases](google.com).
+For more information on how the website work, see [user_stories]
+(https://github.com/hgminh95/sc2vn-website/blob/master/docs/stories.md).
 
 ## Site Structure and Navigation
 
@@ -49,6 +50,48 @@ All pages will include a set of secondary 'standard' links, as well:
 
 Site map here.
 
+## Modules
+Can be divided into modules:
+- User Module
+  - Authentication
+  - Notification
+  - Permission
+- Clan Module
+  - Basic actions: create, read, update, delete (CRUD)
+- Tournament Module (see [tournament]
+(https://github.com/hgminh95/sc2vn-website/blob/master/docs/tournament.md) for
+more details)
+  - CRUD
+  - Game
+    - CRUD
+    - Use replay file as input data
+  - Match
+    - CRUD
+  - Tournament scheduling
+- Article Module
+  - CRUD
+  - WYSIWYG text editor for editing
+
 ## Plan
 
-Not yet implemented.
+_**February 22 - April 3: Create a website that can perform all core functions
+basically**_
+
+*Week 1*:
+- Implement Article Module
+- Implement part of User Module: Authentication
+- Implement simple admin interface
+
+*Week 2*:
+- Implement parts of Tournament Module: CRUD, Game (CRUD), Match (CRUD)
+- Implement part of User Module: Notification
+
+*Week 3*:
+
+*Week 4*:
+
+*Week 5*:
+
+*Week 6*:
+
+_**April 4 - April 30: Do something**_

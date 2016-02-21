@@ -64,5 +64,7 @@ or automatic using one of the following ...
 ### Elimination Stage
 
 See wiki:
+
 https://en.wikipedia.org/wiki/Single-elimination_tournament
+
 https://en.wikipedia.org/wiki/Double-elimination_tournament
