@@ -6,13 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var debug = require('express-debug');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes = require('./app/controllers/index');
+var users = require('./app/controllers/users');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
