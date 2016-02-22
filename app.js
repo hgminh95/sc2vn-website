@@ -5,9 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var debug = require('express-debug');
+var mongoose = require('mongoose');
 
 var routes = require('./app/controllers/index');
 var users = require('./app/controllers/users');
+
+var config = require('./config/config');
 
 var app = express();
 
@@ -56,6 +59,15 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+connect()
+  .on('error', console.log)
+  .on('disconnected', connect)
+
+function connect () {
+  var options = { server: { socketOptions: { keepAlive: 1 } } };
+  return mongoose.connect(config.db, options).connection;
+}
 
 debug(app, {});
 module.exports = app;
