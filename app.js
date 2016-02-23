@@ -7,9 +7,6 @@ var bodyParser = require('body-parser');
 var debug = require('express-debug');
 var mongoose = require('mongoose');
 
-var routes = require('./app/controllers/index');
-var users = require('./app/controllers/users');
-
 var config = require('./config/config');
 
 var app = express();
@@ -26,8 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
+require('./config/routes')(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
