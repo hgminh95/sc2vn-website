@@ -26,3 +26,6 @@ coverage
 # Benchmarking
 benchmarks/graphs
 
+# Secret
+config/env/env.json
+

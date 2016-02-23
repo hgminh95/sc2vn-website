@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var debug = require('express-debug');
 var mongoose = require('mongoose');
+var session = require('express-session');
 
 var config = require('./config/config');
 
@@ -23,6 +24,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({ 
+  secret: 'blizzard',
+  saveUninitialized: true,
+  resave: true 
+}));
+
+require('./config/passport')(app);
 require('./config/routes')(app);
 
 // catch 404 and forward to error handler
