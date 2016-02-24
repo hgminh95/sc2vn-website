@@ -36,6 +36,10 @@ UserSchema.statics = {
     });
   },
   
+  all: function(callback) {
+    return this.find({}).exec(callback);
+  },
+  
   findById: function(id, callback) {
     return this.findOne({ bnet_id: id }).exec(callback);
   }

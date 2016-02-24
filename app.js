@@ -30,6 +30,7 @@ app.use(session({
   resave: true 
 }));
 
+require('./config/routes.api')(app);
 require('./config/passport')(app);
 require('./config/routes')(app);
 
