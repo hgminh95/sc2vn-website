@@ -1,6 +1,7 @@
 'use strict';
 
 var users = require('../app/controllers/users');
+var statics = require('../app/controllers/statics')
 
 module.exports = function(app) {
   
@@ -15,4 +16,7 @@ module.exports = function(app) {
   app.post('/users/:userId', users.update);
   
   // Article Routes
+
+  // Static Routes
+  app.get('/admin', statics.admin);
 };

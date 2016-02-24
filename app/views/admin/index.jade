@@ -1,0 +1,12 @@
+doctype html
+html
+  head 
+    title= 'Sample admin'
+    link(rel='stylesheet', href='stylesheets/ng-admin.min.css')
+  body(ng-app='myApp')
+    div(ui-view)
+    script
+      include ../../../node_modules/ng-admin/build/ng-admin.min.js
+    script
+      include ../../admin/admin.js
+  
