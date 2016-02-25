@@ -25,7 +25,6 @@ exports.index = function(req, res) {
 } 
 
 exports.show = function(req, res) {
-  console.log("Show");
   res.json(req.user._doc);
 }
 

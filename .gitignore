@@ -29,3 +29,6 @@ benchmarks/graphs
 # Secret
 config/env/env.json
 
+# CSS
+public/stylesheets/style.css
+

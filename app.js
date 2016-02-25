@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var debug = require('express-debug');
 var mongoose = require('mongoose');
 var session = require('express-session');
+var sass = require('node-sass-middleware');
 
 var config = require('./config/config');
 
@@ -22,6 +23,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(sass({
+  src: path.join(__dirname, 'app/resources/sass'),
+  dest: path.join(__dirname, 'public/stylesheets'),
+  includePaths: [path.join(__dirname, 'node_modules/bootstrap-sass/assets/stylesheets')], 
+  debug: true,
+  prefix: '/stylesheets'
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({ 

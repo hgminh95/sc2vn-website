@@ -15,6 +15,5 @@ router.put('/users/:userId', users.update)
 router.delete('/users/:userId', users.destroy);
 
 module.exports = function(app) {
-  console.log("Use");
   app.use('/api', router);
 }
