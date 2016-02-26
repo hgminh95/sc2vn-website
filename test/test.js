@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 describe('Static pages', function() {
   it('should return main page', function(done) {
     chai.request(server)
-      .get('/')
+      .get('/users')
       .end(function(err, res){
         res.should.have.status(200);
         done();
