@@ -20,6 +20,7 @@ module.exports = function(app) {
   app.param('articleId', articles.load);
 
   app.get('/articles', articles.index);
+  app.get('/articles/new', articles.new)
   app.post('/articles', articles.create);
   app.get('/articles/:articleId', articles.show);
   app.get('/articles/:articleId/edit', articles.edit);

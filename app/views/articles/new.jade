@@ -1,0 +1,15 @@
+extends ../layout
+
+block scripts
+  script(src='https://cdn.tinymce.com/4/tinymce.min.js')
+  script.
+    tinymce.init({
+      selector: '#content'
+    });
+
+block content
+  form(action='/articles', method='post')
+    | Title:
+    input(type='text', name='title')
+    textarea(id='content' name='content')
+    input(type='submit', value='Create')

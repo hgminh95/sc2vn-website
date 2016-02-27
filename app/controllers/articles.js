@@ -14,12 +14,15 @@ exports.load = function(req, res, next, id) {
   });
 }
 
-exports.create = function(req, res) {
-  var article = new Article({
-    title: req.title,
-    content: req.content,
-    author: req.author
+exports.new = function(req, res) {
+  res.render('articles/new', {
+    title: 'New article'
   });
+}
+
+exports.create = function(req, res) {
+  var article = new Article();
+  assign(article, only(req.body, 'title content'));
   article.save(function(err) {
     if(err) next(err);
     res.redirect(article.to_link());
