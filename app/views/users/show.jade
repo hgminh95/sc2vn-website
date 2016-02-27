@@ -1,4 +1,9 @@
 extends ../layout
 
 block content
-  h1= "Nothing here"
+  h1.title Hello world, #{user.name}
+  p Name: #{user.name}
+  p Email: #{user.email}
+  p Battle.net ID: #{user.bnet_id}
+  p Score: #{user.score}
+  a(href="/users/#{user.bnet_id}/edit") Edit profile

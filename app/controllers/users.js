@@ -7,7 +7,7 @@ var User = require('../models/users');
 exports.load = function(req, res, next, id) {
   User.findById(id, function(err, user) {
     if (err) throw err;
-    
+
     req.profile = user;
     if (!req.profile) return next(new Error('User not found'));
     next();
@@ -21,7 +21,7 @@ exports.loadCurrentUser = function(req, res, next) {
   else {
     res.locals.current_user = {};
   }
-  
+
   next();
 }
 
@@ -49,9 +49,9 @@ exports.edit = function(req, res) {
 
 exports.update = function(req, res) {
   var user = req.profile;
-  
+
   assign(user, only(req.body, 'name'));
   user.save();
-  
+
   res.redirect(user.to_link());
 }
