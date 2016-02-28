@@ -1,4 +1,27 @@
-extends ../layout
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    block scripts
 
-block content
-  h1= "Nothing here"
+  body
+    block content
+      h1= "Articles"
+      div(class = "row")
+        div(class = "col-md-1")
+        div(class = "col-md-10")
+          div(class = "panel-info class")
+            div(class = "panel-heading") Hello World!
+            div(class = "panel-body") hjhj, do ngok
+        div(class = "col-md-1")
+      
+      div(class = "row")
+        div(class = "col-md-1")
+        div(class = "col-md-10")
+          div(class = "panel-info class")
+            div(class = "panel-heading") Hello do ngok!
+            div(class = "panel-body") Leu leu
+        div(class = "col-md-1")
+
+
