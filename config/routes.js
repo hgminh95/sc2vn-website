@@ -25,6 +25,7 @@ module.exports = function(app) {
   app.get('/articles/:articleId', articles.show);
   app.get('/articles/:articleId/edit', articles.edit);
   app.post('/articles/:articleId', articles.update);
+  app.delete('/articles/:articleId', articles.destroy)
 
   // Static Routes
   app.get('/admin', statics.admin);

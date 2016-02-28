@@ -30,8 +30,12 @@ exports.create = function(req, res) {
 }
 
 exports.index = function(req, res) {
-  res.render('articles/index', {
-    title: 'Articles'
+  Article.all(function(err, articles) {
+    if (err) next(err);
+    res.render('articles/index', {
+      title: 'Articles',
+      articles: articles.map(article => article._doc)
+    });
   });
 }
 
