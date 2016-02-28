@@ -6,13 +6,23 @@ module.exports = function(nga, admin) {
   users.identifier(nga.field('bnet_id'));
   
   users.listView().fields([
-    nga.field('name').isDetailLink(true),
+    nga.field('name').isDetailLink(true).detailLinkRoute('show'),
     nga.field('bnet_id'),
-    nga.field('email'),
+    nga.field('email', 'email'),
     nga.field('access_token'),
     nga.field('score'),
-    nga.field('created_at'),
-    nga.field('updated_at')
+    nga.field('created_at', 'datetime'),
+    nga.field('updated_at', 'datetime')
+  ]);
+  
+  users.showView().fields([
+    nga.field('name'),
+    nga.field('bnet-id'),
+    nga.field('email', 'email'),
+    nga.field('access_token'),
+    nga.field('score'),
+    nga.field('created_at', 'datetime'),
+    nga.field('updated_at', 'datetime')
   ]);
   
   users.creationView().fields([

@@ -13,14 +13,26 @@ myApp.config(['NgAdminConfigurationProvider', function (nga) {
   require('./articles/config')(nga, admin);
   require('./users/config')(nga, admin);
   
+  admin.menu(nga.menu()
+        .addChild(nga.menu(nga.entity('users')).icon('<span class="glyphicon glyphicon-user"></span>'))
+        .addChild(nga.menu(nga.entity('articles')).icon('<span class="glyphicon glyphicon-list-alt"></span>'))
+    );
+  
   nga.configure(admin);
 }]);
 
 myApp.config(['RestangularProvider', function (RestangularProvider) {
-    RestangularProvider.addElementTransformer('users', function(element) {
-      element.id = element._id;
-      delete element['_id'];
+  RestangularProvider.addElementTransformer('users', function(element) {
+    element.id = element._id;
+    delete element['_id'];
       
-      return element;
-    });
+    return element;
+  });
+  
+  RestangularProvider.addElementTransformer('articles', function(element) {
+    element.id = element._id;
+    delete element['_id'];
+      
+    return element;
+  });
 }]);

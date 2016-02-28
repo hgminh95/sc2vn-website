@@ -15,7 +15,13 @@ exports.load = function(req, res, next, id) {
 }
 
 exports.create = function(req, res) {
-  res.sendStatus(201);
+  var article = new Article(only(req.body, 'title content'));
+  console.log(req.body);
+  article.save(function(err) {
+    if (err) res.sendStatus(406);
+    
+    res.sendStatus(201);
+  });
 }
 
 exports.index = function(req, res) {
