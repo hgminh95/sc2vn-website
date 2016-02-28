@@ -32,3 +32,6 @@ config/env/env.json
 # CSS
 public/stylesheets/style.css
 
+# JavaScript
+public/javascripts/ng-admin.js
+

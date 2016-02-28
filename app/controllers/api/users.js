@@ -15,7 +15,7 @@ exports.load = function(req, res, next, id) {
 }
 
 exports.create = function(req, res) {
-  rs.sendStatus(201);
+  res.sendStatus(201);
 }
 
 exports.index = function(req, res) {
