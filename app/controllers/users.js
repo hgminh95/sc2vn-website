@@ -36,7 +36,7 @@ exports.show = function(req, res) {
   res.render('users/show', {
     title: user.name,
     user: user._doc
-  })
+  });
 }
 
 exports.edit = function(req, res) {
@@ -44,7 +44,7 @@ exports.edit = function(req, res) {
   res.render('users/edit', {
     title: 'Editing ' + user.name,
     user: user._doc
-  })
+  });
 }
 
 exports.update = function(req, res) {
