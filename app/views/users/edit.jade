@@ -7,17 +7,23 @@ block content
       legend Edit user infomation
       | User name: 
       br
-      input(type="text", name="name", 
-      value=(!user.name) ? "" : "#{user.name}", placeholder="Your name")
+      input(
+        type="text", name="name", 
+        value=(!user.name) ? "" : "#{user.name}", 
+        placeholder="Your name")
       br
       | Email:
       br
-      input(type="text", name="email", 
-      value=(!user.email) ? "" : "#{user.email}", placeholder="Your email", disabled)
+      input(
+        type="text", name="email", 
+        value=(!user.email) ? "" : "#{user.email}", 
+        placeholder="Your email", disabled)
       br
       | Battle.net ID:
       br
-      input(type="text", name="bnet_id", 
-      value=(!user.bnet_id) ? "" : "#{user.bnet_id}", placeholder="Your Battle.net ID", disabled)
+      input(
+        type="text", name="bnet_id", 
+        value=(!user.bnet_id) ? "" : "#{user.bnet_id}", 
+        placeholder="Your Battle.net ID", disabled)
       br
       input(type="submit", value="Save change")
