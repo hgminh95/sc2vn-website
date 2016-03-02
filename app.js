@@ -84,5 +84,5 @@ function connect () {
   return mongoose.connect(config.db, options).connection;
 }
 
-debug(app, {});
+debug(app, { depth: 5 });
 module.exports = app;
