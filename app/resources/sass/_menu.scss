@@ -1,0 +1,30 @@
+.menu {
+  width: 100%;
+  border-bottom: 1px solid $gray-dark;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.menu-logo {
+
+}
+
+.menu-item {
+  float: right;
+  li {
+    display: inline-block;
+    list-style: none;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 22px 42px 14px 0px;
+  }
+  a {
+    color: $gray-light;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.sub-menu {
+  border-top: 2px solid #f00;
+}

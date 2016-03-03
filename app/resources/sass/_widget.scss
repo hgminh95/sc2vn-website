@@ -1,0 +1,27 @@
+.widget {
+  margin: 35px 20px 40px 32px;
+}
+
+.widget-title {
+  text-transform: uppercase;
+  color: $gray-dark;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.widget-content {
+  ul, li {
+    list-style: none;
+    font-size: 14px;
+    padding: 0;
+    margin-bottom: 2px;
+  }
+  a {
+    color: $gray-lighter;
+    &:hover {
+      color: #4682b4;
+      text-decoration: none;
+    }
+  }
+}
