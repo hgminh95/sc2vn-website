@@ -1,0 +1,31 @@
+.news {
+  margin-bottom: 20px;
+  a {
+    text-decoration: none;
+  }
+}
+
+.news-thumb {
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  margin-top: 4px;
+  padding: 2px;
+  border: 1px solid;
+}
+
+.news-content {
+  overflow: hidden;
+}
+
+.news-headline {
+  color: $gray-dark;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.news-meta {
+  color: $gray-lighter;
+  font-size: 12px;
+}

@@ -5,7 +5,7 @@ $gray-dark: lighten($gray-base, 40%);
 $gray: lighten($gray-base, 40%);
 $gray-light: lighten($gray-base, 50%);
 $gray-lighter: lighten($gray-base, 60.5%);
-  
+
 // Component
 $padding-base-vertical: 13px;
 $padding-base-horizontal: 13px;
@@ -15,7 +15,7 @@ $padding-small-vertical: 5px;
 $padding-small-horizontal: 10px;
 
 $border-radius-base: 3px;
-$border-radius-large: 4x;
+$border-radius-large: 4px;
 $border-radius-small: 2px;
 
 // Forms
@@ -31,7 +31,7 @@ $input-border-focus: #e1e1e1;
 $legend-border-color: #e1e1e1;
 
 // Navbar
-$navbar-default-bg: #fff; 
+$navbar-default-bg: #fff;
 $navbar-default-color: $gray-lighter;
 
 // Buttons
