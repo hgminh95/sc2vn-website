@@ -1,0 +1,18 @@
+mixin article-thumbnail(src)
+  img.article-thumbnail(src= src)
+mixin article-title(title)
+  .article-title= title
+mixin article-meta(meta)
+  .article-meta= meta
+mixin article-content(content)
+  .article-content= content
+mixin article-footer(link, description)
+  .article-footer
+    a(href= link)= description
+mixin article(thumb, title, meta, content, link, description)
+  .article
+    +article-thumbnail(thumb)
+    +article-title(title)
+    +article-meta(meta)
+    +article-content(content)
+    +article-footer(link, description)
