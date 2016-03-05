@@ -16,7 +16,7 @@ exports.load = function(req, res, next, id) {
 
 exports.loadCurrentUser = function(req, res, next) {
   if (req.isAuthenticated()) {
-    res.locals.current_user = req.user._doc;
+    res.locals.current_user = req.user.to_json();
   }
   else {
     res.locals.current_user = {};
@@ -35,7 +35,7 @@ exports.show = function(req, res) {
   var user = req.profile;
   res.render('users/show', {
     title: user.name,
-    user: user._doc
+    user: user.to_json()
   });
 }
 
@@ -43,7 +43,7 @@ exports.edit = function(req, res) {
   var user = req.profile;
   res.render('users/edit', {
     title: 'Editing ' + user.name,
-    user: user._doc
+    user: user.to_json()
   });
 }
 
