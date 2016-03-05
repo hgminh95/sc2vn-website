@@ -4,10 +4,12 @@ var users = require('../app/controllers/users');
 var articles = require('../app/controllers/articles');
 var tournaments = require('../app/controllers/tournaments');
 var statics = require('../app/controllers/statics');
+var usersMiddleware = require('../app/middlewares/users');
 
 module.exports = function(app) {
 
   app.use(users.loadCurrentUser);
+  app.use(usersMiddleware.checkNotification);
 
   // User Routes
   app.param('userId', users.load);
@@ -30,7 +32,7 @@ module.exports = function(app) {
 
   // Tournament Routes
   app.param('tournamentId', tournaments.load);
-  
+
   app.get('/tournaments', tournaments.index);
   app.get('/tournaments/new', tournaments.new);
   app.post('/tournaments', tournaments.create);
@@ -38,7 +40,7 @@ module.exports = function(app) {
   app.get('/tournaments/:tournamentId/edit', tournaments.edit);
   app.post('/tournaments/:tournamentId', tournaments.update);
   app.delete('/tournaments/:tournamentId', tournaments.destroy);
-  
+
   // Static Routes
   app.get('/admin', statics.admin);
 };
