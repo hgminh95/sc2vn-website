@@ -1,0 +1,29 @@
+.section {
+  margin-bottom: 50px;
+  display: block;
+
+  .section-title {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    text-align: left;
+    font-size: 16px;
+    margin-bottom: 20px;
+
+    &:after {
+      position: absolute;
+      top: 51%;
+      overflow: hidden;
+      width: 100%;
+      height: 1px;
+      content: '\a0';
+      margin-left: 15px;
+      background-color: #e1e1e1;
+    }
+  }
+
+  .section-content {
+    display: block;
+    overflow: auto;
+  }
+}

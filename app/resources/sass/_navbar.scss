@@ -1,6 +1,12 @@
+.navbar {
+  margin-bottom: 0px;
+}
+
 .nav {
   li {
     a {
+      font-weight: 600;
+      font-size: 13px;
       border-bottom: 2px solid #fff;
       transition: border-bottom-color ease-in .5s;
       &:hover {

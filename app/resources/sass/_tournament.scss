@@ -1,0 +1,23 @@
+.tournament-preview {
+  width: 100%;
+  float: left;
+  clear: both;
+  margin-top: 10px;
+  margin-bottom: 25px;
+
+  .thumb {
+    float: left;
+    margin-right: 50px;
+    display: block;
+    vertical-align: baseline;
+    height: 100px;
+    width: 100px;
+  }
+
+  .content {
+    .title {
+      margin: 0px;
+      overflow: hidden;
+    }
+  }
+}
