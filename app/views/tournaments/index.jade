@@ -1,4 +1,23 @@
-extends ../layout
+extends ../layout.normal
 
-block content
-  h1= 'Nothing here'
+include ../mixins/tournament.jade
+
+block content-inside
+  .section
+    .section-title Upcomming tournament
+    .section-content
+      - for tournament in tournaments
+        +tournament-preview(tournament)
+  .section
+    .section-title Current tournament
+    .section-content
+      p Tournament ...
+      p Tournament ...
+  .section
+    .section-title Past tournament
+    .section-content
+      p Tournament ...
+      p Tournament ...
+
+block sidebar
+  a.btn.btn-block.button-submit(href='tournaments/new') New Tournament

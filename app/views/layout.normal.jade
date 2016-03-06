@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  .breadcrumbs.light
+    .container
+      .breadcrumbs-title Tournament
+      .breadcrumbs-details Home / Tournament
+
+  .container
+    .row
+      .col-md-9.no-padding
+        .box-right
+          block content-inside
+      .col-md-3.no-padding
+        .box-left
+          block sidebar
+          .widget
+            .widget-title Recent Match
+            .widget-content
+              table.table.table-hover
+                tbody
+                  tr
+                    td.text-center A
+                    td.text-center vs
+                    td.text-center B
+                  tr
+                    td.text-center B
+                    td.text-center vs
+                    td.text-center C
+                  tr
+                    td.text-center C
+                    td.text-center vs
+                    td.text-center A
+          .widget
+            .widget-title Top Player
+            .widget-content
+              table.table.table-hover
+                tbody
+                  tr
+                    td.text-center ||||||||||
+                  tr
+                    td.text-center |||||||||
+                  tr
+                    td.text-center ||||||||
