@@ -1,0 +1,11 @@
+.nav {
+  li {
+    a {
+      border-bottom: 2px solid #fff;
+      transition: border-bottom-color ease-in .5s;
+      &:hover {
+        border-bottom-color: #cc2222;
+      }
+    }
+  }
+}
