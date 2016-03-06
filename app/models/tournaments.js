@@ -24,17 +24,17 @@ var TournamentSchema = new Schema({
 
 TournamentSchema.methods = {
   addSection: function(section) {
-    
+
   },
-  
+
   removeSection: function(index) {
-    
+
   },
-  
+
   to_link: function() {
     return '/tournaments/' + this._id;
   },
-  
+
   to_json: function() {
     return {
       id: this._id,

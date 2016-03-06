@@ -19,7 +19,7 @@ exports.create = function(req, res) {
   console.log(req.body);
   article.save(function(err) {
     if (err) res.sendStatus(406);
-    
+
     res.sendStatus(201);
   });
 }
