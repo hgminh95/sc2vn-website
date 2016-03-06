@@ -9,11 +9,12 @@ var Article = require('../../app/models/articles');
 
 chai.use(chaiHttp);
 
-var user;
-var article;
-
 describe('Articles', function() {
+  var article;
   beforeEach(function(done) {
+    Article.collection.drop();
+    User.collection.drop();
+
     user = new User({ name: 'Canh' });
     article = new Article({
       title: 'Test Article',
@@ -21,7 +22,13 @@ describe('Articles', function() {
       author: user.id
     });
     user.save();
-    article.save();
+    article.save(function(err) {
+      if (err) throw err;
+      done();
+    });
+  });
+
+  afterEach(function(done) {
     done();
   });
 

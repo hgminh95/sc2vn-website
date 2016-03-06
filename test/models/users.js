@@ -8,14 +8,14 @@ var User = require('../../app/models/users');
 var Notification = require('../../app/models/notifications');
 
 describe('Users', function() {
-  User.collection.drop();
-
   var user;
   beforeEach(function(done) {
+    User.collection.drop();
     user = new User({
       name: 'Canh' ,
       bnet_id: '1234'
     });
+
     user.save(function(err, u) {
       user = u;
       done();
@@ -23,7 +23,6 @@ describe('Users', function() {
   });
 
   afterEach(function(done) {
-    User.collection.drop();
     done();
   });
 

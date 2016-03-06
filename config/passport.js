@@ -23,15 +23,15 @@ passport.use(
     function(accessToken, refreshToken, profile, done) {
       process.nextTick(function() {
         console.log(profile);
-        
+
         User.findById(profile.id, function(err, user) {
           if (err) return done(err);
-          
+
           if (!user) {
             user = User.newWithBnetProfile(profile);
             user.save(function(err) {
               if (err) console.log(err);
-              
+
               return done(err, user);
             });
           }
@@ -47,9 +47,9 @@ passport.use(
 module.exports = function(app) {
   app.use(passport.initialize());
   app.use(passport.session());
-  
+
   app.get('/auth/bnet', passport.authenticate('bnet'));
-  
+
   app.get('/auth/bnet/callback',
           passport.authenticate('bnet', { failureRedirect: '/' }),
           function(req, res) {
