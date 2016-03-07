@@ -6,10 +6,21 @@ block scripts
     tinymce.init({
       selector: '#content'
     });
-
+  include ../mixins/article.jade
+  
 block content
-  form(action='/articles', method='post')
-    | Title:
-    input(type='text', name='title')
-    textarea(id='content' name='content')
-    input(type='submit', value='Create')
+  .article.article-new.container
+    form(action='/articles', method='post')
+      fieldset.article-info
+        lable
+          .name Title
+          input(type='text', name='title')
+        lable
+          .name Thumbnail
+          input#files(type='file', name='thumbnail')
+        lable
+          .name Content
+          textarea#content(name='content')
+      fieldset.submit
+        input.btn.button-submit(type='submit', value='Create')
+        .clearfix

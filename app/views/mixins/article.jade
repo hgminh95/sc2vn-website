@@ -1,0 +1,15 @@
+mixin article-show(article)
+  .article.article-show.container
+    .article-title!= article.title
+    .article-meta!= article.meta
+    img.article-thumbnail(src= article-thumbnail)    
+    .article-content!= article.content
+
+mixin article(article)
+  .article
+    img.article-thumbnail(src= article-thumbnail)   
+    .article-title!= article.title
+    .article-meta!= article.meta 
+    .article-content!= article.content
+    .article-footer
+      a(href='/articles/' + article._id) Read more

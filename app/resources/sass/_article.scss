@@ -42,3 +42,45 @@
     }
   }
 }
+
+.article-show {
+  .article-title {
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+  .article-meta {
+    margin-bottom: 35px;
+  }
+  .article-thumbnail {
+    margin-bottom: 35px;
+  }
+  .article-content {
+    font-size: 16px;
+  }
+}
+
+.article-new {
+  form {
+    border: 1px solid #c6c7cc;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .article-info, .submit {
+    padding: 20px 50px 20px 50px;
+  }
+  .article-info .name {
+    color: $gray-dark;
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .article-info input {
+    border: 1px solid #c6c7cc;
+    border-radius: 5px;
+    color: #636466;
+    padding: 10px;
+    margin-bottom: 25px;
+    width: 100%;
+  }
+}
