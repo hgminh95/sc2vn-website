@@ -1,21 +1,21 @@
 .lighter {
-  background-color: #fff;
+  background-color: $bg-color-default;
 }
 
 .light {
-  background-color: #fcfcfc;
+  background-color: $bg-color-alternative;
 }
 
 .dark {
-  background-color: #333333;
-  color: #919191;
+  background-color: $bg-color-inverse-default;
+  color: $font-color-inverse-default;
 
   strong {
-    color: #fff;
+    color: $font-color-inverse-strong;
   }
 }
 
 .darker {
-  background-color: #222222;
-  color: #fff;
+  background-color: $bg-color-inverse-alternative;
+  color: $font-color-inverse-strong;
 }

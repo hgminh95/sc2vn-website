@@ -1,3 +1,30 @@
+//--------------------
+// Global variables
+//--------------------
+
+$font-color-default: #666666;
+$font-color-strong: #888888;
+$font-color-emphasis: #444444;
+
+$font-color-inverse-default: #999999;
+$font-color-inverse-strong: #fff;
+$font-color-inverse-emphasis: #fff;
+
+$bg-color-default: #fff;
+$bg-color-alternative: #fcfcfc;
+
+$bg-color-inverse-default: #333333;
+$bg-color-inverse-alternative: #222222;
+
+$font-size-default: 13px;
+$font-size-small: 11px;
+$font-size-big: 14px;
+$font-size-title: 18px;
+
+//--------------------
+// Bootstrap variables
+//--------------------
+
 // Colors
 $gray-base: #000;
 $gray-darker: lighten($gray-base, 30%);
@@ -14,9 +41,9 @@ $padding-large-horizontal: 13px;
 $padding-small-vertical: 5px;
 $padding-small-horizontal: 10px;
 
-$border-radius-base: 3px;
-$border-radius-large: 4px;
-$border-radius-small: 2px;
+$border-radius-base: 0px;
+$border-radius-large: 0px;
+$border-radius-small: 0px;
 
 // Forms
 $input-bg: #fcfcfc;

@@ -4,15 +4,15 @@
 
   .widget-title {
     text-transform: uppercase;
-    color: $gray-dark;
-    font-size: 14px;
+    color: $font-color-default;
+    font-size: $font-size-big;
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottom: 13px;
     letter-spacing: 1px;
   }
 
   .widget-content {
-    font-size: 12px;
+    font-size: $font-size-small;
 
     ul, li {
       list-style: none;

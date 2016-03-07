@@ -1,4 +1,6 @@
-extends ../layout
+extends ../layout.normal
+
+include ../mixins/article.jade
 
 block scripts
   script(src='https://cdn.tinymce.com/4/tinymce.min.js')
@@ -6,21 +8,6 @@ block scripts
     tinymce.init({
       selector: '#content'
     });
-  include ../mixins/article.jade
-  
-block content
-  .article.article-new.container
-    form(action='/articles', method='post')
-      fieldset.article-info
-        lable
-          .name Title
-          input(type='text', name='title')
-        lable
-          .name Thumbnail
-          input#files(type='file', name='thumbnail')
-        lable
-          .name Content
-          textarea#content(name='content')
-      fieldset.submit
-        input.btn.button-submit(type='submit', value='Create')
-        .clearfix
+
+block content-inside
+  +article-form(article, '/articles')

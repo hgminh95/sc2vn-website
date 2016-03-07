@@ -43,4 +43,7 @@ module.exports = function(app) {
 
   // Static Routes
   app.get('/admin', statics.admin);
+  
+  // Root
+  app.get('/', articles.index);
 };

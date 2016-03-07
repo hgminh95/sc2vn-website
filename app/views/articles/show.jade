@@ -1,5 +1,8 @@
-extends ../layout
+extends ../layout.normal
 
-block content
-  h1 #{article.title}
-  !{article.content}
+block content-inside
+  h1= article.title
+  p !{article.content}
+
+block sidebar
+  a.btn.btn-block.button-submit(href='/articles/' + article._id + '/edit') Edit Article

@@ -2,6 +2,7 @@
   padding-top: 40px;
   padding-bottom: 50px;
   padding-left: 20px;
+  padding-right: 20px;
 }
 
 .box-left {
@@ -20,4 +21,10 @@
 .no-padding {
   padding: 0 !important;
   margin: 0 !important;
+}
+
+.form-group {
+  label {
+    font-size: $font-size-default;
+  }
 }

@@ -15,16 +15,19 @@ exports.load = function(req, res, next, id) {
 }
 
 exports.new = function(req, res) {
+  var article = new Article();
+  
   res.render('articles/new', {
+    article: article._doc,
     title: 'New article'
   });
 }
 
-exports.create = function(req, res) {
+exports.create = function(req, res, next) {
   var article = new Article();
   assign(article, only(req.body, 'title content'));
   article.save(function(err) {
-    if(err) next(err);
+    if(err) return next(err);
     res.redirect(article.to_link());
   });
 }

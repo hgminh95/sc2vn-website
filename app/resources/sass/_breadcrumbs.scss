@@ -6,12 +6,12 @@
 
 .breadcrumbs-title {
   display: inline;
-  font-size: 18px;
+  font-size: $font-size-title;
   float: left !important;
 }
 
 .breadcrumbs-details {
-  font-size: 13px;
+  font-size: $font-size-default;
   display: inline;
   float: right !important;
 }
