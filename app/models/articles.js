@@ -22,6 +22,10 @@ ArticleSchema.methods = {
 
   getEditPath: function() {
     return '/articles/' + this._id + '/edit';
+  },
+  
+  getMetaInfo: function() {
+    return this.created_at.toDateString() + ' / 0 Comments / in Random / ' + 'by ' + this.author.name;
   }
 }
 

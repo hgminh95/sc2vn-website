@@ -1,6 +1,13 @@
 extends ../layout.normal
 
+block scripts
+  script(src='/javascripts/mainpage.js')
+  link(rel='stylesheet', href='/stylesheets/mainpage.css')
+
 include ../mixins/article.jade
+
+block pre-content
+  img.img(src='http://demos.creative-tim.com/get-shit-done/assets/img/cover_4_blur.jpg', height='400px', width='100%')
 
 block content-inside
   - for article in articles

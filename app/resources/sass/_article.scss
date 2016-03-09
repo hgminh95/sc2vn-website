@@ -12,7 +12,7 @@
   .article-title {
     font-size: $font-size-title;
     font-weight: bold;
-    color: $font-color-strong;
+    color: $font-color-emphasis;
   }
 
   .article-meta {
@@ -29,6 +29,7 @@
   }
 
   .article-footer {
+    font-size: $font-size-default;
   }
 }
 

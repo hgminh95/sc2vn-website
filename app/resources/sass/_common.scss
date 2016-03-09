@@ -28,3 +28,19 @@
     font-size: $font-size-default;
   }
 }
+
+a {
+  color: $font-color-link;
+}
+
+body {
+  margin-top: 52px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    margin-left: 130px;
+    margin-right: 100px;
+    width: auto;
+  }
+}

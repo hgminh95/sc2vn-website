@@ -9,10 +9,12 @@ mixin article-preview(article)
   .article-preview
     img.article-thumbnail(src= article-thumbnail)
     .article-title!= article.title
-    .article-meta!= article.meta
+    .article-meta!= article.getMetaInfo()
     .article-content!= article.content
     .article-footer
-      a(href='/articles/' + article._id) Read more
+      a(href=article.getShowPath()) 
+        | Read more  
+        i.fa.fa-angle-double-right
 
 mixin article-form(article, action)
   form(action=action, method='post')

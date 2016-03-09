@@ -1,0 +1,52 @@
+body {
+  margin: 0px;
+}
+
+nav.navbar {
+  transition: all 0.4s ease;
+}
+
+.navbar-brand,
+.navbar-nav li a {
+  line-height: 100px;
+  height: 100px;
+  padding-top: 0;
+  
+  transition: all .4s ease
+}
+
+
+.navbar-default .navbar-nav > li > a {
+  color: #444;
+  border: 0px;
+}
+
+.navbar-default .navbar-brand {
+  color: #444;
+  font-weight: 600;
+}
+
+nav.navbar {
+  background-color: transparent;
+  border: 0px;
+}
+
+nav.shrink.navbar {
+  background: rgba(255, 255, 255, 1);
+  color: #666666 !important;
+  border-bottom: 1px solid #eee;
+}
+
+nav.shrink li a {
+  line-height: 50px;
+  height: 50px;
+  
+  transition: all .4s ease
+}
+
+nav.shrink .navbar-brand {
+  line-height: 50px;
+  height: 50px;
+  
+  transition: all .4s ease;
+}

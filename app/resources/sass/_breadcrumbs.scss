@@ -2,6 +2,7 @@
   padding-top: 15px;
   padding-bottom: 15px;
   border-bottom: 1px solid #eeeeee;
+  color: $font-color-strong;
 }
 
 .breadcrumbs-title {
@@ -11,6 +12,7 @@
 }
 
 .breadcrumbs-details {
+  margin-top: 4px;
   font-size: $font-size-default;
   display: inline;
   float: right !important;
