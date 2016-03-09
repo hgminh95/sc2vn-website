@@ -13,6 +13,9 @@ var SectionSchema = new Schema({
 
 var TournamentSchema = new Schema({
   name: { type: String, require: true },
+  owner: { type: Schema.Types.ObjectId, ref: 'User' },
+  registrable: { type: Boolean },
+  staffs: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   sections: [SectionSchema]
 },
 {
@@ -47,6 +50,10 @@ TournamentSchema.methods = {
 TournamentSchema.statics = {
   all: function(callback) {
     return this.find({}).exec(callback);
+  },
+
+  fields: function() {
+    return 'name owner registrable staffs sections'
   }
 }
 

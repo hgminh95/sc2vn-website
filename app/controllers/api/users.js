@@ -31,7 +31,7 @@ exports.show = function(req, res) {
 exports.update = function(req, res) {
   var user = req.user;
 
-  assign(user, only(req.body, 'name'));
+  assign(user, only(req.body, User.fields()));
   user.save();
 
   res.sendStatus(204);

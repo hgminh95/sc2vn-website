@@ -15,7 +15,7 @@ exports.load = function(req, res, next, id) {
 }
 
 exports.create = function(req, res) {
-  var article = new Article(only(req.body, 'title content'));
+  var article = new Article(only(req.body, Article.fields()));
   console.log(req.body);
   article.save(function(err) {
     if (err) res.sendStatus(406);
@@ -37,7 +37,7 @@ exports.show = function(req, res) {
 exports.update = function(req, res) {
   var article = req.article;
 
-  assign(article, only(req.body, 'title content'));
+  assign(article, only(req.body, Article.fields()));
   article.save();
 
   res.sendStatus(204);

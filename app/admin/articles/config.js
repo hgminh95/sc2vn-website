@@ -5,13 +5,20 @@ module.exports = function(nga, admin) {
 
   articles.listView().fields([
     nga.field('title').isDetailLink(true).detailLinkRoute('show'),
-    nga.field('content', 'text'),
+    nga.field('author', 'reference')
+        .targetEntity(admin.getEntity('users'))
+        .targetField(nga.field('name'))
+        .label('Author'),
     nga.field('created_at', 'datetime'),
     nga.field('updated_at', 'datetime')
   ]);
 
   articles.showView().fields([
     nga.field('title'),
+    nga.field('author', 'reference')
+        .targetEntity(admin.getEntity('users'))
+        .targetField(nga.field('name'))
+        .label('Author'),
     nga.field('content', 'text'),
     nga.field('created_at', 'datetime'),
     nga.field('updated_at', 'datetime')
@@ -20,7 +27,10 @@ module.exports = function(nga, admin) {
   articles.creationView().fields([
     nga.field('title'),
     nga.field('content', 'text'),
-    nga.field('author')
+    nga.field('author', 'reference')
+        .targetEntity(admin.getEntity('users'))
+        .targetField(nga.field('name'))
+        .label('Author')
   ]);
 
   articles.editionView().fields(articles.creationView().fields());

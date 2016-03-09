@@ -6,7 +6,7 @@ var config = require('./config');
 var User = require('../app/models/users')
 
 passport.serializeUser(function(user, done) {
-  done(null, user.bnet_id);
+  done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -24,7 +24,7 @@ passport.use(
       process.nextTick(function() {
         console.log(profile);
 
-        User.findById(profile.id, function(err, user) {
+        User.findByBnetId(profile.id, function(err, user) {
           if (err) return done(err);
 
           if (!user) {

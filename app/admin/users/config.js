@@ -3,8 +3,6 @@
 module.exports = function(nga, admin) {
   var users = admin.getEntity('users');
 
-  users.identifier(nga.field('bnet_id'));
-
   users.listView().fields([
     nga.field('name').isDetailLink(true).detailLinkRoute('show'),
     nga.field('bnet_id'),

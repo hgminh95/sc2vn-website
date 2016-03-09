@@ -25,18 +25,19 @@ exports.show = function(req, res) {
 }
 
 exports.create = function(req, res) {
-  var tournament = new Tournament(only(req.body, 'name sections'));
+  var tournament = new Tournament(only(req.body, Tournament.fields()));
   tournament.save(function(err) {
-    if (err) res.sendStatus(406);
-
-    res.sendStatus(201);
+    if (err)
+      res.sendStatus(406);
+    else
+      res.sendStatus(201);
   });
 }
 
 exports.update = function(req, res) {
   var tournament = req.tournament;
 
-  assign(tournament, only(req.body, 'name sections'));
+  assign(tournament, only(req.body, Tournament.fields()));
   tournament.save();
 
   res.sendStatus(204);

@@ -21,5 +21,7 @@ nav.navbar.navbar-default
         li
           a(href='#') Guide
         li
-          a(href='#') Not logged in?
-
+          -if (_locals.current_user.hasOwnProperty('name'))
+            a(href='#')= _locals.current_user.name
+          - else
+            a(href='/auth/bnet') Login

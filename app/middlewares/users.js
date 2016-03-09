@@ -11,7 +11,7 @@ exports.checkNotification = function(req, res, next) {
         removed.push(notifications[i]);
       }
     }
-    User.findById(req.user.bnet_id, function(err, user) {
+    User.findById(req.user._id, function(err, user) {
       if (err) next(err);
       user.removeNotifications(removed);
     });

@@ -24,10 +24,13 @@ ArticleSchema.methods = {
 ArticleSchema.statics = {
   all: function(callback) {
     return this.find({}).exec(callback);
+  },
+
+  fields: function() {
+    return 'title content author'
   }
 };
 
 var Article = mongoose.model('Article', ArticleSchema);
 
 module.exports = Article;
-

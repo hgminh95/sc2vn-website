@@ -61,7 +61,15 @@ UserSchema.statics = {
   },
 
   findById: function(id, callback) {
+    return this.findOne({ _id: id }).exec(callback);
+  },
+
+  findByBnetId: function(id, callback) {
     return this.findOne({ bnet_id: id }).exec(callback);
+  },
+
+  fields: function(callback) {
+    return 'name email score'
   }
 };
 
