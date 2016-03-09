@@ -25,15 +25,18 @@ exports.index = function(req, res) {
 }
 
 exports.new = function(req, res) {
-  res.render('tournaments/new');
+  res.render('tournaments/new', {
+    tournament: new Tournament()
+  });
 }
 
 exports.create = function(req, res) {
-  var tournament = new Tournament(only(req.body, 'name sections'));
+  var tournament = new Tournament(only(req.body, Tournament.fields()));
   tournament.save(function(err) {
     if (err) next(err);
-
-    res.redirect_to(tournament.to_link());
+    else { 
+      res.redirect(tournament.to_link());
+    }
   });
 }
 
@@ -52,7 +55,7 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {
   var tournament = req.tournament;
 
-  assign(tournament, only(req.body, 'name sections'));
+  assign(tournament, only(req.body, Tournament.fields()));
   tournament.save();
 
   res.redirect_to(tournament.to_link());

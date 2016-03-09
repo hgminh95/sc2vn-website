@@ -1,0 +1,19 @@
+extends ../layout.normal
+
+block content-inside
+  .page-header.text-center
+    h2 Ranking
+
+  table.table.table-hover
+    thead
+      th #
+      th Name
+      th Score
+    tbody
+      - var index = 0
+      - for user in users
+        tr
+          - index++
+          td= index
+          td= user.name
+          td= user.score

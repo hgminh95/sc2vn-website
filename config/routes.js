@@ -15,6 +15,7 @@ module.exports = function(app) {
   app.param('userId', users.load);
 
   app.get('/users', users.index);
+  app.get('/users/rank', users.rank);
   app.get('/users/:userId', users.show);
   app.get('/users/:userId/edit', users.edit);
   app.post('/users/:userId', users.update);
@@ -43,7 +44,7 @@ module.exports = function(app) {
 
   // Static Routes
   app.get('/admin', statics.admin);
-  
+
   // Root
   app.get('/', articles.index);
 };

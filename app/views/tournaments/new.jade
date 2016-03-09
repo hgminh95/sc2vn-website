@@ -1,4 +1,6 @@
-extends ../layout
+extends ../layout.normal
 
-block content
-  h1= 'Nothing here'
+include ../mixins/tournament.jade
+
+block content-inside
+  +tournament-form(tournament, '/tournaments')

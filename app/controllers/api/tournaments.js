@@ -7,10 +7,11 @@ var Tournament = require('../../models/tournaments');
 exports.load = function(req, res, next, id) {
   Tournament.findById(id, function(err, tournament) {
     if (err) next(err);
-
-    req.tournament = tournament;
-    if (!req.tournament) return next(new Error('Tournament not found'));
-    next();
+    else {
+      req.tournament = tournament;
+      if (!req.tournament) return next(new Error('Tournament not found'));
+      next();
+    }
   });
 }
 

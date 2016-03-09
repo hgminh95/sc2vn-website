@@ -3,3 +3,10 @@ mixin tournament-preview(tournament)
     img.thumb(src='https://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png')
     .content
       h3.title= tournament.name
+
+mixin tournament-form(tournament, action)
+  form(action=action, method='post')
+    .form-group
+      label(for='name') Name
+      input#title.form-control(type='text', name='name', placeholder='Name', value=tournament.name)
+    button.btn.button-submit(type='submit') Submit

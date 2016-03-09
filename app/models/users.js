@@ -9,7 +9,10 @@ var UserSchema = new Schema({
   email: { type: String },
   bnet_id: { type: String, index: true, unique: true },
   access_token: { type: String },
+  
+  race: { type: String, enum: ['zerg', 'terran', 'protoss', 'random'] },
   score: { type: Number, default: 0 },
+  
   notifications: [Notification.schema]
 },
 {
@@ -59,6 +62,10 @@ UserSchema.statics = {
   all: function(callback) {
     return this.find({}).exec(callback);
   },
+  
+  allWithRanking: function(callback) {
+    return this.find({}).sort('-score').exec(callback);
+  },
 
   findById: function(id, callback) {
     return this.findOne({ _id: id }).exec(callback);
@@ -69,7 +76,7 @@ UserSchema.statics = {
   },
 
   fields: function(callback) {
-    return 'name email score'
+    return 'name email score race';
   }
 };
 

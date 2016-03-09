@@ -50,8 +50,18 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {
   var user = req.profile;
 
-  assign(user, only(req.body, 'name'));
+  assign(user, only(req.body, Users.fields()));
   user.save();
 
   res.redirect(user.to_link());
+}
+
+exports.rank = function(req, res) {
+  User.allWithRanking(function(err, users) {
+    if (err) throw err;
+    
+    res.render('users/rank', {
+      users: users.map(user => user.to_json())
+    });
+  });
 }

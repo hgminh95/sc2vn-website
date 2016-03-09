@@ -1,0 +1,20 @@
+{
+  "rank": [
+    {
+      "title": "diamond",
+      "points": 100
+    },
+    {
+      "title": "gold",
+      "points": 75
+    },
+    {
+      "title": "silver",
+      "points": 50
+    },
+    {
+      "title": "bronze",
+      "points": 25
+    }
+  ]
+}
