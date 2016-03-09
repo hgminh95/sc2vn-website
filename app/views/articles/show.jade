@@ -5,4 +5,4 @@ block content-inside
   p !{article.content}
 
 block sidebar
-  a.btn.btn-block.button-submit(href='/articles/' + article._id + '/edit') Edit Article
+  a.btn.btn-block.button-submit(href=article.getEditPath()) Edit Article

@@ -15,5 +15,7 @@ block content-inside
         tr
           - index++
           td= index
-          td= user.name
+          td
+            a(href=user.getShowPath())
+              = user.name
           td= user.score

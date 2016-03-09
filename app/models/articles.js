@@ -16,8 +16,12 @@ var ArticleSchema = new Schema({
 });
 
 ArticleSchema.methods = {
-  to_link: function() {
+  getShowPath: function() {
     return '/articles/' + this._id;
+  },
+
+  getEditPath: function() {
+    return '/articles/' + this._id + '/edit';
   }
 }
 
@@ -28,6 +32,10 @@ ArticleSchema.statics = {
 
   fields: function() {
     return 'title content author'
+  },
+
+  getNewPath: function() {
+    return '/articles/new'
   }
 };
 

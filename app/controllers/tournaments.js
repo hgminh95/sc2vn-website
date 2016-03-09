@@ -19,7 +19,7 @@ exports.index = function(req, res) {
     if (err) next(err);
 
     res.render('tournaments/index', {
-      tournaments: tournaments.map(tournament => tournament.to_json())
+      tournaments: tournaments
     });
   });
 }
@@ -34,21 +34,21 @@ exports.create = function(req, res) {
   var tournament = new Tournament(only(req.body, Tournament.fields()));
   tournament.save(function(err) {
     if (err) next(err);
-    else { 
-      res.redirect(tournament.to_link());
+    else {
+      res.redirect(tournament.getShowPath());
     }
   });
 }
 
 exports.show = function(req, res) {
   res.render('tournaments/show', {
-    tournament: req.tournament.to_json()
+    tournament: req.tournament
   });
 }
 
 exports.edit = function(req, res) {
   res.render('tournament/edit', {
-    tournament: req.tournament.to_json()
+    tournament: req.tournament
   });
 }
 
@@ -58,11 +58,11 @@ exports.update = function(req, res) {
   assign(tournament, only(req.body, Tournament.fields()));
   tournament.save();
 
-  res.redirect_to(tournament.to_link());
+  res.redirect(tournament.getShowPath());
 }
 
 exports.destroy = function(req, res) {
   req.tournament.remove();
 
-  res.redirect_to('tournaments');
+  res.redirect('/tournaments');
 }

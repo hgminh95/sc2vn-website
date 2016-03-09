@@ -34,16 +34,20 @@ TournamentSchema.methods = {
 
   },
 
-  to_link: function() {
-    return '/tournaments/' + this._id;
-  },
-
   to_json: function() {
     return {
       id: this._id,
       name: this.name,
       sections: this.sections.map(section => section._doc)
     };
+  },
+
+  getShowPath: function() {
+    return '/tournaments/' + this._id;
+  },
+
+  getEditPath: function() {
+    return '/tournaments/' + this._id + '/edit';
   }
 }
 
@@ -54,6 +58,10 @@ TournamentSchema.statics = {
 
   fields: function() {
     return 'name owner registrable staffs sections'
+  },
+
+  getNewPath: function() {
+    return '/tournaments/new';
   }
 }
 

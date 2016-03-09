@@ -16,7 +16,7 @@ exports.load = function(req, res, next, id) {
 
 exports.loadCurrentUser = function(req, res, next) {
   if (req.isAuthenticated()) {
-    res.locals.current_user = req.user.to_json();
+    res.locals.current_user = req.user;
   }
   else {
     res.locals.current_user = {};
@@ -35,7 +35,7 @@ exports.show = function(req, res) {
   var user = req.profile;
   res.render('users/show', {
     title: user.name,
-    user: user.to_json()
+    user: user
   });
 }
 
@@ -43,7 +43,7 @@ exports.edit = function(req, res) {
   var user = req.profile;
   res.render('users/edit', {
     title: 'Editing ' + user.name,
-    user: user.to_json()
+    user: user
   });
 }
 
@@ -53,15 +53,15 @@ exports.update = function(req, res) {
   assign(user, only(req.body, Users.fields()));
   user.save();
 
-  res.redirect(user.to_link());
+  res.redirect(user.getShowPath());
 }
 
 exports.rank = function(req, res) {
   User.allWithRanking(function(err, users) {
     if (err) throw err;
-    
+
     res.render('users/rank', {
-      users: users.map(user => user.to_json())
+      users: users
     });
   });
 }

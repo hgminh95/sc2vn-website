@@ -9,10 +9,10 @@ var UserSchema = new Schema({
   email: { type: String },
   bnet_id: { type: String, index: true, unique: true },
   access_token: { type: String },
-  
+
   race: { type: String, enum: ['zerg', 'terran', 'protoss', 'random'] },
   score: { type: Number, default: 0 },
-  
+
   notifications: [Notification.schema]
 },
 {
@@ -23,10 +23,6 @@ var UserSchema = new Schema({
 });
 
 UserSchema.methods = {
-  to_link: function() {
-    return '/users/' + this.bnet_id;
-  },
-
   calculateRank: function () {
 
   },
@@ -47,6 +43,14 @@ UserSchema.methods = {
     var userJson = this._doc;
     userJson.notifications = this.notifications.map(notification => notification._doc)
     return userJson;
+  },
+
+  getShowPath: function() {
+    return '/users/' + this._id;
+  },
+
+  getEditPath: function() {
+    return '/users/' + this._id + '/edit';
   }
 }
 
@@ -62,7 +66,7 @@ UserSchema.statics = {
   all: function(callback) {
     return this.find({}).exec(callback);
   },
-  
+
   allWithRanking: function(callback) {
     return this.find({}).sort('-score').exec(callback);
   },
@@ -77,6 +81,10 @@ UserSchema.statics = {
 
   fields: function(callback) {
     return 'name email score race';
+  },
+
+  getNewPath: function() {
+    return '/users/new';
   }
 };
 

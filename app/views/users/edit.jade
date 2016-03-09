@@ -5,25 +5,25 @@ block content
   form(action="/users/#{user.bnet_id}", method="post")
     fieldset
       legend Edit user infomation
-      | User name: 
+      | User name:
       br
       input(
-        type="text", name="name", 
-        value=(!user.name) ? "" : "#{user.name}", 
+        type="text", name="name",
+        value=(!user.name) ? "" : "#{user.name}",
         placeholder="Your name")
       br
       | Email:
       br
       input(
-        type="text", name="email", 
-        value=(!user.email) ? "" : "#{user.email}", 
+        type="text", name="email",
+        value=(!user.email) ? "" : "#{user.email}",
         placeholder="Your email", disabled)
       br
       | Battle.net ID:
       br
       input(
-        type="text", name="bnet_id", 
-        value=(!user.bnet_id) ? "" : "#{user.bnet_id}", 
+        type="text", name="bnet_id",
+        value=(!user.bnet_id) ? "" : "#{user.bnet_id}",
         placeholder="Your Battle.net ID", disabled)
       br
       input(type="submit", value="Save change")

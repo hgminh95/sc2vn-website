@@ -15,4 +15,4 @@ block scripts
     });
 
 block content-inside
-  +article-form(article, '/articles/' + article._id)
+  +article-form(article, article.getShowPath())

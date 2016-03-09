@@ -1,9 +1,8 @@
 .btn {
-  border-width: 0px 0px 1px 0px;
+  border-width: 0px;
 }
 
 .button-default {
-  border: 1px solid #e1e1e1;
   padding: 15px 30px 13px 30px;
   background-color: #fcfcfc;
   color: #666666;
@@ -17,7 +16,6 @@
 }
 
 .button-submit {
-  border-bottom: 1px solid darken(#c70f37, 10%);
   padding: 15px 30px 13px 30px;
   background-color: #c70f37;
   color: #fff;
