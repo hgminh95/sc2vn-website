@@ -2,7 +2,7 @@
 
 var assign = require('object-assign');
 var only = require('only');
-var Match = require('../models/matchs');
+var Match = require('../models/matches');
 
 exports.load = function(req, res, next, id) {
   Match.findById(id, function(err, match) {
@@ -15,17 +15,17 @@ exports.load = function(req, res, next, id) {
 }
 
 exports.index = function(req, res) {
-  Match.all(function(err, matchs) {
+  Match.all(function(err, matches) {
     if (err) next(err);
 
-    res.render('matchs/index', {
-      matchs: matchs
+    res.render('matches/index', {
+      matches: matches
     });
   });
 }
 
 exports.new = function(req, res) {
-  res.render('matchs/new', {
+  res.render('matches/new', {
     match: new Match()
   });
 }
@@ -41,7 +41,7 @@ exports.create = function(req, res) {
 }
 
 exports.show = function(req, res) {
-  res.render('matchs/show', {
+  res.render('matches/show', {
     match: req.match
   });
 }
@@ -64,5 +64,5 @@ exports.update = function(req, res) {
 exports.destroy = function(req, res) {
   req.match.remove();
 
-  res.redirect('/matchs');
+  res.redirect('/matches');
 }

@@ -2,7 +2,7 @@
 
 var assign = require('object-assign');
 var only = require('only');
-var Match = require('../../models/matchs');
+var Match = require('../../models/matches');
 
 exports.load = function(req, res, next, id) {
   Match.findById(id, function(err, match) {

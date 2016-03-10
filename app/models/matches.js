@@ -53,11 +53,11 @@ MatchSchema.methods = {
   },
 
   getShowPath: function() {
-    return '/matchs/' + this._id;
+    return '/matches/' + this._id;
   },
 
   getEditPath: function() {
-    return '/matchs/' + this._id + '/edit';
+    return '/matches/' + this._id + '/edit';
   }
 }
 
@@ -67,11 +67,11 @@ MatchSchema.statics = {
   },
 
   fields: function() {
-    return 'players date games'
+    return 'player_1 player_2 date games'
   },
 
   getNewPath: function() {
-    return '/matchs/new';
+    return '/matches/new';
   }
 }
 

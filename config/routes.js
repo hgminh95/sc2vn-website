@@ -5,7 +5,7 @@ var articles = require('../app/controllers/articles');
 var tournaments = require('../app/controllers/tournaments');
 var statics = require('../app/controllers/statics');
 var usersMiddleware = require('../app/middlewares/users');
-var matchs = require('../app/controllers/matchs');
+var matches = require('../app/controllers/matches');
 
 module.exports = function(app) {
 
@@ -44,15 +44,15 @@ module.exports = function(app) {
   app.delete('/tournaments/:tournamentId', tournaments.destroy);
 
   //Match Routes
-  app.param('matchId', tournaments.load);
+  app.param('matchId', matches.load);
 
-  app.get('/matchs', matchs.index);
-  app.get('/matchs/new', matchs.new);
-  app.post('/matchs', matchs.create);
-  app.get('/matchs/:matchId', matchs.show);
-  app.get('/matchs/:matchId/edit', matchs.edit);
-  app.post('/matchs/:matchId', matchs.update);
-  app.delete('/matchts/:matchId', matchs.destroy);
+  app.get('/matches', matches.index);
+  app.get('/matches/new', matches.new);
+  app.post('/matches', matches.create);
+  app.get('/matches/:matchId', matches.show);
+  app.get('/matches/:matchId/edit', matches.edit);
+  app.post('/matches/:matchId', matches.update);
+  app.delete('/matches/:matchId', matches.destroy);
 
   // Static Routes
   app.get('/admin', statics.admin);
