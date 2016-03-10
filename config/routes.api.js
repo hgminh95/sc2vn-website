@@ -5,6 +5,7 @@ var express = require('express');
 var users = require('../app/controllers/api/users');
 var articles = require('../app/controllers/api/articles');
 var tournaments = require('../app/controllers/api/tournaments');
+var matches = require('../app/controllers/api/matches');
 
 var router = express.Router();
 
@@ -31,6 +32,14 @@ router.post('/tournaments', tournaments.create);
 router.get('/tournaments/:tournamentId', tournaments.show);
 router.put('/tournaments/:tournamentId', tournaments.update);
 router.delete('/tournaments/:tournamentId', tournaments.destroy);
+
+router.param('matchID', matches.load);
+
+router.get('/matches', matches.index);
+router.post('/matches', matches.create);
+router.get('/matches/:tournamentId', matches.show);
+router.put('/matches/:tournamentId', matches.update);
+router.delete('/matches/:tournamentId', matches.destroy);
 
 module.exports = function(app) {
   app.use('/api', router);
