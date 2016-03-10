@@ -35,3 +35,5 @@ public/stylesheets/style.css
 # JavaScript
 public/javascripts/ng-admin.js
 
+# Temp
+tmp/*

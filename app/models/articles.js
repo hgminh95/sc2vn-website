@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 var ArticleSchema = new Schema({
   title: { type: String, required: true },
   content: { type: String },
+  thumbnail: { type: String },
   author: { type: Schema.Types.ObjectId, ref: 'User' }
 },
 {
@@ -23,19 +24,19 @@ ArticleSchema.methods = {
   getEditPath: function() {
     return '/articles/' + this._id + '/edit';
   },
-  
+
   getMetaInfo: function() {
-    return this.created_at.toDateString() + ' / 0 Comments / in Random / ' + 'by ' + this.author.name;
+    return this.created_at.toDateString() + ' / 0 Comments / in Random';
   }
 }
 
 ArticleSchema.statics = {
   all: function(callback) {
-    return this.find({}).exec(callback);
+    return this.find({}).populate('author').exec(callback);
   },
 
   fields: function() {
-    return 'title content author'
+    return 'title content'
   },
 
   getNewPath: function() {

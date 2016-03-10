@@ -2,25 +2,26 @@ mixin article-show(article)
   .article
     .article-title!= article.title
     .article-meta!= article.meta
-    img.article-thumbnail(src= article-thumbnail)
+    img.article-thumbnail(src= article.thumbnail)
     .article-content!= article.content
 
 mixin article-preview(article)
   .article-preview
-    img.article-thumbnail(src= article-thumbnail)
+    img.article-thumbnail(src= article.thumbnail)
     .article-title!= article.title
     .article-meta!= article.getMetaInfo()
     .article-content!= article.content
     .article-footer
-      a(href=article.getShowPath()) 
-        | Read more  
+      a(href=article.getShowPath())
+        | Read more
         i.fa.fa-angle-double-right
 
 mixin article-form(article, action)
-  form(action=action, method='post')
+  form(action=action, method='post', enctype='multipart/form-data')
     .form-group
       label(for='title') Title
       input#title.form-control(type='text', name='title', placeholder='Title', value=article.title)
+      input(type='file', name='upload')
     .form-group
       label(for='content') Content
       textarea#content.form-control(rows=20, name='content', placeholder='Write your content here...')
