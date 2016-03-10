@@ -2,6 +2,7 @@
 
 var assign = require('object-assign');
 var only = require('only');
+var uploader = require('../uploaders/thumbnails');
 var Article = require('../models/articles');
 
 exports.load = function(req, res, next, id) {
@@ -11,7 +12,7 @@ exports.load = function(req, res, next, id) {
     req.article = article;
     if (!req.article) return next(new Error('Article not found'));
     next();
-  });
+  }).populate('author');
 }
 
 exports.new = function(req, res) {
@@ -26,10 +27,16 @@ exports.new = function(req, res) {
 exports.create = function(req, res, next) {
   var article = new Article();
   assign(article, only(req.body, Article.fields()));
-  article.save(function(err) {
-    if(err) return next(err);
 
-    res.redirect(article.getShowPath());
+  if (!req.user) return next(new Error('Not authenticated'));
+  article.author = req.user._id;
+
+  if (!req.file) return next(new Error('No file uploaded'));
+  uploader.upload(article, req.file, function(article) {
+    article.save(function(err, article) {
+      if (err) next(err);
+      res.redirect(article.getShowPath());
+    });
   });
 }
 
@@ -55,7 +62,6 @@ exports.show = function(req, res) {
 
 exports.edit = function(req, res) {
   var article = req.article;
-
   res.render('articles/edit', {
     title: 'Editing ' + article.title,
     article: article
@@ -66,9 +72,14 @@ exports.update = function(req, res) {
   var article = req.article;
 
   assign(article, only(req.body, Article.fields()));
-  article.save();
 
-  res.redirect(article.getShowPath());
+  if (!req.file) return next(new Error('No file uploaded'));
+  uploader.upload(article, req.file, function(article) {
+    article.save(function(err, article) {
+      if (err) next(err);
+      res.redirect(article.getShowPath());
+    });
+  });
 }
 
 exports.destroy = function(req, res) {

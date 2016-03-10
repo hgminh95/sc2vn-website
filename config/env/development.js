@@ -17,5 +17,10 @@ module.exports = {
     clientID: process.env.BNET_ID,
     clientSecret: process.env.BNET_SECRET,
     callbackURL: 'https://localhost:3000/auth/bnet/callback'
+  },
+  cloudinary: {
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
   }
 };
