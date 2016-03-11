@@ -36,7 +36,7 @@ ArticleSchema.statics = {
   },
 
   fields: function() {
-    return 'title content'
+    return 'title content author'
   },
 
   getNewPath: function() {

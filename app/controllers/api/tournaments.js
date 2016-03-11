@@ -9,7 +9,7 @@ exports.load = function(req, res, next, id) {
     if (err) next(err);
     else {
       req.tournament = tournament;
-      if (!req.tournament) return next(new Error('Tournament not found'));
+      if (!req.tournament) return res.render('404');
       next();
     }
   });
@@ -17,12 +17,12 @@ exports.load = function(req, res, next, id) {
 
 exports.index = function(req, res) {
   Tournament.all(function(err, tournaments) {
-    res.json(tournaments.map(tournament => tournament._doc));
+    res.json(tournaments);
   });
 }
 
 exports.show = function(req, res) {
-  res.json(req.tournament._doc);
+  res.json(req.tournament);
 }
 
 exports.create = function(req, res) {

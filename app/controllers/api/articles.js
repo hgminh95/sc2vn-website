@@ -9,7 +9,7 @@ exports.load = function(req, res, next, id) {
     if (err) next(err);
 
     req.article = article;
-    if (!req.article) return next(new Error('Article not found'));
+    if (!req.article) return res.render('404')
     next();
   });
 }
@@ -26,12 +26,12 @@ exports.create = function(req, res) {
 
 exports.index = function(req, res) {
   Article.all(function(err, articles) {
-    res.json(articles.map(article => article._doc));
+    res.json(articles);
   });
 }
 
 exports.show = function(req, res) {
-  res.json(req.article._doc);
+  res.json(req.article);
 }
 
 exports.update = function(req, res) {

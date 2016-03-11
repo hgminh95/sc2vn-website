@@ -39,6 +39,9 @@ myApp.config(['RestangularProvider', function (RestangularProvider) {
     element.id = element._id;
     delete element['_id'];
 
+    if (element.author != null)
+      element.author_id = element.author._id;
+
     return element;
   });
 
@@ -48,7 +51,7 @@ myApp.config(['RestangularProvider', function (RestangularProvider) {
 
     return element;
   });
-  
+
   RestangularProvider.addElementTransformer('matches', function(element) {
     element.id = element._id;
     delete element['_id'];

@@ -15,9 +15,12 @@ block content
         .box-left
           block sidebar
           .widget
-            .widget-title 
-              i.fa.fa-bolt.fa-lg
-              |  Recent Matches
+            .widget-title
+              i.fa.fa-bolt.fa-fw
+              | &nbsp; Recent Matches
+              span.pull-right
+                a(href='/matches')
+                  i.fa.fa-bars.fa-fw
             .widget-content
               table.table.table-hover
                 tbody
@@ -34,9 +37,12 @@ block content
                     td.text-center vs
                     td.text-center A
           .widget
-            .widget-title 
-              i.fa.fa-users.fa-lg
-              |  Top Players
+            .widget-title
+              i.fa.fa-users.fa-fw
+              | &nbsp; Top Players
+              span.pull-right
+                a(href='/users/rank')
+                  i.fa.fa-bars.fa-fw
             .widget-content
               table.table.table-hover
                 tbody

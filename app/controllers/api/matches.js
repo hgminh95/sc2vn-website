@@ -9,7 +9,7 @@ exports.load = function(req, res, next, id) {
     if (err) next(err);
     else {
       req.match = match;
-      if (!req.match) return next(new Error('Match not found'));
+      if (!req.match) return res.render('404');
       next();
     }
   });
@@ -17,12 +17,12 @@ exports.load = function(req, res, next, id) {
 
 exports.index = function(req, res) {
   Match.all(function(err, matchs) {
-    res.json(matchs.map(match => match._doc));
+    res.json(matchs.map);
   });
 }
 
 exports.show = function(req, res) {
-  res.json(req.match._doc);
+  res.json(req.match);
 }
 
 exports.create = function(req, res) {

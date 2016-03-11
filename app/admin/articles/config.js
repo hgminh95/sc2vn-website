@@ -5,7 +5,7 @@ module.exports = function(nga, admin) {
 
   articles.listView().fields([
     nga.field('title').isDetailLink(true).detailLinkRoute('show'),
-    nga.field('author', 'reference')
+    nga.field('author_id', 'reference')
         .targetEntity(admin.getEntity('users'))
         .targetField(nga.field('name'))
         .label('Author'),

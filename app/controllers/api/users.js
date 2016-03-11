@@ -6,10 +6,10 @@ var User = require('../../models/users');
 
 exports.load = function(req, res, next, id) {
   User.findById(id, function(err, user) {
-    if (err) throw err;
+    if (err) return next(err);
 
     req.user = user;
-    if (!req.user) return next(new Error('User not found'));
+    if (!req.user) return res.render('404');
     next();
   });
 }
@@ -20,12 +20,12 @@ exports.create = function(req, res) {
 
 exports.index = function(req, res) {
   User.all(function(err, users) {
-    res.json(users.map(user => user._doc));
+    res.json(users);
   });
 }
 
 exports.show = function(req, res) {
-  res.json(req.user._doc);
+  res.json(req.user);
 }
 
 exports.update = function(req, res) {

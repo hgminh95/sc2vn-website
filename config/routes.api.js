@@ -37,9 +37,9 @@ router.param('matchID', matches.load);
 
 router.get('/matches', matches.index);
 router.post('/matches', matches.create);
-router.get('/matches/:tournamentId', matches.show);
-router.put('/matches/:tournamentId', matches.update);
-router.delete('/matches/:tournamentId', matches.destroy);
+router.get('/matches/:matchID', matches.show);
+router.put('/matches/:matchID', matches.update);
+router.delete('/matches/:matchID', matches.destroy);
 
 module.exports = function(app) {
   app.use('/api', router);

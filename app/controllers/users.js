@@ -6,10 +6,10 @@ var User = require('../models/users');
 
 exports.load = function(req, res, next, id) {
   User.findById(id, function(err, user) {
-    if (err) throw err;
+    if (err) return next(err);
 
     req.profile = user;
-    if (!req.profile) return next(new Error('User not found'));
+    if (!req.profile) return res.render('404');
     next();
   });
 }
@@ -56,9 +56,9 @@ exports.update = function(req, res) {
   res.redirect(user.getShowPath());
 }
 
-exports.rank = function(req, res) {
+exports.rank = function(req, res, next) {
   User.allWithRanking(function(err, users) {
-    if (err) throw err;
+    if (err) return next(err);
 
     res.render('users/rank', {
       users: users

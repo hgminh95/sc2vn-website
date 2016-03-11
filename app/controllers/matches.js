@@ -6,17 +6,17 @@ var Match = require('../models/matches');
 
 exports.load = function(req, res, next, id) {
   Match.findById(id, function(err, match) {
-    if (err) next(err);
+    if (err) return next(err);
 
     req.match = match;
-    if (!req.match) return next(new Error('Match not found'));
+    if (!req.match) return res.render('404');
     next();
   });
 }
 
-exports.index = function(req, res) {
+exports.index = function(req, res, next) {
   Match.all(function(err, matches) {
-    if (err) next(err);
+    if (err) return next(err);
 
     res.render('matches/index', {
       matches: matches
@@ -30,10 +30,10 @@ exports.new = function(req, res) {
   });
 }
 
-exports.create = function(req, res) {
+exports.create = function(req, res, next) {
   var match = new Match(only(req.body, Match.fields()));
   match.save(function(err) {
-    if (err) next(err);
+    if (err) return next(err);
     else {
       res.redirect(match.getShowPath());
     }

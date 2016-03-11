@@ -7,10 +7,10 @@ var Article = require('../models/articles');
 
 exports.load = function(req, res, next, id) {
   Article.findById(id, function(err, article) {
-    if (err) next(err);
+    if (err) return next(err);
 
     req.article = article;
-    if (!req.article) return next(new Error('Article not found'));
+    if (!req.article) return res.render('404');
     next();
   }).populate('author');
 }
@@ -34,15 +34,15 @@ exports.create = function(req, res, next) {
   if (!req.file) return next(new Error('No file uploaded'));
   uploader.upload(article, req.file, function(article) {
     article.save(function(err, article) {
-      if (err) next(err);
+      if (err) return next(err);
       res.redirect(article.getShowPath());
     });
   });
 }
 
-exports.index = function(req, res) {
+exports.index = function(req, res, next) {
   Article.all(function(err, articles) {
-    if (err) next(err);
+    if (err) return next(err);
 
     res.render('articles/index', {
       title: 'Articles',
@@ -68,7 +68,7 @@ exports.edit = function(req, res) {
   })
 }
 
-exports.update = function(req, res) {
+exports.update = function(req, res, next) {
   var article = req.article;
 
   assign(article, only(req.body, Article.fields()));
@@ -76,7 +76,7 @@ exports.update = function(req, res) {
   if (!req.file) return next(new Error('No file uploaded'));
   uploader.upload(article, req.file, function(article) {
     article.save(function(err, article) {
-      if (err) next(err);
+      if (err) return next(err);
       res.redirect(article.getShowPath());
     });
   });
