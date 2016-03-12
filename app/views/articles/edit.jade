@@ -9,7 +9,8 @@ block scripts
       selector: '#content',
       setup: function(editor) {
         editor.on('init', function(e) {
-          editor.setContent('!{article.content}');
+          //Remove new line character
+          editor.setContent('!{article.content.replace(/(\r|\n)/g, "")}');
         });
       }
     });
