@@ -31,7 +31,6 @@ exports.create = function(req, res, next) {
   if (!req.user) return next(new Error('Not authenticated'));
   article.author = req.user._id;
 
-  if (!req.file) return next(new Error('No file uploaded'));
   uploader.upload(article, req.file, function(article) {
     article.save(function(err, article) {
       if (err) return next(err);
@@ -73,7 +72,6 @@ exports.update = function(req, res, next) {
 
   assign(article, only(req.body, Article.fields()));
 
-  if (!req.file) return next(new Error('No file uploaded'));
   uploader.upload(article, req.file, function(article) {
     article.save(function(err, article) {
       if (err) return next(err);
