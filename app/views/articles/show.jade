@@ -1,8 +1,9 @@
 extends ../layout.normal
 
+include ../mixins/article.jade
+
 block content-inside
-  h1= article.title
-  p !{article.content}
+  +article-show(article)
 
 block sidebar
   a.btn.btn-block.button-submit(href=article.getEditPath()) Edit Article
