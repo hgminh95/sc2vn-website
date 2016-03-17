@@ -2,6 +2,7 @@
 
 var passport = require('passport');
 var BnetStrategy = require('passport-bnet').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var config = require('./config');
 var User = require('../app/models/users')
 
@@ -44,15 +45,35 @@ passport.use(
   )
 );
 
+passport.use(
+  new LocalStrategy({
+      usernameField: 'email',
+      passwordField: 'password'
+    },
+    function(email, password, done) {
+      User.findOne({ email: email }, function(err, user) {
+        if (err) return done(err);
+        if (!user) return done(null, false);
+        if (!user.verifyPassword(password)) return done(null, false);
+        return done(null, user);
+      });
+    }
+  )
+);
+
 module.exports = function(app) {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  app.get('/auth/bnet', passport.authenticate('bnet'));
+  app.get('/auth/bnet', passport.authenticate('bnet', { failureRedirect: '/login' }));
 
   app.get('/auth/bnet/callback',
           passport.authenticate('bnet', { failureRedirect: '/' }),
           function(req, res) {
             res.redirect('/users');
           });
+
+  app.post('/auth/local', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
+    res.redirect('/');
+  });
 };

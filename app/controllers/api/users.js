@@ -14,8 +14,14 @@ exports.load = function(req, res, next, id) {
   });
 }
 
-exports.create = function(req, res) {
-  res.sendStatus(201);
+exports.create = function(req, res, next) {
+  var user = new User(only(req.body, User.fields()));
+
+  user.save(function(err, user) {
+    if (err) return next(err);
+
+    res.sendStatus(201);
+  });
 }
 
 exports.index = function(req, res) {

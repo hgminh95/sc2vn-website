@@ -13,7 +13,7 @@ module.exports = function(nga, admin) {
 
   users.showView().fields([
     nga.field('name'),
-    nga.field('bnet-id'),
+    nga.field('bnet_id'),
     nga.field('email', 'email'),
     nga.field('access_token'),
     nga.field('score'),
@@ -23,6 +23,7 @@ module.exports = function(nga, admin) {
   ]);
 
   users.creationView().fields([
+    nga.field('password'),
     nga.field('name'),
     nga.field('bnet_id').label('Battle.net ID'),
     nga.field('email', 'email'),

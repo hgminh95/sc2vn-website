@@ -25,6 +25,12 @@ exports.loadCurrentUser = function(req, res, next) {
   next();
 }
 
+exports.login = function(req, res) {
+  res.render('users/login', {
+    title: 'Login'
+  });
+}
+
 exports.index = function(req, res) {
   res.render('users/index', {
     title: 'Users'

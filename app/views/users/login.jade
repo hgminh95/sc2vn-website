@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  form(method='post', action='/auth/local')
+    .form-group
+      label Email
+      input.form-control(type='email', name='email', placeholder='email@example')
+    .form-group
+      label Password
+      input.form-control(type='password', name='password')
+    button.btn.button-submit(type='submit') Login
+    a.btn.button-submit(href='/auth/bnet') Log in with Bnet Account
