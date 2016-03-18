@@ -1,5 +1,7 @@
 extends ../layout.normal
 
+include ../mixins/match.jade
+
 block content-inside
   table.table.table-hover
     thead
@@ -17,3 +19,10 @@ block content-inside
           td vs
           td= match.player_2
           td
+  - for match in matches
+    +match-preview(match)
+
+block sidebar
+  a.btn.btn-block.button-submit(href='/matches/new')
+    i.fa.fa-plus.fa-fw
+    | &nbsp; New Match
