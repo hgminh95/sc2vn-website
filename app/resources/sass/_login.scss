@@ -1,0 +1,33 @@
+.login {
+  margin: 30px 20%;
+  padding: 5%;
+  border: 1px solid $gray-lighter;
+  min-height: 520px;
+
+  .tips {
+    font-size: $font-size-small;
+  }
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+}
+
+.register {
+  @extend .login;
+
+  #selectRegister {
+    margin-bottom: 10px;
+  }
+
+  #bnet {
+    margin-top: 60px;
+    width: 60%;
+  }
+
+  #local {
+    margin-top: 10px;
+  }
+
+}
