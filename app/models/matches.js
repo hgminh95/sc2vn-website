@@ -40,8 +40,25 @@ MatchSchema.methods = {
     if (winCount < 0) {return this.player_2;}
   },
 
-  score: function() {
+  opponent: function(userId) {
+    // TODO
+    return null;
+  },
 
+  score: function(userId) {
+    // TODO
+    return 0;
+  },
+
+  gamePlayed: function() { return this.games.length; },
+
+  gameWins: function(userId) {
+    var wins = this.games.filter(function(game){
+      return game.status == 'win';
+    });
+    if (this.player_1.equals(userId)) return wins.length;
+    if (this.player_2.equals(userId)) return this.gamePlayed() - wins.length;
+    return 0;
   },
 
   to_json: function() {
@@ -64,6 +81,15 @@ MatchSchema.methods = {
 MatchSchema.statics = {
   all: function(callback) {
     return this.find({}).exec(callback);
+  },
+
+  allOfUser: function(userId, callback) {
+    return this.find({
+      $or: [
+        { player_1: userId },
+        { player_2: userId }
+      ]
+    }).exec(callback);
   },
 
   fields: function() {

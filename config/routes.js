@@ -16,6 +16,8 @@ module.exports = function(app) {
   app.param('userId', users.load);
 
   app.get('/users', users.index);
+  app.get('/users/new', users.new);
+  app.post('/users', users.create);
   app.get('/users/rank', users.rank);
   app.get('/users/login', users.login);
   app.get('/users/:userId', users.show);
