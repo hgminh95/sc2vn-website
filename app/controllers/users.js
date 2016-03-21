@@ -31,6 +31,21 @@ exports.login = function(req, res) {
   });
 }
 
+exports.new = function(req, res) {
+  res.render('users/new', {
+    title: 'New user'
+  });
+}
+
+exports.create = function(req, res, next) {
+  var user = new User();
+  assign(user, only(req.body, User.createFields()));
+  user.save(function(err, user) {
+    if (err) return next(err);
+    res.redirect('/users/login');
+  });
+}
+
 exports.index = function(req, res) {
   res.render('users/index', {
     title: 'Users'

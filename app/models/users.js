@@ -4,10 +4,11 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var Schema = mongoose.Schema;
 var Notification = require('./notifications');
+var Match = require('./matches');
 
 var UserSchema = new Schema({
   // For authentication
-  email: { type: String },
+  email: { type: String, index: true, unique: true },
   password: { type: String },
   bnet_id: { type: String, index: true, unique: true },
   access_token: { type: String },
@@ -15,12 +16,29 @@ var UserSchema = new Schema({
   // Basic informations
   name: { type: String, unique: true },
   race: { type: String, enum: ['zerg', 'terran', 'protoss', 'random'] },
+  clan: { type: Schema.Types.ObjectId, ref: 'Clan' },
+  introduction: { type: String, maxlength: 100 },
+
+  // For statistics
   score: { type: Number, default: 0 },
+  rank: { type: Number },
+
+  recent_matches: [{
+    matchID: { type: Schema.Types.ObjectId, ref: 'Clan' },
+    score: { type: Number, default: 0 }
+  }],
+
+  stats: {
+    vs_zerg_games: { type: Number, default: 0 },
+    vs_protoss_games: { type: Number, default: 0 },
+    vs_terran_games: { type: Number, default: 0 },
+    vs_zerg_wins: { type: Number, default: 0 },
+    vs_protoss_wins: { type: Number, default: 0 },
+    vs_terran_wins: { type: Number, default: 0 }
+  },
 
   // Notifications
   notifications: [Notification.schema]
-
-  // For statistics
 },
 {
    timestamps: {
@@ -43,6 +61,117 @@ UserSchema.methods = {
 
   calculateRank: function () {
 
+  },
+
+  addMatch: function(match, callback) {
+    // Add to recent matches
+    var score = match.score(this._id);
+    var length = this.recent_matches.unshift({
+      matchID: match._id,
+      score: score
+    });
+    if (length > 10) this.recent_matches.pop();
+
+    // Update statistics
+    this.score += score;
+    var games = match.gamePlayed();
+    var wins = match.gameWins(this._id);
+    var opponent = match.opponent(this._id);
+
+    if (opponent.race == 'zerg') {
+      this.stats.vs_zerg_games += games;
+      this.stats.vs_zerg_wins += wins;
+    }
+    else if (opponent.race == 'protoss') {
+      this.stats.vs_protoss_games += games;
+      this.stats.vs_protoss_wins += wins;
+    }
+    else if (opponent.race == 'terran') {
+      this.stats.vs_terran_games += games;
+      this.stats.vs_terran_wins += wins;
+    }
+
+    // Save
+    this.save(function(err) {
+      if (err) callback(err);
+    });
+  },
+
+  removeMatch: function(match, callback) {
+    for (var i = 0; i < this.recent_matches.length; i ++ ) {
+      if (this.recent_matches[i].matchID.equals(match._id)) {
+        this.recent_matches.splice(i, 1);
+      }
+    }
+
+    this.score -= match.score(this._id);
+
+    var games = match.gamePlayed();
+    var wins = match.gameWins(user._id);
+    var opponent = match.opponent(user._id);
+
+    if (opponent.race == 'zerg') {
+      this.stats.vs_zerg_games -= games;
+      this.stats.vs_zerg_wins -= wins;
+    }
+    else if (opponent.race == 'protoss') {
+      this.stats.vs_protoss_games -= games;
+      this.stats.vs_protoss_wins -= wins;
+    }
+    else if (opponent.race == 'terran') {
+      this.stats.vs_terran_games -= games;
+      this.stats.vs_terran_wins -= wins;
+    }
+
+    this.save(function(err) {
+      if (err) callback(err);
+    });
+  },
+
+  recalculateStatistics: function(callback) {
+    var user = this;
+    Match.allOfUser(this._id, function(err, matches) {
+      var score = 0;
+      var vs_zerg_games = 0;
+      var vs_zerg_wins = 0;
+      var vs_terran_games = 0;
+      var vs_terran_wins = 0;
+      var vs_protoss_games = 0;
+      var vs_protoss_wins = 0;
+
+      matches.forEach(function(match, index, matches) {
+        var games = match.gamePlayed();
+        var wins = match.gameWins(user._id);
+        var opponent = match.opponent(user._id);
+        score += match.score(user._id);
+
+        if (opponent.race == 'zerg') {
+          vs_zerg_games += games;
+          vs_zerg_wins += wins;
+        }
+        else if (opponent.race == 'protoss') {
+          vs_protoss_games += games;
+          vs_protoss_wins += wins;
+        }
+        else if (opponent.race == 'terran') {
+          vs_terran_games += games;
+          vs_terran_wins += wins;
+        }
+      });
+
+      user.score = score;
+      user.stats = {
+        vs_terran_games: vs_terran_games,
+        vs_terran_wins: vs_terran_wins,
+        vs_protoss_games: vs_protoss_games,
+        vs_protoss_wins: vs_protoss_wins,
+        vs_zerg_games: vs_zerg_games,
+        vs_zerg_wins: vs_zerg_wins
+      }
+      user.save(function(err) {
+        if (err) callback(err);
+      });
+    });
   },
 
   addNotification: function(notification) {
@@ -97,8 +226,16 @@ UserSchema.statics = {
     return this.findOne({ bnet_id: id }).exec(callback);
   },
 
+  findByEmail: function(email, callback) {
+    return this.findOne({ email: email }).exec(callback);
+  },
+
   fields: function(callback) {
     return 'name email score race password bnet_id';
+  },
+
+  createFields: function() {
+    return 'email password name race clan introduction';
   },
 
   getNewPath: function() {
