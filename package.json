@@ -8,6 +8,7 @@
     "build-admin": "node_modules/.bin/webpack"
   },
   "dependencies": {
+    "async": "^1.5.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.13.2",
     "bootstrap-sass": "^3.3.6",

@@ -34,9 +34,8 @@ exports.create = function(req, res, next) {
   var match = new Match(only(req.body, Match.fields()));
   match.save(function(err) {
     if (err) return next(err);
-    else {
-      res.redirect(match.getShowPath());
-    }
+
+    res.redirect(match.getShowPath());
   });
 }
 
