@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 var ArticleSchema = new Schema({
   title: { type: String, required: true },
+  brief: { type:String },
   content: { type: String },
   thumbnail: { type: String },
   author: { type: Schema.Types.ObjectId, ref: 'User' }
@@ -31,12 +32,25 @@ ArticleSchema.methods = {
 }
 
 ArticleSchema.statics = {
+  list: function(options, callback) {
+    options.perPage = options.perPage || 10
+    options.page = options.page || 1
+
+    this.find({})
+      .limit(options.perPage)
+      .skip(options.perPage * options.page)
+      .sort({
+        created_at: 'desc'
+      })
+      .exec(callback)
+  },
+
   all: function(callback) {
     return this.find({}).populate('author').exec(callback);
   },
 
   fields: function() {
-    return 'title content author'
+    return 'title content title brief thumbnail author'
   },
 
   getNewPath: function() {

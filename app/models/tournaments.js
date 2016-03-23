@@ -3,20 +3,34 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var SectionSchema = new Schema({
-  title: { type: String, require: true },
-  content: { type: String }
+var RegistrationSchema = new Schema({
+  registrable: { type: Boolean },
+  startDate: {type: Date},
+  endDate: {type: Date},
+  pending: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  infor_required: {type: String},
+  participant: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 },
 {
   _id: false
 })
 
+var InvitationSchema = new Schema({
+  pending: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  participant: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+})
+
 var TournamentSchema = new Schema({
   name: { type: String, require: true },
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
-  registrable: { type: Boolean },
   staffs: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  sections: [SectionSchema]
+  banner: {type: String},
+  introduction: {type: String},
+  rule: {type: String},
+  faq: {type: String},
+  price: {type: String},
+  registration: RegistrationSchema,
+  invitation: InvitationSchema
 },
 {
   timestamps: {
@@ -57,7 +71,7 @@ TournamentSchema.statics = {
   },
 
   fields: function() {
-    return 'name owner registrable staffs sections'
+    return 'name owner staffs banner introduction rule faq price registration invitation'
   },
 
   getNewPath: function() {

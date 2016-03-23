@@ -3,16 +3,21 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var GamesSchema = new Schema({
+var GameSchema = new Schema({
   map: { type: String, require: true },
-  status: {type: String, enum: ['win', 'lose', 'draw', 'not available']}
+  status: { type: String, enum: ['win', 'lose', 'draw', 'not available'] },
+  duration: {type: String},
+  race1: { type: String, enum: ['zerg', 'protoss', 'terran'] },
+  racw2: { type: String, enum: ['zerg', 'protoss', 'terran'] },
+  replay: { type: String }
 })
 
 var MatchSchema = new Schema({
-  player_1: { type: Schema.Types.ObjectId, ref: 'User'},
-  player_2: { type: Schema.Types.ObjectId, ref: 'User'},
+  player_1: { type: Schema.Types.ObjectId, ref: 'User' },
+  player_2: { type: Schema.Types.ObjectId, ref: 'User' },
+  tournaments: { type: Schema.Types.ObjectId, ref: 'Tournament' },
   date: {type: Date , require: true },
-  games: [GamesSchema]
+  games: [GameSchema]
 },
 {
   timestamps: {
@@ -79,6 +84,16 @@ MatchSchema.methods = {
 }
 
 MatchSchema.statics = {
+  list: function(options, callback) {
+    options.perPage = options.perPage || 10
+    options.page = options.page || 1
+
+    this.find({})
+      .limit(options.perPage)
+      .skip(options.perPage * options.page)
+      .exec(callback)
+  },
+
   all: function(callback) {
     return this.find({}).exec(callback);
   },
@@ -93,7 +108,7 @@ MatchSchema.statics = {
   },
 
   fields: function() {
-    return 'player_1 player_2 date games'
+    return 'player_1 player_2 tournaments date games'
   },
 
   getNewPath: function() {
