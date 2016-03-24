@@ -34,7 +34,7 @@ ArticleSchema.methods = {
 ArticleSchema.statics = {
   list: function(options, callback) {
     options.perPage = options.perPage || 10
-    options.page = options.page || 1
+    options.page = options.page || 0
 
     this.find({})
       .limit(options.perPage)

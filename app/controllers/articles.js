@@ -40,12 +40,16 @@ exports.create = function(req, res, next) {
 }
 
 exports.index = function(req, res, next) {
-  Article.all(function(err, articles) {
+  req.query.page = req.query.page || 0
+
+  Article.list({ page: req.query.page }, function(err, articles) {
     if (err) return next(err);
 
     res.render('articles/index', {
       title: 'Articles',
-      articles: articles
+      articles: articles,
+      prevPage: req.query.page - 1,
+      nextPage: articles.length == 10 ? req.query.page + 1 : -1
     });
   });
 }
