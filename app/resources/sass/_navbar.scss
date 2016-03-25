@@ -7,11 +7,22 @@
     a {
       font-weight: 600;
       font-size: $font-size-default;
-      border-bottom: 2px solid #fff;
+      border-bottom: 2px solid transparent;
       transition: border-bottom-color ease-in .5s;
       &:hover {
         border-bottom-color: #cc2222;
       }
     }
   }
+}
+
+.navbar-text {
+  font-size: $font-size-default;
+  font-weight: 600;
+  font-color: #777;
+  margin-top: 16px;
+}
+
+.navbar-btn {
+  margin-top: 16px;
 }

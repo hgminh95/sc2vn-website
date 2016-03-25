@@ -7,13 +7,14 @@ mixin article-show(article)
 
 mixin article-preview(article)
   .article-preview
-    img.img-responsive.article-thumbnail(src= article.thumbnail)
+    .article-thumbnail
+      img(src= article.thumbnail)
     .article-title!= article.title
     .article-meta!= article.getMetaInfo()
     .article-content!= article.content
     .article-footer
       a(href=article.getShowPath())
-        | Read more
+        | Read more &nbsp
         i.fa.fa-angle-double-right
 
 mixin article-form(article, action)

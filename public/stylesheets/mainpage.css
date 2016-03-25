@@ -8,17 +8,16 @@ nav.navbar {
 
 .navbar-brand,
 .navbar-nav li a {
-  line-height: 100px;
-  height: 100px;
+  line-height: 70px;
+  height: 70px;
   padding-top: 0;
-  
-  transition: all .4s ease
-}
 
+  transition: height .4s ease, line-height .4s ease, border-bottom-color 1s ease-in;
+}
 
 .navbar-default .navbar-nav > li > a {
   color: #444;
-  border: 0px;
+  /*border-bottom: 2px solid transparent;*/
 }
 
 .navbar-default .navbar-brand {
@@ -33,20 +32,21 @@ nav.navbar {
 
 nav.shrink.navbar {
   background: rgba(255, 255, 255, 1);
-  color: #666666 !important;
   border-bottom: 1px solid #eee;
 }
 
 nav.shrink li a {
-  line-height: 50px;
+  line-height: 51px;
   height: 50px;
-  
-  transition: all .4s ease
+  color: #777 !important;
+  transition: height .4s ease, line-height .4s ease, border-bottom-color 1s ease-in;
+  margin-bottom: -2px;
 }
 
 nav.shrink .navbar-brand {
   line-height: 50px;
   height: 50px;
-  
+  color: #777 !important;
+
   transition: all .4s ease;
 }

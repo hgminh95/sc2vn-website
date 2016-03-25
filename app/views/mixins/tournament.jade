@@ -2,7 +2,8 @@ mixin tournament-preview(tournament)
   .tournament-preview
     img.thumb(src='https://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png')
     .content
-      h3.title= tournament.name
+      h3.title
+        a(href=tournament.getShowPath())= tournament.name
 
 mixin tournament-form(tournament, action)
   form(action=action, method='post')
@@ -10,3 +11,21 @@ mixin tournament-form(tournament, action)
       label(for='name') Name
       input#title.form-control(type='text', name='name', placeholder='Name', value=tournament.name)
     button.btn.button-submit(type='submit') Submit
+
+mixin tournament(tournament)
+  .tabs-left
+    ul.nav.nav-tabs
+      li.active
+        a(href='#introduction', data-toggle='tab') Introduction
+      li
+        a(href='#rule', data-toggle='tab') Rules
+      li
+        a(href='#prizes', data-toggle='tab') Prizes
+
+    .tab-content
+      #introduction.tab-pane.active
+        = tournament.introduction
+      #rule.tab-pane
+        = tournament.rule
+      #prizes.tab-pane
+        = tournament.faq

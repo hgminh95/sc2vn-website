@@ -8,7 +8,7 @@ var usersMiddleware = require('../app/middlewares/users');
 var matches = require('../app/controllers/matches');
 
 module.exports = function(app) {
-
+  
   app.use(users.loadCurrentUser);
   app.use(usersMiddleware.checkNotification);
 
@@ -20,6 +20,7 @@ module.exports = function(app) {
   app.post('/users', users.create);
   app.get('/users/rank', users.rank);
   app.get('/users/login', users.login);
+  app.get('/users/register', users.register);
   app.get('/users/:userId', users.show);
   app.get('/users/:userId/edit', users.edit);
   app.post('/users/:userId', users.update);

@@ -30,7 +30,11 @@
 }
 
 a {
-  color: $font-color-link;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 body {
@@ -39,8 +43,8 @@ body {
 
 @media (min-width: 1200px) {
   .container {
-    margin-left: 130px;
-    margin-right: 100px;
+    margin-left: 150px;
+    margin-right: 130px;
     width: auto;
   }
 }

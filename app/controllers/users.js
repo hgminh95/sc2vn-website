@@ -25,6 +25,16 @@ exports.loadCurrentUser = function(req, res, next) {
   next();
 }
 
+exports.register = function(req, res) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/users');
+  }
+
+  res.render('users/register', {
+    title: 'Register'
+  });
+}
+
 exports.login = function(req, res) {
   res.render('users/login', {
     title: 'Login'

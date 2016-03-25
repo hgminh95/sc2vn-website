@@ -11,6 +11,14 @@ nav#nav.navbar.navbar-default.navbar-fixed-top
 
     // Collect the nav links, forms and other content for toggling
     .collapse.navbar-collapse(id='navbar-collapse')
+      a.btn.btn-primary.btn-sm.navbar-btn.navbar-right(href='/users/register') Sign up
+      p.navbar-text.navbar-right
+        -if (_locals.current_user.hasOwnProperty('name'))
+          a(href='#')= _locals.current_user.name
+        - else
+          a(data-toggle='modal', data-target='#login-modal') Log in
+          | &nbsp or &nbsp
+
       ul.nav.navbar-nav.navbar-right
         li
           a(href='/') Home
@@ -22,8 +30,20 @@ nav#nav.navbar.navbar-default.navbar-fixed-top
           a(href='/matches') Match Archive
         li
           a(href='#') Guide
-        li
-          -if (_locals.current_user.hasOwnProperty('name'))
-            a(href='#')= _locals.current_user.name
-          - else
-            a(href='/users/login') Login
+
+#login-modal.modal.fade(tabindex=-1, role='dialog', aria-labelledby='login-label')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        h4#login-label.modal-title Login
+      .modal-body
+        form(method='post', action='/auth/local')
+          .form-group
+            input.form-control(type='email', name='email', placeholder='Email')
+          .form-group
+            input.form-control(type='password', name='password', placeholder='Password')
+          button.btn.button-submit.pull-right(type='submit') Login
+          a.btn.button-submit.pull-left(href='/auth/bnet') Log in with Battle.net
+          .clearfix

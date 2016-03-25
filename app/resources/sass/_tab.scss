@@ -1,0 +1,56 @@
+.tabs-left {
+  .nav-tabs {
+    float: left;
+    border-bottom: 1px;
+    min-width: 150px;
+    max-width: 200px;
+
+    li {
+      float: none;
+      margin: 0;
+
+      a {
+        margin-top: -1px;
+        border: 1px solid #ddd;
+        border-left-color: transparent;
+      }
+
+      &:first-child {
+        a {
+          border-top-color: transparent;
+        }
+      }
+
+      &:last-child {
+        a {
+          border-bottom-color: transparent;
+        }
+      }
+    }
+
+    li.active {
+      a, a:focus {
+        border-bottom-color: #ddd;
+        border-right-color: transparent;
+      }
+    }
+  }
+
+  .tab-content {
+    margin-left: 45px;
+
+    .tab-pane {
+      display: none;
+      padding-top: 10px;
+      padding-left: 30px;
+      overflow-y: auto;
+    }
+
+    .active {
+      display: block;
+      border: 1px;
+    }
+  }
+}
+
+

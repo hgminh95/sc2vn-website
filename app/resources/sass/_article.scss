@@ -3,11 +3,20 @@
   margin-bottom: 50px;
 
   .article-thumbnail {
+    height: 350px;
     width: 100%;
-    height: 250px;
-    border-radius: $border-radius-large;
-    margin-bottom: 8px;
-    background-size: 100%;
+    margin-bottom: 10px;
+
+    img {
+      display: block;
+      zoom: 4;
+      margin: auto;
+
+      height: auto;
+      max-height: 100%;
+      width: auto;
+      max-width: 100%;
+    }
   }
 
   .article-title {

@@ -1,4 +1,7 @@
 extends ../layout.normal
 
+include ../mixins/tournament
+
 block content-inside
   h1= tournament.name
+  +tournament(tournament)
