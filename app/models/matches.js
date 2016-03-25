@@ -6,16 +6,16 @@ var Schema = mongoose.Schema;
 var GameSchema = new Schema({
   map: { type: String, require: true },
   status: { type: String, enum: ['win', 'lose', 'draw', 'not available'] },
-  duration: {type: String},
+  duration: { type: String },
   race1: { type: String, enum: ['zerg', 'protoss', 'terran'] },
-  racw2: { type: String, enum: ['zerg', 'protoss', 'terran'] },
+  race2: { type: String, enum: ['zerg', 'protoss', 'terran'] },
   replay: { type: String }
 })
 
 var MatchSchema = new Schema({
   player_1: { type: Schema.Types.ObjectId, ref: 'User' },
   player_2: { type: Schema.Types.ObjectId, ref: 'User' },
-  tournaments: { type: Schema.Types.ObjectId, ref: 'Tournament' },
+  tournament: { type: Schema.Types.ObjectId, ref: 'Tournament' },
   date: {type: Date , require: true },
   games: [GameSchema]
 },
@@ -108,7 +108,7 @@ MatchSchema.statics = {
   },
 
   fields: function() {
-    return 'player_1 player_2 tournaments date games'
+    return 'player_1 player_2 tournament date games'
   },
 
   getNewPath: function() {

@@ -24,13 +24,12 @@ var TournamentSchema = new Schema({
   name: { type: String, require: true },
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
   staffs: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  banner: {type: String},
-  introduction: {type: String},
-  rule: {type: String},
-  faq: {type: String},
-  price: {type: String},
-  registration: RegistrationSchema,
-  invitation: InvitationSchema
+  banner: { type: String },
+  introduction: { type: String },
+  rule: { type: String },
+  faq: { type: String },
+  registration: { type: RegistrationSchema },
+  invitation: { type: InvitationSchema }
 },
 {
   timestamps: {
@@ -40,14 +39,6 @@ var TournamentSchema = new Schema({
 });
 
 TournamentSchema.methods = {
-  addSection: function(section) {
-
-  },
-
-  removeSection: function(index) {
-
-  },
-
   to_json: function() {
     return {
       id: this._id,

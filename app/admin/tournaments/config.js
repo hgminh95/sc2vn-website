@@ -19,15 +19,13 @@ module.exports = function(nga, admin) {
         .targetEntity(admin.getEntity('users'))
         .targetField(nga.field('name'))
         .label('Owner'),
+    nga.field('introduction', 'text'),
+    nga.field('rule', 'text'),
+    nga.field('faq', 'text'),
     nga.field('staffs', 'referenced_list')
         .targetEntity(admin.getEntity('users'))
         .targetField(nga.field('name'))
         .label('Staffs'),
-    nga.field('sections', 'embedded_list')
-        .targetFields([
-          nga.field('title'),
-          nga.field('content', 'text')
-        ]),
     nga.field('created_at', 'datetime'),
     nga.field('updated_at', 'datetime')
   ]);
@@ -38,15 +36,13 @@ module.exports = function(nga, admin) {
         .targetEntity(admin.getEntity('users'))
         .targetField(nga.field('name'))
         .label('Owner'),
+    nga.field('introduction', 'text'),
+    nga.field('rule', 'text'),
+    nga.field('faq', 'text'),
     nga.field('staffs', 'referenced_list')
         .targetEntity(admin.getEntity('users'))
         .targetField(nga.field('name'))
-        .label('Staffs'),
-    nga.field('sections', 'embedded_list')
-        .targetFields([
-          nga.field('title'),
-          nga.field('content', 'text')
-        ])
+        .label('Staffs')
   ]);
 
   tournaments.editionView().fields(tournaments.creationView().fields());

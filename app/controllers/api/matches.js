@@ -16,8 +16,8 @@ exports.load = function(req, res, next, id) {
 }
 
 exports.index = function(req, res) {
-  Match.all(function(err, matchs) {
-    res.json(matchs.map);
+  Match.all(function(err, matches) {
+    res.json(matches);
   });
 }
 
@@ -28,10 +28,9 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   var match = new Match(only(req.body, Match.fields()));
   match.save(function(err) {
-    if (err)
-      res.sendStatus(406);
-    else
-      res.sendStatus(201);
+    if (err) return res.sendStatus(406);
+
+    res.sendStatus(201);
   });
 }
 
@@ -39,13 +38,17 @@ exports.update = function(req, res) {
   var match = req.match;
 
   assign(match, only(req.body, Match.fields()));
-  match.save();
+  match.save(function(err) {
+    if (err) return res.sendStatus(406)
 
-  res.sendStatus(204);
+    res.sendStatus(201)
+  });
 }
 
 exports.destroy = function(req, res) {
-  req.match.remove();
+  req.match.remove(function(err) {
+    if (err) return res.sendStatus(406)
 
-  res.sendStatus(204);
+    res.sendStatus(204)
+  })
 }

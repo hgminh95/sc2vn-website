@@ -12,6 +12,10 @@ module.exports = function(nga, admin) {
         .targetEntity(admin.getEntity('users'))
         .targetField(nga.field('name'))
         .label('Player 2'),
+    nga.field('tournament', 'reference')
+        .targetEntity(admin.getEntity('tournaments'))
+        .targetField(nga.field('name'))
+        .label('Tournament'),
     nga.field('created_at', 'datetime'),
     nga.field('updated_at', 'datetime')
   ]);
@@ -25,9 +29,17 @@ module.exports = function(nga, admin) {
         .targetEntity(admin.getEntity('users'))
         .targetField(nga.field('name'))
         .label('Player 2'),
+    nga.field('tournament', 'reference')
+        .targetEntity(admin.getEntity('tournaments'))
+        .targetField(nga.field('name'))
+        .label('Tournament'),
+    nga.field('date', 'datetime'),
     nga.field('games', 'embedded_list')
         .targetFields([
           nga.field('map'),
+          nga.field('race1'),
+          nga.field('race2'),
+          nga.field('replay'),
           nga.field('status', 'choice')
             .choices([
               { value: 'win', label: 'Player 1 Win' },
@@ -49,9 +61,17 @@ module.exports = function(nga, admin) {
         .targetEntity(admin.getEntity('users'))
         .targetField(nga.field('name'))
         .label('Player 2'),
+    nga.field('tournament', 'reference')
+        .targetEntity(admin.getEntity('tournaments'))
+        .targetField(nga.field('name'))
+        .label('Tournament'),
+    nga.field('date', 'datetime'),
     nga.field('games', 'embedded_list')
         .targetFields([
           nga.field('map'),
+          nga.field('race1'),
+          nga.field('race2'),
+          nga.field('replay'),
           nga.field('status', 'choice')
             .choices([
               { value: 'win', label: 'Player 1 Win' },
