@@ -13,6 +13,8 @@ jquery_url = 'https://code.jquery.com/jquery-2.2.2.min.js'
 
 bootstrapjs_url = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'
 
+chartjs_url = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'
+
 if not os.path.exists('public/fonts'):
     os.makedirs('public/fonts')
 
@@ -46,4 +48,12 @@ sys.stdout.flush()
 fontawesome = urllib.URLopener()
 fontawesome.retrieve(bootstrapjs_url, "public/javascripts/bootstrap.min.js")
 sys.stdout.write("\rBootstrapJS - Done          \n")
+sys.stdout.flush()
+
+# Chart JS
+sys.stdout.write("ChartJS - Downloading...")
+sys.stdout.flush()
+chartjs = urllib.URLopener()
+chartjs.retrieve(chartjs_url, "public/javascripts/chartjs.min.js")
+sys.stdout.write("\ChartJS - Done          \n")
 sys.stdout.flush()

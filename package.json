@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "test": "mocha $(find test -name '*.js')",
     "build-admin": "node_modules/.bin/webpack",
-    "get-resource": "python resources.py"
+    "get-resources": "python resources.py"
   },
   "dependencies": {
     "async": "^1.5.2",
