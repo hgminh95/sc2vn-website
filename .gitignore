@@ -13,12 +13,10 @@ Desktop.ini
 .directory
 *~
 
-
 # npm
 node_modules
 *.log
 *.gz
-
 
 # Coveralls
 coverage
@@ -31,9 +29,14 @@ config/env/env.json
 
 # CSS
 public/stylesheets/style.css
+*.min.css
 
 # JavaScript
 public/javascripts/ng-admin.js
+*.min.js
+
+# Fonts
+public/fonts/*
 
 # Temp
 tmp/*
