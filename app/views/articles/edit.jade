@@ -7,6 +7,8 @@ block scripts
   script.
     tinymce.init({
       selector: '#content',
+      plugins: 'image imagetools media fullscreen',
+      toolbar: 'undo redo | bold italic underline strikethrough | alignleft aligncenter alignright | bullist numlist outdent indent | link image media | fullscreen',
       setup: function(editor) {
         editor.on('init', function(e) {
           //Remove new line character

@@ -23,10 +23,10 @@ module.exports = function(nga, admin) {
   ]);
 
   users.creationView().fields([
-    nga.field('password'),
     nga.field('name'),
-    nga.field('bnet_id').label('Battle.net ID'),
+    nga.field('password', 'password'),
     nga.field('email', 'email'),
+    nga.field('bnet_id').label('Battle.net ID'),
     nga.field('score'),
     nga.field('race', 'choice')
         .choices([

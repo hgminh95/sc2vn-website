@@ -7,7 +7,7 @@ block scripts
 include ../mixins/article.jade
 
 block pre-content
-  img.img(src='http://demos.creative-tim.com/get-shit-done/assets/img/cover_4_blur.jpg', height='400px', width='100%')
+  div(style="background-image:url(http://img03.deviantart.net/f93c/i/2013/234/0/f/aspire_gaming_banner___sc2__protoss_w__engraving_by_deception345-d6jbuvb.png); height:500px; width:100%; background-repeat: no-repeat; background-size:cover;")
 
 block content-inside
   each article in articles
@@ -32,5 +32,4 @@ block content-inside
 block sidebar
   a.btn.btn-block.button-submit(href='/articles/new')
     i.fa.fa-plus.fa-fw
-    | &nbsp; New Articles
-console.log("adfsadfsad")
+    | &nbsp; New Article

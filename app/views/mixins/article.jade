@@ -1,17 +1,16 @@
 mixin article-show(article)
   .article
+    .article-thumbnail(style='background-image: url(' + article.thumbnail + ');')
     .article-title!= article.title
-    .article-meta!= article.meta
-    img.article-thumbnail(src= article.thumbnail)
+    .article-meta!= article.getMetaInfo()
     .article-content!= article.content
 
 mixin article-preview(article)
   .article-preview
-    .article-thumbnail
-      img(src= article.thumbnail)
+    .article-thumbnail(style='background-image: url(' + article.thumbnail + ');')
     .article-title!= article.title
     .article-meta!= article.getMetaInfo()
-    .article-content!= article.content
+    .article-content!= article.brief
     .article-footer
       a(href=article.getShowPath())
         | Read more &nbsp
@@ -24,7 +23,11 @@ mixin article-form(article, action)
       input#title.form-control(type='text', name='title', placeholder='Title', value=article.title)
     .form-group
       label(for='thumbnail') Thumbnail
-      input(type='file', id='thumbnail', name='upload')
+      input.form-control(type='file', id='thumbnail', name='upload', value=article.thumbnail)
+    .form-group
+      label(for='brief') Brief
+      textarea.form-control(rows=5, name='brief', placeholder='Write brief content here...')
+        = article.brief
     .form-group
       label(for='content') Content
       textarea#content.form-control(rows=20, name='content', placeholder='Write your content here...')

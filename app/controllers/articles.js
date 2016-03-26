@@ -65,6 +65,7 @@ exports.show = function(req, res) {
 
 exports.edit = function(req, res) {
   var article = req.article;
+
   res.render('articles/edit', {
     title: 'Editing ' + article.title,
     article: article
