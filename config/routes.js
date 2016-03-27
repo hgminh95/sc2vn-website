@@ -8,7 +8,7 @@ var usersMiddleware = require('../app/middlewares/users');
 var matches = require('../app/controllers/matches');
 
 module.exports = function(app) {
-  
+
   app.use(users.loadCurrentUser);
   app.use(usersMiddleware.checkNotification);
 
@@ -60,6 +60,9 @@ module.exports = function(app) {
 
   // Static Routes
   app.get('/admin', statics.admin);
+  app.get('/changelog', statics.changelog);
+  app.get('/faq', statics.faq);
+  app.get('/features', statics.features);
 
   // Root
   app.get('/', articles.index);
