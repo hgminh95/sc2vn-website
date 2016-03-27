@@ -1,21 +1,31 @@
 extends ../layout.normal
 
 block content-inside
-  .page-header.text-center
+  .text-center
     h2 Ranking
 
   table.table.table-hover
     thead
-      th #
-      th Name
-      th Score
+      th.col-md-1
+      th.col-md-1 #
+      th.col-md-5 Player
+      th.col-md-2.text-center Score
+      th.col-md-1.text-center Wins
+      th.col-md-1.text-center Losses
     tbody
-      - var index = 0
-      - for user in users
+      each user, index in users
         tr
-          - index++
-          td= index
           td
-            a(href=user.getShowPath())
+            if Math.random() > .5
+              i.fa.fa-chevron-up.fa-fw.text-success
+            else
+              i.fa.fa-chevron-down.fa-fw.text-danger
+          td= index + 1
+          td
+            img(src='http://www.rankedftw.com/static/ceafb6a/img/races/' + user.race + '-16x16.png')
+            | &nbsp;
+            a(href=user.getShowPath(), style='vertical-align: middle;')
               = user.name
-          td= user.score
+          td(align='center')= user.score
+          td(align='center')= user.totalWins()
+          td(align='center')= user.totalLosses()

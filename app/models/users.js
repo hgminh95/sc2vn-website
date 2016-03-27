@@ -175,6 +175,18 @@ UserSchema.methods = {
     });
   },
 
+  totalWins: function() {
+    return this.stats.vs_terran_wins + this.stats.vs_protoss_wins + this.stats.vs_zerg_wins
+  },
+
+  totalGames: function() {
+    return this.stats.vs_terran_games + this.stats.vs_protoss_games + this.stats.vs_zerg_games
+  },
+
+  totalLosses: function() {
+    return this.totalWins() - this.totalWins()
+  },
+
   addNotification: function(notification) {
     this.notifications.push(notification);
     this.save();
