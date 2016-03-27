@@ -45,6 +45,10 @@ a {
   }
 }
 
+td, th {
+  vertical-align: middle !important;
+}
+
 body {
   margin-top: 52px;
   font-size: $font-size-default;
