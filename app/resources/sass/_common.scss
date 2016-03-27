@@ -33,6 +33,10 @@
   border: none;
 }
 
+.modal-open {
+  overflow-y: scroll;
+}
+
 a {
   color: inherit;
 
@@ -43,6 +47,7 @@ a {
 
 body {
   margin-top: 52px;
+  font-size: $font-size-default;
 }
 
 @media (min-width: 1200px) {

@@ -1,1 +1,48 @@
-mixin user-name-cell(user)
+mixin user-profile(user)
+  .profile
+    img.avatar.img(src=user.avatar)
+    .details
+      .heading
+        = user.name
+        .left-pane
+          a(href=user.getEditPath())
+            i.fa.fa-pencil-square-o.fa-fw
+            | &nbsp;Edit Information
+      div
+        = user.race
+
+mixin user-statistic(stats)
+  -vs_terran_loss = stats.vs_terran_games - stats.vs_terran_wins
+  -vs_zerg_loss = stats.vs_zerg_games - stats.vs_zerg_wins
+  -vs_protoss_loss = stats.vs_protoss_games - stats.vs_protoss_wins
+  table.table.table-hover.table-condensed
+    thead
+      tr
+        th
+        th.text-center Win
+        th.text-center Lose
+        th.text-center Total
+    tbody
+      tr
+        th vs Zerg
+        td.text-success(align='center')= stats.vs_zerg_wins + ' (' + (stats.vs_zerg_wins / stats.vs_zerg_games) + '%)'
+        td.text-danger(align='center')= vs_zerg_loss + ' (' + (vs_zerg_loss / stats.vs_zerg_games) + '%)'
+        td(align='center')= stats.vs_zerg_games
+      tr
+        th vs Protoss
+        td.text-success(align='center')= stats.vs_protoss_wins + ' (' + (stats.vs_protoss_wins / stats.vs_protoss_games) + '%)'
+        td.text-danger(align='center')= vs_protoss_loss + ' (' + (vs_protoss_loss / stats.vs_protoss_games) + '%)'
+        td(align='center')= stats.vs_protoss_games
+      tr
+        th vs Terran
+        td.text-success(align='center')= stats.vs_terran_wins + ' (' + (stats.vs_terran_wins / stats.vs_terran_games) + '%)'
+        td.text-danger(align='center')= vs_terran_loss + ' (' + (vs_terran_loss / stats.vs_terran_games) + '%)'
+        td(align='center')= stats.vs_terran_games
+      tr
+        th Total
+        -var total_wins = stats.vs_zerg_wins + stats.vs_protoss_wins + stats.vs_terran_wins
+        -var total_loss = vs_zerg_loss + vs_protoss_loss + vs_terran_loss
+        -var total_games = stats.vs_terran_games + stats.vs_protoss_games + stats.vs_terran_games
+        td.text-success(align='center')= total_wins + ' (' + (total_wins / total_games) + '%)'
+        td.text-danger(align='center')=  total_loss + ' (' + (total_loss / total_games) + '%)'
+        td(align='center')= total_games

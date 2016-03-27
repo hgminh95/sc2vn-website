@@ -50,6 +50,7 @@ exports.new = function(req, res) {
 exports.create = function(req, res, next) {
   var user = new User();
   assign(user, only(req.body, User.createFields()));
+
   user.save(function(err, user) {
     if (err) return next(err);
     res.redirect('/users/login');
@@ -81,7 +82,7 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {
   var user = req.profile;
 
-  assign(user, only(req.body, Users.fields()));
+  assign(user, only(req.body, User.fields()));
   user.save();
 
   res.redirect(user.getShowPath());

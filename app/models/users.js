@@ -8,13 +8,14 @@ var Match = require('./matches');
 
 var UserSchema = new Schema({
   // For authentication
-  email: { type: String, index: true, unique: true },
+  email: { type: String, index: true, unique: true, sparse: true },
   password: { type: String },
-  bnet_id: { type: String, index: true, unique: true },
+  bnet_id: { type: String, index: true, unique: true, sparse: true },
   access_token: { type: String },
 
   // Basic informations
   name: { type: String, unique: true },
+  avatar: { type: String },
   race: { type: String, enum: ['zerg', 'terran', 'protoss', 'random'] },
   clan: { type: Schema.Types.ObjectId, ref: 'Clan' },
   introduction: { type: String, maxlength: 100 },
@@ -38,13 +39,13 @@ var UserSchema = new Schema({
   },
 
   // Notifications
-  notifications: [Notification.schema]
+  notifications: { type: [Notification.schema] }
 },
 {
-   timestamps: {
-     createdAt: 'created_at',
-     updatedAt: 'updated_at'
-   }
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
 });
 
 UserSchema.pre('save', function(next) {
@@ -231,7 +232,7 @@ UserSchema.statics = {
   },
 
   fields: function(callback) {
-    return 'name email score race password bnet_id';
+    return 'email password bnet_id name avatar race clan introduction';
   },
 
   createFields: function() {

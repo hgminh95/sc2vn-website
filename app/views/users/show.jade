@@ -1,9 +1,8 @@
-extends ../layout
+extends ../layout.normal
 
-block content
-  h1.title Hello world, #{user.name}
-  p Name: #{user.name}
-  p Email: #{user.email}
-  p Battle.net ID: #{user.bnet_id}
-  p Score: #{user.score}
-  a(href="/users/#{user.bnet_id}/edit") Edit profile
+include ../mixins/user.jade
+
+block content-inside
+  +user-profile(user)
+  .clearfix
+  +user-statistic(user.stats)
