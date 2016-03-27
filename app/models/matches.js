@@ -2,6 +2,9 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var moment = require('moment')
+
+var today = moment().startOf('day')
 
 var GameSchema = new Schema({
   map: { type: String, require: true },
@@ -96,6 +99,33 @@ MatchSchema.statics = {
 
   all: function(callback) {
     return this.find({}).exec(callback);
+  },
+
+  live: function(callback) {
+    return this.find({
+        "date" : {
+          "$lt" : today.toDate()
+        }
+      })
+      .sort({ date: 'desc' })
+      .populate('player_1')
+      .populate('player_2')
+      .populate('tournament', 'name banner')
+      .exec(callback)
+  },
+
+  upcoming: function(callback) {
+    return this.find({
+        "date" : {
+          "$gte" : today.toDate(),
+          "$lte" : today.add(3, 'days').toDate()
+        }
+      })
+      .sort({ date: 'asc' })
+      .populate('player_1')
+      .populate('player_2')
+      .populate('tournament', 'name banner')
+      .exec(callback)
   },
 
   allOfUser: function(userId, callback) {

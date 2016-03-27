@@ -3,6 +3,7 @@
 var assign = require('object-assign');
 var only = require('only');
 var Match = require('../models/matches');
+var async = require('async');
 
 exports.load = function(req, res, next, id) {
   Match.findById(id, function(err, match) {
@@ -11,17 +12,24 @@ exports.load = function(req, res, next, id) {
     req.match = match;
     if (!req.match) return res.render('404');
     next();
-  });
+  })
+  .populate('player_1')
+  .populate('player_2')
+  .populate('tournament', 'name banner')
 }
 
 exports.index = function(req, res, next) {
-  Match.all(function(err, matches) {
-    if (err) return next(err);
-
+  async.parallel({
+    live: function(callback) { return Match.live(callback) },
+    upcoming: function(callback) { return Match.upcoming(callback) }
+  }, function(err, results) {
+    console.log(results)
     res.render('matches/index', {
-      matches: matches
-    });
-  });
+      title: 'Matches',
+      live: results.live,
+      upcoming: results.upcoming
+    })
+  })
 }
 
 exports.new = function(req, res) {

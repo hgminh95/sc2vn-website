@@ -1,0 +1,50 @@
+mixin matches-list(matches)
+  table.table.table-condensed.table-hover
+    tbody
+      if matches
+        each match in matches
+          tr
+            td(align='left')= match.date.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+            td(align='right')
+              a(href=match.player_1.getShowPath())= match.player_1.name
+            td(align='center') vs
+            td(align='left')
+              a(href=match.player_2.getShowPath())= match.player_2.name
+            td(align='right')
+              a(href=match.getShowPath())
+                i.fa.fa-eye.fa-fw
+              | &nbsp;
+              a(href='#')
+                i.fa.fa-youtube-play.fa-fw
+              | &nbsp;
+              a(href='#')
+                i.fa.fa-download.fa-fw
+
+mixin match(match)
+  .box
+    table.table.table-borderless
+      tbody
+        tr
+          td(align='left')
+            = match.player_1.name
+          td(align='right') Avatar here
+          td(align='center') vs
+          td(align='left') Avatar here
+          td(align='right')
+            = match.player_2.name
+  .tabs-left
+    ul.nav.nav-tabs
+      li.active
+        a(href='#game1', data-toggle='tab') Game 1
+      li
+        a(href='#game2', data-toggle='tab') Game 2
+      li
+        a(href='#game3', data-toggle='tab') Game 3
+
+    .tab-content
+      #introduction.tab-pane.active
+        = 1
+      #rule.tab-pane
+        = 2
+      #prizes.tab-pane
+        = 3

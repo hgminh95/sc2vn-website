@@ -1,22 +1,12 @@
 extends ../layout.normal
 
+include ../mixins/match.jade
+
 block content-inside
-  table.table.table-hover
-    thead
-      tr
-        th #
-        th Player 1
-        th
-        th Player 2
-        th
-    tbody
-      - for match in matches
-        tr
-          td
-          td= match.player_1
-          td vs
-          td= match.player_2
-          td
+  p Live
+  +matches-list(live)
+  p Upcoming
+  +matches-list(upcoming)
 
 block sidebar
   a.btn.btn-block.button-submit(href='/matches/new')
