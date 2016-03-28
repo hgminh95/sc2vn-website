@@ -2,6 +2,10 @@
   margin-top: 30px;
   margin-bottom: 30px;
 
+  &:first-child {
+    margin-top: 0px;
+  }
+
   .widget-title {
     text-transform: uppercase;
     color: $font-color-default;

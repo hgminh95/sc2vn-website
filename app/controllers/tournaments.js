@@ -47,7 +47,7 @@ exports.show = function(req, res) {
 }
 
 exports.edit = function(req, res) {
-  res.render('tournament/edit', {
+  res.render('tournaments/edit', {
     tournament: req.tournament
   });
 }

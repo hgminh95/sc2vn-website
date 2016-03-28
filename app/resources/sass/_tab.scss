@@ -13,6 +13,11 @@
         margin-top: -1px;
         border: 1px solid #ddd;
         border-left-color: transparent;
+        transition: 0s;
+
+        &:hover {
+          background-color: #fff;
+        }
       }
 
       &:first-child {
@@ -32,6 +37,7 @@
       a, a:focus {
         border-bottom-color: #ddd;
         border-right-color: transparent;
+        border-left-color: #ddd;
       }
     }
   }

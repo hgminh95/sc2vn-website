@@ -21,3 +21,15 @@
     }
   }
 }
+
+.tournament-banner {
+  width: 100%;
+  height: auto;
+}
+
+.tournament {
+  .tournament-title {
+    font-size: $font-size-title;
+    margin-bottom: 20px;
+  }
+}

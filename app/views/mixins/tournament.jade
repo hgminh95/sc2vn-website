@@ -13,19 +13,41 @@ mixin tournament-form(tournament, action)
     button.btn.button-submit(type='submit') Submit
 
 mixin tournament(tournament)
-  .tabs-left
-    ul.nav.nav-tabs
-      li.active
-        a(href='#introduction', data-toggle='tab') Introduction
-      li
-        a(href='#rule', data-toggle='tab') Rules
-      li
-        a(href='#prizes', data-toggle='tab') Prizes
+  .tournament
+    .tournament-title
+      = tournament.name
+    .tabs-left
+      ul.nav.nav-tabs
+        li.active
+          a(href='#introduction', data-toggle='tab') Introduction
+        li
+          a(href='#rule', data-toggle='tab') Rules
+        li
+          a(href='#prizes', data-toggle='tab') Prizes
+        li
+          a(href='#schedule', data-toggle='tab') Schedule
+        li
+          a(href='#faq', data-toggle='tab') FAQ
 
-    .tab-content
-      #introduction.tab-pane.active
-        = tournament.introduction
-      #rule.tab-pane
-        = tournament.rule
-      #prizes.tab-pane
-        = tournament.faq
+      .tab-content
+        #introduction.tab-pane.editable.active
+          != tournament.introduction
+        #rule.tab-pane.editable
+          != tournament.rule
+        #prizes.tab-pane.editable
+          != tournament.faq
+        #schedule.tab-pane
+          +schedule(tournament.stages)
+        #faq.tab-pane
+          != 2
+
+mixin schedule(stages)
+  #accordion.panel-group(role='tab-list', aria-multiselectable='true')
+    each stage, index in stages
+      .panel.panel-default
+        .panel-heading(role='tab', id='heading' + index)
+          a(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapse' + index, aria-expanded='true', aria-controls='collapse' + index)
+            = stage.name
+        .panel-collapse.collapse(id='collapse' + index, role='tabpanel', aria-labelledby='heading' + index)
+          .panel-body
+            | ABCDEF

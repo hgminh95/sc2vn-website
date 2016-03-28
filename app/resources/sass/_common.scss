@@ -1,8 +1,8 @@
 .box {
-  padding-top: 40px;
+  padding-top: 20px;
   padding-bottom: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 13px;
+  padding-right: 13px;
 }
 
 .box-left {
@@ -49,6 +49,12 @@ td, th {
   vertical-align: middle !important;
 }
 
+.heading-faq {
+  &:before {
+
+  }
+}
+
 body {
   margin-top: 52px;
   font-size: $font-size-default;
@@ -60,4 +66,13 @@ body {
     margin-right: 130px;
     width: auto;
   }
+}
+
+.container {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+footer {
+  padding-top: 30px !important;
 }

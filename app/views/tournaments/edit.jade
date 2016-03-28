@@ -1,4 +1,32 @@
-extends ../layout
+extends ../layout.normal
 
-block content
-  h1= 'Nothing here'
+include ../mixins/tournament
+
+block scripts
+  script(src='https://cdn.tinymce.com/4/tinymce.min.js')
+  script.
+    tinymce.init({
+      selector: '.tournament-title',
+      inline: true,
+      toolbar: 'undo redo',
+      menubar: false
+    });
+
+    tinymce.init({
+      selector: 'div.tab-pane.editable',
+      inline: true,
+      plugins: 'image imagetools media fullscreen',
+      toolbar: 'undo redo | bold italic underline strikethrough | alignleft aligncenter alignright | bullist numlist outdent indent | link image media | fullscreen',
+      menubar: false
+    });
+
+block content-header
+  img.tournament-banner(src=tournament.banner)
+
+block content-inside
+  +tournament(tournament)
+
+block sidebar
+  a.btn.btn-block.button-submit(href=tournament.getEditPath())
+    i.fa.fa-edit.fa-fw
+    | &nbsp; Save

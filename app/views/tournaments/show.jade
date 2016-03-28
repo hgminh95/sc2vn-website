@@ -2,6 +2,13 @@ extends ../layout.normal
 
 include ../mixins/tournament
 
+block content-header
+  img.tournament-banner(src=tournament.banner)
+
 block content-inside
-  h1= tournament.name
   +tournament(tournament)
+
+block sidebar
+  a.btn.btn-block.button-submit(href=tournament.getEditPath())
+    i.fa.fa-edit.fa-fw
+    | &nbsp; Edit Tournament
