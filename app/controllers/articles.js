@@ -4,6 +4,7 @@ var assign = require('object-assign');
 var only = require('only');
 var uploader = require('../uploaders/thumbnails');
 var Article = require('../models/articles');
+var settings = require('../../config/settings')
 
 exports.load = function(req, res, next, id) {
   Article.findById(id, function(err, article) {
@@ -42,7 +43,7 @@ exports.create = function(req, res, next) {
 exports.index = function(req, res, next) {
   req.query.page = req.query.page || 0
 
-  Article.list({ page: req.query.page }, function(err, articles) {
+  Article.list({ perPage: settings.articles_per_page, page: req.query.page }, function(err, articles) {
     if (err) return next(err);
 
     res.render('articles/index', {

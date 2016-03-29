@@ -4,6 +4,7 @@ var assign = require('object-assign');
 var only = require('only');
 var Match = require('../models/matches');
 var async = require('async');
+var settings = require('../../config/settings')
 
 exports.load = function(req, res, next, id) {
   Match.findById(id, function(err, match) {

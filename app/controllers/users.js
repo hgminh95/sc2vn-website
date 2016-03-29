@@ -3,6 +3,7 @@
 var assign = require('object-assign');
 var only = require('only');
 var User = require('../models/users');
+var settings = require('../../config/settings')
 
 exports.load = function(req, res, next, id) {
   User.findById(id, function(err, user) {
