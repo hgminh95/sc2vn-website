@@ -199,12 +199,6 @@ UserSchema.methods = {
     this.save();
   },
 
-  to_json: function() {
-    var userJson = this._doc;
-    userJson.notifications = this.notifications.map(notification => notification._doc)
-    return userJson;
-  },
-
   getShowPath: function() {
     return '/users/' + this._id;
   },
@@ -229,6 +223,17 @@ UserSchema.statics = {
 
   allWithRanking: function(callback) {
     return this.find({}).sort('-score').exec(callback);
+  },
+
+  top: function(options, callback) {
+    options.perPage = options.perPage || 5
+    options.page = 0
+
+    this.find({})
+      .sort({ score: 'desc' })
+      .limit(options.perPage)
+      .skip(options.page * options.perPage)
+      .exec(callback)
   },
 
   findById: function(id, callback) {

@@ -116,12 +116,30 @@ MatchSchema.statics = {
 
   upcoming: function(callback) {
     return this.find({
-        "date" : {
-          "$gte" : today.toDate(),
-          "$lte" : today.add(3, 'days').toDate()
+        "date": {
+          "$gte": today.toDate(),
+          "$lte": today.add(3, 'days').toDate()
         }
       })
       .sort({ date: 'asc' })
+      .populate('player_1')
+      .populate('player_2')
+      .populate('tournament', 'name banner')
+      .exec(callback)
+  },
+
+  past: function(options, callback) {
+    options.perPage = options.perPage || 5
+    options.page = options.page || 0
+
+    return this.find({
+        "date": {
+          "$lte": today.toDate()
+        }
+      })
+      .sort({ date: 'asc' })
+      .limit(options.perPage)
+      .skip(options.page * options.perPage)
       .populate('player_1')
       .populate('player_2')
       .populate('tournament', 'name banner')

@@ -1,0 +1,44 @@
+mixin recent-matches(matches)
+  .widget
+    .widget-title
+      i.fa.fa-bolt.fa-fw
+      | &nbsp; Recent Matches
+      span.pull-right
+        a(href='/matches')
+          i.fa.fa-bars.fa-fw
+    .widget-content
+      table.table.table-hover
+        tbody
+          each match in matches
+            tr.clickable-row(data-href=match.getShowPath())
+              td.col-md-3(align='right')
+                a(href=match.player_1.getShowPath())
+                  = match.player_1.name
+                  | &nbsp;
+                  img.avatar-small(src=match.player_1.avatar)
+              td.col-md-1(align='center') vs
+              td.col-md-3(align='left')
+                a(href=match.player_2.getShowPath())
+                  img.avatar-small(src=match.player_2.avatar)
+                  | &nbsp;
+                  = match.player_2.name
+
+mixin top-players(players)
+  .widget
+    .widget-title
+      i.fa.fa-bolt.fa-fw
+      | &nbsp; Top Players
+      span.pull-right
+        a(href='/users/rank')
+          i.fa.fa-bars.fa-fw
+    .widget-content
+      table.table.table-hover
+        tbody
+          each player in players
+            tr.clickable-row(data-href=player.getShowPath())
+              td.col-md-3(align='left')
+                  img.avatar-small(src=player.avatar)
+                  | &nbsp;
+                  = player.name
+              td.col-md-1(align='right')
+                  = player.score

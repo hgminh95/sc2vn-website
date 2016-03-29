@@ -1,5 +1,7 @@
 extends layout
 
+include ./mixins/widget.jade
+
 block content
   .breadcrumbs.light
     .container
@@ -15,41 +17,5 @@ block content
       .col-md-3.no-padding
         .box-left
           block sidebar
-          .widget
-            .widget-title
-              i.fa.fa-bolt.fa-fw
-              | &nbsp; Recent Matches
-              span.pull-right
-                a(href='/matches')
-                  i.fa.fa-bars.fa-fw
-            .widget-content
-              table.table.table-hover
-                tbody
-                  tr
-                    td.text-center A
-                    td.text-center vs
-                    td.text-center B
-                  tr
-                    td.text-center B
-                    td.text-center vs
-                    td.text-center C
-                  tr
-                    td.text-center C
-                    td.text-center vs
-                    td.text-center A
-          .widget
-            .widget-title
-              i.fa.fa-users.fa-fw
-              | &nbsp; Top Players
-              span.pull-right
-                a(href='/users/rank')
-                  i.fa.fa-bars.fa-fw
-            .widget-content
-              table.table.table-hover
-                tbody
-                  tr
-                    td.text-center ||||||||||
-                  tr
-                    td.text-center |||||||||
-                  tr
-                    td.text-center ||||||||
+          +recent-matches(locals.recent_matches)
+          +top-players(locals.top_players)

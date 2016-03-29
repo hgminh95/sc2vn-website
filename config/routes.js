@@ -6,11 +6,15 @@ var tournaments = require('../app/controllers/tournaments');
 var statics = require('../app/controllers/statics');
 var usersMiddleware = require('../app/middlewares/users');
 var matches = require('../app/controllers/matches');
+var widgets = require('../app/controllers/widgets')
 
 module.exports = function(app) {
 
   app.use(users.loadCurrentUser);
   app.use(usersMiddleware.checkNotification);
+
+  app.use(widgets.recentMatches)
+  app.use(widgets.topPlayers)
 
   // User Routes
   app.param('userId', users.load);
