@@ -12,7 +12,7 @@ block scripts
       setup: function(editor) {
         editor.on('init', function(e) {
           //Remove new line character
-          editor.setContent('!{article.content.replace(/(\r|\n)/g, "")}');
+          editor.setContent(`!{article.content ? article.content.replace(/(\r|\n)/g, "") : ""}`);
         });
       }
     });

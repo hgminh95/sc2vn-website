@@ -50,7 +50,7 @@ exports.index = function(req, res, next) {
       title: 'Articles',
       articles: articles,
       prevPage: req.query.page - 1,
-      nextPage: articles.length == 10 ? req.query.page + 1 : -1
+      nextPage: articles.length == settings.articles_per_page ? req.query.page + 1 : -1
     });
   });
 }
