@@ -12,38 +12,21 @@ nav.navbar {
   height: 70px;
   padding-top: 0;
 
-  transition: height .4s ease, line-height .4s ease, border-bottom-color .4s ease-in;
-}
-
-.navbar-default .navbar-nav > li > a {
-  color: aliceblue;
-  mix-blend-mode: difference;
-  /*border-bottom: 2px solid transparent;*/
-}
-
-.navbar-default .navbar-text > a {
-  mix-blend-mode: difference;
-  color: aliceblue;
+  transition: height 1s ease, line-height 1s ease, border-bottom-color .4s ease-in;
 }
 
 .navbar-default .navbar-text {
   margin-top: 26px;
-  transition: all .4s;
+  transition: all 1s;
 }
 
 .navbar-default .navbar-btn {
   margin-top: 22px;
-  transition: all .4s;
+  transition: all 1s;
 }
 
 .navbar-default .navbar-brand {
-  color: aliceblue;
   font-weight: 600;
-}
-
-nav.navbar {
-  background-color: transparent;
-  border: 0px;
 }
 
 nav.shrink.navbar {
@@ -55,7 +38,7 @@ nav.shrink li a {
   line-height: 51px;
   height: 50px;
   color: #777 !important;
-  transition: height .4s ease, line-height .4s ease, border-bottom-color .4s ease-in;
+  transition: height 1s ease, line-height 1s ease, border-bottom-color .4s ease-in;
   margin-bottom: -2px;
 }
 
@@ -64,7 +47,7 @@ nav.shrink .navbar-brand {
   height: 50px;
   color: #777 !important;
 
-  transition: all .4s ease;
+  transition: all 1s ease;
 }
 
 nav.shrink .navbar-text > a {
@@ -73,10 +56,10 @@ nav.shrink .navbar-text > a {
 
 nav.shrink .navbar-text {
   margin-top: 17px;
-  transition: all .4s;
+  transition: all 1s;
 }
 
 nav.shrink .navbar-btn {
   margin-top: 12px;
-  transition: all .4s;
+  transition: all 1s;
 }
