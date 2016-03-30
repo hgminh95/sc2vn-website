@@ -50,6 +50,7 @@ exports.create = function(req, res, next) {
 
 exports.show = function(req, res) {
   res.render('matches/show', {
+    title: 'View matches',
     match: req.match
   });
 }

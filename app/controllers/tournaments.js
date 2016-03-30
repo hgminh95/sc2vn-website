@@ -35,9 +35,8 @@ exports.create = function(req, res, next) {
   var tournament = new Tournament(only(req.body, Tournament.fields()));
   tournament.save(function(err) {
     if (err) return next(err);
-    else {
-      res.redirect(tournament.getShowPath());
-    }
+
+    res.redirect(tournament.getShowPath());
   });
 }
 

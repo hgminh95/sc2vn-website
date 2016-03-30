@@ -28,6 +28,8 @@ mixin matches-list(matches)
 
 mixin match(match)
   .box
+    h3.text-center= match.tournament ? match.tournament.name : 'Public match'
+    hr
     table.table.table-borderless
       tbody
         tr
@@ -40,19 +42,16 @@ mixin match(match)
             img.avatar(src=match.player_2.avatar)
           td(align='right')
             = match.player_2.name
-  .tabs-left
-    ul.nav.nav-tabs
-      li.active
-        a(href='#game1', data-toggle='tab') Game 1
-      li
-        a(href='#game2', data-toggle='tab') Game 2
-      li
-        a(href='#game3', data-toggle='tab') Game 3
+    #games-accordion.panel-group(role='tablist', aria-multiselectable='true')
+      each game, index in match.games
+        .panel.panel-default
+          .panel-heading(role='tab', id='heading' + index)
+            h4.panel-title
+              a(role='button', data-toggle='collapse', data-parent='#games-accordion', href='#collapse' + index, aria-expanded='true', aria-controls='collapse' + index)
+                = 'Game ' + (index + 1)
+          .panel-collapse.collapse(role='tabpanel', aria-labelledby='heading' + index, id='collapse' + index)
+            .panel-body
+              +game(game)
 
-    .tab-content
-      #introduction.tab-pane.active
-        = 1
-      #rule.tab-pane
-        = 2
-      #prizes.tab-pane
-        = 3
+mixin game(game)
+  p= game.map
