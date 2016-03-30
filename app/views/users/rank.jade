@@ -22,7 +22,7 @@ block content-inside
               i.fa.fa-chevron-down.fa-fw.text-danger
           td= index + 1
           td
-            img(src='http://www.rankedftw.com/static/ceafb6a/img/races/' + user.race + '-16x16.png')
+            img(src=user.getRaceImagePath())
             | &nbsp;
             a(href=user.getShowPath(), style='vertical-align: middle;')
               = user.name

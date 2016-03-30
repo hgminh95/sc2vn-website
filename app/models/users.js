@@ -205,6 +205,10 @@ UserSchema.methods = {
 
   getEditPath: function() {
     return '/users/' + this._id + '/edit';
+  },
+
+  getRaceImagePath: function() {
+    return '/images/' + this.race + '-gray.png'
   }
 }
 
