@@ -5,13 +5,14 @@
   color: $font-color-strong;
 }
 
-.breadcrumbs-title {
+.breadcrumbs-left {
+  margin-top: 4px;
   display: inline;
-  font-size: $font-size-title;
+  font-size: $font-size-default;
   float: left !important;
 }
 
-.breadcrumbs-details {
+.breadcrumbs-right {
   margin-top: 4px;
   font-size: $font-size-default;
   display: inline;

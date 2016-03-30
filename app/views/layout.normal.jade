@@ -3,10 +3,8 @@ extends layout
 include ./mixins/widget.jade
 
 block content
-  .breadcrumbs.light
-    .container
-      .breadcrumbs-title Tournament
-      .breadcrumbs-details Home / Tournament
+  if locals.breadcrumbs
+    +breadcrumbs(locals.breadcrumbs)
 
   .container
     block content-header

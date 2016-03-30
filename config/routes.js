@@ -7,8 +7,12 @@ var statics = require('../app/controllers/statics');
 var usersMiddleware = require('../app/middlewares/users');
 var matches = require('../app/controllers/matches');
 var widgets = require('../app/controllers/widgets')
+var base = require('../app/controllers/base')
 
 module.exports = function(app) {
+
+  app.use(base.init)
+  app.use(articles.init)
 
   app.use(users.loadCurrentUser);
   app.use(usersMiddleware.checkNotification);

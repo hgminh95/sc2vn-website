@@ -1,0 +1,12 @@
+mixin breadcrumbs(breadcrumbs)
+  .breadcrumbs.light
+    .container
+      .breadcrumbs-left
+        each entry, index in breadcrumbs
+          if index != breadcrumbs.length - 1
+            a(href=entry.address)= entry.name + ' / '
+          else
+            = entry.name
+
+      .breadcrumbs-right
+        i.fa.fa-search.fa-fw

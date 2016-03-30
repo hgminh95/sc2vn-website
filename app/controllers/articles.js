@@ -6,6 +6,15 @@ var uploader = require('../uploaders/thumbnails');
 var Article = require('../models/articles');
 var settings = require('../../config/settings')
 
+exports.init = function(req, res, next) {
+  res.locals.breadcrumbs.push({
+    name: 'Articles',
+    address: '/articles/'
+  })
+
+  next()
+}
+
 exports.load = function(req, res, next, id) {
   Article.findById(id, function(err, article) {
     if (err) return next(err);
