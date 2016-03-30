@@ -6,12 +6,27 @@ var Match = require('../models/matches');
 var async = require('async');
 var settings = require('../../config/settings')
 
+exports.init = function(req, res, next) {
+  res.locals.breadcrumbs.push({
+    name: 'Matches',
+    address: '/matches'
+  })
+
+  next()
+}
+
 exports.load = function(req, res, next, id) {
   Match.findById(id, function(err, match) {
     if (err) return next(err);
 
     req.match = match;
     if (!req.match) return res.render('404');
+
+    res.locals.breadcrumbs.push({
+      name: 'Match ' + match._id,
+      address: match.getShowPath()
+    })
+
     next();
   })
   .populate('player_1')

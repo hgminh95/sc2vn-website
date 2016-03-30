@@ -4,12 +4,26 @@ var assign = require('object-assign');
 var only = require('only');
 var Tournament = require('../models/tournaments');
 
+exports.init = function(req, res, next) {
+  res.locals.breadcrumbs.push({
+    name: 'Tournaments',
+    address: '/tournaments'
+  })
+
+  next()
+}
+
 exports.load = function(req, res, next, id) {
   Tournament.findById(id, function(err, tournament) {
     if (err) return next(err);
 
     req.tournament = tournament;
     if (!req.tournament) return res.render('404');
+
+    res.locals.breadcrumbs.push({
+      name: tournament.name,
+      address: tournament.getShowPath()
+    })
     next();
   });
 }

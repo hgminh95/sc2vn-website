@@ -1,77 +1,93 @@
-'use strict';
+'use strict'
 
-var users = require('../app/controllers/users');
-var articles = require('../app/controllers/articles');
-var tournaments = require('../app/controllers/tournaments');
-var statics = require('../app/controllers/statics');
-var usersMiddleware = require('../app/middlewares/users');
-var matches = require('../app/controllers/matches');
+var express = require('express')
+
+var users = require('../app/controllers/users')
+var articles = require('../app/controllers/articles')
+var tournaments = require('../app/controllers/tournaments')
+var statics = require('../app/controllers/statics')
+var usersMiddleware = require('../app/middlewares/users')
+var matches = require('../app/controllers/matches')
 var widgets = require('../app/controllers/widgets')
 var base = require('../app/controllers/base')
 
 module.exports = function(app) {
 
   app.use(base.init)
-  app.use(articles.init)
 
-  app.use(users.loadCurrentUser);
-  app.use(usersMiddleware.checkNotification);
+  app.use(users.loadCurrentUser)
+  app.use(usersMiddleware.checkNotification)
 
   app.use(widgets.recentMatches)
   app.use(widgets.topPlayers)
 
   // User Routes
-  app.param('userId', users.load);
-
-  app.get('/users', users.index);
-  app.get('/users/new', users.new);
-  app.post('/users', users.create);
-  app.get('/users/rank', users.rank);
-  app.get('/users/login', users.login);
-  app.get('/users/register', users.register);
-  app.get('/users/:userId', users.show);
-  app.get('/users/:userId/edit', users.edit);
-  app.post('/users/:userId', users.update);
+  app.use(
+    '/users',
+    express.Router()
+      .param('userId', users.load)
+      .get('/', users.index)
+      .get('/new', users.new)
+      .post('/', users.create)
+      .get('/rank', users.rank)
+      .get('/login', users.login)
+      .get('/register', users.register)
+      .get('/:userId', users.show)
+      .get('/:userId/edit', users.edit)
+      .post('/:userId', users.update)
+  )
 
   // Article Routes
-  app.param('articleId', articles.load);
-
-  app.get('/articles', articles.index);
-  app.get('/articles/new', articles.new);
-  app.post('/articles', articles.create);
-  app.get('/articles/:articleId', articles.show);
-  app.get('/articles/:articleId/edit', articles.edit);
-  app.post('/articles/:articleId', articles.update);
-  app.delete('/articles/:articleId', articles.destroy)
+  app.use(
+    '/articles',
+    express.Router()
+      .use(articles.init)
+      .param('articleId', articles.load)
+      .get('/', articles.index)
+      .get('/new', articles.new)
+      .post('/', articles.create)
+      .get('/:articleId', articles.show)
+      .get('/:articleId/edit', articles.edit)
+      .post('/:articleId', articles.update)
+      .delete('/:articleId', articles.destroy)
+  )
 
   // Tournament Routes
-  app.param('tournamentId', tournaments.load);
+  app.use(
+    '/tournaments',
+    express.Router()
+      .use(tournaments.init)
+      .param('tournamentId', tournaments.load)
+      .get('/', tournaments.index)
+      .get('/new', tournaments.new)
+      .post('/', tournaments.create)
+      .get('/:tournamentId', tournaments.show)
+      .get('/:tournamentId/edit', tournaments.edit)
+      .post('/:tournamentId', tournaments.update)
+      .delete('/:tournamentId', tournaments.destroy)
+  )
 
-  app.get('/tournaments', tournaments.index);
-  app.get('/tournaments/new', tournaments.new);
-  app.post('/tournaments', tournaments.create);
-  app.get('/tournaments/:tournamentId', tournaments.show);
-  app.get('/tournaments/:tournamentId/edit', tournaments.edit);
-  app.post('/tournaments/:tournamentId', tournaments.update);
-  app.delete('/tournaments/:tournamentId', tournaments.destroy);
-
-  //Match Routes
-  app.param('matchId', matches.load);
-
-  app.get('/matches', matches.index);
-  app.get('/matches/new', matches.new);
-  app.post('/matches', matches.create);
-  app.get('/matches/:matchId', matches.show);
-  app.get('/matches/:matchId/edit', matches.edit);
-  app.post('/matches/:matchId', matches.update);
-  app.delete('/matches/:matchId', matches.destroy);
+  // Match Routes
+  app.use(
+    '/matches',
+    express.Router()
+      .use(matches.init)
+      .param('matchId', matches.load)
+      .get('/', matches.index)
+      .get('/new', matches.new)
+      .post('/', matches.create)
+      .get('/:matchId', matches.show)
+      .get('/:matchId/edit', matches.edit)
+      .post('/:matchId', matches.update)
+      .delete('/:matchId', matches.destroy)
+  )
 
   // Static Routes
-  app.get('/admin', statics.admin);
-  app.get('/changelog', statics.changelog);
-  app.get('/faq', statics.faq);
-  app.get('/features', statics.features);
+  app.get('/admin', statics.admin)
+  app.get('/changelog', statics.changelog)
+  app.get('/faq', statics.faq)
+  app.get('/features', statics.features)
 
   // Root
-  app.get('/', articles.index);
+  app.get('/', articles.index)
 };

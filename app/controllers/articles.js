@@ -7,6 +7,7 @@ var Article = require('../models/articles');
 var settings = require('../../config/settings')
 
 exports.init = function(req, res, next) {
+  console.log("PUSH")
   res.locals.breadcrumbs.push({
     name: 'Articles',
     address: '/articles/'
@@ -21,6 +22,11 @@ exports.load = function(req, res, next, id) {
 
     req.article = article;
     if (!req.article) return res.render('404');
+
+    res.locals.breadcrumbs.push({
+      name: article.title,
+      address: article.getShowPath()
+    })
     next();
   }).populate('author');
 }
