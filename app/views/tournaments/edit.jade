@@ -26,7 +26,24 @@ block content-header
 block content-inside
   +tournament(tournament)
 
+
 block sidebar
-  a.btn.btn-block.button-submit(href=tournament.getEditPath())
-    i.fa.fa-edit.fa-fw
+  button#save-button.btn.btn-block.button-submit
+    i.fa.fa-floppy-o.fa-fw
     | &nbsp; Save
+
+  script.
+    $('#save-button').click(function() {
+      $('#save-button').html('<i class="fa fa-circle-o-notch fa-spin"></i>')
+      $.post('./', {
+        name: $('#tournament-title').text(),
+        introduction: $('#introduction').html(),
+        rule: $('#rule').html()
+      },
+      function(data, status) {
+        setTimeout(function() {
+          $('#save-button').html('<i class="fa fa-floppy-o fa-fw"></i> &nbsp;Save')
+        }, 1000);
+      });
+    })
+

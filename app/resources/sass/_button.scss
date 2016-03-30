@@ -1,5 +1,14 @@
 .btn {
   border-width: 0px;
+
+  &:focus {
+    outline: none;
+    color: white;
+  }
+
+  &:active {
+    outline: none;
+  }
 }
 
 .button-default {
