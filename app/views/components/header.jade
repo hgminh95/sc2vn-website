@@ -32,18 +32,25 @@ nav#nav.navbar.navbar-default.navbar-fixed-top
           a(href='#') Guide
 
 #login-modal.modal.fade(tabindex=-1, role='dialog', aria-labelledby='login-label')
-  .modal-dialog(role='document')
+  .modal-dialog.modal-sm(role='document')
     .modal-content
-      .modal-header
+      .modal-header.light
         button.close(type='button', data-dismiss='modal', aria-label='Close')
           span(aria-hidden='true') &times;
-        h4#login-label.modal-title Login
+        h4#login-label.modal-title.text-center Login
       .modal-body
+        a.btn.button-submit.btn-block(href='/auth/bnet') Log in with Battle.net
+        h5.text-center or
         form(method='post', action='/auth/local')
           .form-group
-            input.form-control(type='email', name='email', placeholder='Email')
-          .form-group
-            input.form-control(type='password', name='password', placeholder='Password')
-          button.btn.button-submit.pull-right(type='submit') Login
-          a.btn.button-submit.pull-left(href='/auth/bnet') Log in with Battle.net
-          .clearfix
+            .input-group
+              span.input-group-addon
+                i.fa.fa-envelope.fa-fw
+              input.form-control(type='email', name='email', placeholder='Email')
+            .input-group
+              span.input-group-addon
+                i.fa.fa-key.fa-fw
+              input.form-control(type='password', name='password', placeholder='Password')
+          button.btn.button-submit.btn-block(type='submit') Log in
+          h6.text-center
+            a(href='#') Forgot your password?

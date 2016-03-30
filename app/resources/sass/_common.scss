@@ -39,6 +39,7 @@
 
 a {
   color: inherit;
+  cursor: pointer;
 
   &:hover {
     text-decoration: none;
@@ -63,6 +64,10 @@ body {
   margin-top: 52px;
   font-size: $font-size-default;
   font-family: 'Open Sans', sans-serif;
+}
+
+body.modal-open {
+  padding-right: 0px !important;
 }
 
 @media (min-width: 1200px) {
