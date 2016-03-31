@@ -33,14 +33,17 @@ mixin match(match)
     table.table.table-borderless
       tbody
         tr
-          td(align='left')
+          td.col-md-2(align='left')
             = match.player_1.name
-          td(align='right')
+          td.col-md-3(align='right')
             img.avatar(src=match.player_1.avatar)
-          td(align='center') vs
-          td(align='left')
+          td.col-md-2(align='center')
+            button.btn.btn-default
+              = match.winner() ? match.winner().name + ' wins' : 'Draw'
+            h6= match.date.toDateString()
+          td.col-md-3(align='left')
             img.avatar(src=match.player_2.avatar)
-          td(align='right')
+          td.col-md-3(align='right')
             = match.player_2.name
     #games-accordion.panel-group(role='tablist', aria-multiselectable='true')
       each game, index in match.games
@@ -54,4 +57,7 @@ mixin match(match)
               +game(game)
 
 mixin game(game)
-  p= game.map
+  img.img.pull-right(width='200px', height='200px')
+  p= "Player 1 race: " + game.race1
+  p= "Player 2 race: " + game.race2
+  p= "Status: " + game.status

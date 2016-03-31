@@ -31,21 +31,18 @@ var MatchSchema = new Schema({
 
 MatchSchema.methods = {
   winner: function() {
-    var winCount = 0;
-    for (var i = 0; i < games.length; i++){
-      if (this.games[i].status == 'win'){
-        winCount++;
-      }
-      if (this.games[i].status == 'lose'){
-        winCount--;
-      }
-      if (this.games[i].status == 'not available'){
-        return null;
-      }
+    var winCount = 0
+    for (var i = 0; i < this.games.length; i++) {
+      if (this.games[i].status == 'win')
+        winCount++
+      else if (this.games[i].status == 'lose')
+        winCount--
+      else if (this.games[i].status == 'not available')
+        return null
     }
-    if (winCount > 0) {return this.player_1;}
-    if (winCount = 0) {return  null}
-    if (winCount < 0) {return this.player_2;}
+    if (winCount > 0) return this.player_1
+    if (winCount == 0) return null
+    if (winCount < 0) return this.player_2
   },
 
   opponent: function(userId) {
@@ -67,14 +64,6 @@ MatchSchema.methods = {
     if (this.player_1.equals(userId)) return wins.length;
     if (this.player_2.equals(userId)) return this.gamePlayed() - wins.length;
     return 0;
-  },
-
-  to_json: function() {
-    return {
-      id: this._id,
-      players: this.players,
-      games: this.games.map(game => game._doc)
-    };
   },
 
   getShowPath: function() {
