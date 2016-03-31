@@ -11,23 +11,25 @@ nav#nav.navbar.navbar-default.navbar-fixed-top
 
     // Collect the nav links, forms and other content for toggling
     .collapse.navbar-collapse(id='navbar-collapse')
-      a.btn.btn-primary.btn-sm.navbar-btn.navbar-right(href='/users/register') Sign up
-      p.navbar-text.navbar-right
-        -if (_locals.current_user.hasOwnProperty('name'))
-          a(href='#')= _locals.current_user.name
-        - else
+      if (locals.current_user.name)
+        p.navbar-text.navbar-right
+          = 'Hello, '
+          a(href=current_user.getShowPath())= locals.current_user.name
+      else
+        a.btn.btn-primary.btn-sm.navbar-btn.navbar-right(href='/users/register') Sign up
+        p.navbar-text.navbar-right
           a(data-toggle='modal', data-target='#login-modal') Log in
-          | &nbsp or &nbsp
+          | &nbsp; or &nbsp;
 
       ul.nav.navbar-nav.navbar-right
         li
           a(href='/') Home
         li
-          a(href='/tournaments') Tournament
+          a(href='/tournaments') Tournaments
         li
           a(href='/users/rank') Rank
         li
-          a(href='/matches') Match Archive
+          a(href='/matches') Matches Archive
         li
           a(href='#') Guide
 
@@ -36,7 +38,8 @@ nav#nav.navbar.navbar-default.navbar-fixed-top
     .modal-content
       .modal-header.light
         button.close(type='button', data-dismiss='modal', aria-label='Close')
-          span(aria-hidden='true') &times;
+          span(aria-hidden='true')
+            i.fa.fa-close.fa-fw
         h4#login-label.modal-title.text-center Login
       .modal-body
         a.btn.button-submit.btn-block(href='/auth/bnet') Log in with Battle.net

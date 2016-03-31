@@ -6,3 +6,8 @@ block content-inside
   +user-profile(user)
   .clearfix
   +user-statistic(user.stats)
+
+block sidebar
+  a.btn.btn-block.button-submit(href=user.getEditPath())
+    i.fa.fa-edit.fa-fw
+    | &nbsp; Edit Information

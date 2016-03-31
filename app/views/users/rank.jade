@@ -6,15 +6,20 @@ block content-inside
 
   table.table.table-hover
     thead
-      th.col-md-1
-      th.col-md-1 #
-      th.col-md-5 Player
-      th.col-md-2.text-center Score
-      th.col-md-1.text-center Wins
-      th.col-md-1.text-center Losses
+      tr
+        th.xcol-md-2
+        th.xcol-md-1
+        th.xcol-md-1 #
+        th.xcol-md-5 Player
+        th.xcol-md-2.text-center Score
+        th.xcol-md-1.text-center Wins
+        th.xcol-md-1.text-center Losses
     tbody
       each user, index in users
         tr
+          if index % 10 == 0
+            td(align='center', rowspan=10)
+              = 'Top ' + (index + 10)
           td
             if Math.random() > .5
               i.fa.fa-chevron-up.fa-fw.text-success

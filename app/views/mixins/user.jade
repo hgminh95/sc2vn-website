@@ -4,12 +4,10 @@ mixin user-profile(user)
     .details
       .heading
         = user.name
-        .left-pane
-          a(href=user.getEditPath())
-            i.fa.fa-pencil-square-o.fa-fw
-            | &nbsp;Edit Information
       div
-        = user.race
+        p= 'Race: ' + user.race
+        p= 'Score: ' + user.score
+        p= 'Rank: #' + user.rank
 
 mixin user-statistic(stats)
   -vs_terran_loss = stats.vs_terran_games - stats.vs_terran_wins
