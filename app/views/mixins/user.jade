@@ -18,31 +18,52 @@ mixin user-statistic(stats)
   table.table.table-hover.table-condensed
     thead
       tr
-        th
-        th.text-center Win
-        th.text-center Lose
-        th.text-center Total
+        th.col-md-4
+        th.col-md-2.text-center Winrate
+        th.col-md-2.text-center Win
+        th.col-md-2.text-center Lose
+        th.col-md-2.text-center Total
     tbody
       tr
         th vs Zerg
-        td.text-success(align='center')= stats.vs_zerg_wins + ' (' + (stats.vs_zerg_wins / stats.vs_zerg_games) + '%)'
-        td.text-danger(align='center')= vs_zerg_loss + ' (' + (vs_zerg_loss / stats.vs_zerg_games) + '%)'
-        td(align='center')= stats.vs_zerg_games
+        td(align='center')
+          = (stats.vs_zerg_wins / stats.vs_zerg_games * 100).toFixed(0) + '%'
+        td.text-success(align='center')
+          = stats.vs_zerg_wins
+        td.text-danger(align='center')
+          = vs_zerg_loss
+        td(align='center')
+          = stats.vs_zerg_games
       tr
         th vs Protoss
-        td.text-success(align='center')= stats.vs_protoss_wins + ' (' + (stats.vs_protoss_wins / stats.vs_protoss_games) + '%)'
-        td.text-danger(align='center')= vs_protoss_loss + ' (' + (vs_protoss_loss / stats.vs_protoss_games) + '%)'
-        td(align='center')= stats.vs_protoss_games
+        td(align='center')
+          = (stats.vs_protoss_wins / stats.vs_protoss_games * 100).toFixed(0) + '%'
+        td.text-success(align='center')
+          = stats.vs_protoss_wins
+        td.text-danger(align='center')
+          = vs_protoss_loss
+        td(align='center')
+          = stats.vs_protoss_games
       tr
         th vs Terran
-        td.text-success(align='center')= stats.vs_terran_wins + ' (' + (stats.vs_terran_wins / stats.vs_terran_games) + '%)'
-        td.text-danger(align='center')= vs_terran_loss + ' (' + (vs_terran_loss / stats.vs_terran_games) + '%)'
-        td(align='center')= stats.vs_terran_games
+        td(align='center')
+          = (stats.vs_terran_wins / stats.vs_terran_games * 100).toFixed(0) + '%'
+        td.text-success(align='center')
+          = stats.vs_terran_wins
+        td.text-danger(align='center')
+          = vs_terran_loss
+        td(align='center')
+          = stats.vs_terran_games
       tr
         th Total
         -var total_wins = stats.vs_zerg_wins + stats.vs_protoss_wins + stats.vs_terran_wins
         -var total_loss = vs_zerg_loss + vs_protoss_loss + vs_terran_loss
-        -var total_games = stats.vs_terran_games + stats.vs_protoss_games + stats.vs_terran_games
-        td.text-success(align='center')= total_wins + ' (' + (total_wins / total_games) + '%)'
-        td.text-danger(align='center')=  total_loss + ' (' + (total_loss / total_games) + '%)'
-        td(align='center')= total_games
+        -var total_games = stats.vs_zerg_games + stats.vs_protoss_games + stats.vs_terran_games
+        td(align='center')
+          = (total_wins / total_games * 100).toFixed(0) + '%'
+        td.text-success(align='center')
+          = total_wins
+        td.text-danger(align='center')
+          =  total_loss
+        td(align='center')
+          = total_games

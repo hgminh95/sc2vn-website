@@ -91,10 +91,17 @@ exports.update = function(req, res) {
 
 exports.rank = function(req, res, next) {
   User.allWithRanking(function(err, users) {
-    if (err) return next(err);
+    if (err) return next(err)
+
+    users.forEach(function(user) {
+      user.recalculateStatistics(function(err) {
+        if (err) throw err
+      })
+    })
 
     res.render('users/rank', {
+      title: 'Ranking',
       users: users
-    });
-  });
+    })
+  })
 }

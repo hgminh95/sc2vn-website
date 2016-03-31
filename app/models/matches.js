@@ -46,8 +46,32 @@ MatchSchema.methods = {
   },
 
   opponent: function(userId) {
-    // TODO
-    return null;
+    if (userId == this.player_1)
+      return this.player_2
+    else if (userId == this.player_2)
+      return this.player_1
+    else
+      return null
+  },
+
+  races: function() {
+    if (this.games.length == 0)
+      return ['', '']
+    else
+      return [this.games[0].race1, this.games[0].race2]
+  },
+
+  opponentRace: function(userId) {
+    if (this.games.length == 0)
+      return ''
+    else {
+      if (userId.equals(this.player_1))
+        return this.games[0].race2
+      else if (userId.equals(this.player_2))
+        return this.games[0].race1
+      else
+        return ''
+    }
   },
 
   score: function(userId) {

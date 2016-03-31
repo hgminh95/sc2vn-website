@@ -130,37 +130,37 @@ UserSchema.methods = {
   },
 
   recalculateStatistics: function(callback) {
-    var user = this;
+    var user = this
     Match.allOfUser(this._id, function(err, matches) {
-      var score = 0;
-      var vs_zerg_games = 0;
-      var vs_zerg_wins = 0;
-      var vs_terran_games = 0;
-      var vs_terran_wins = 0;
-      var vs_protoss_games = 0;
-      var vs_protoss_wins = 0;
+      var score = 0
+      var vs_zerg_games = 0
+      var vs_zerg_wins = 0
+      var vs_terran_games = 0
+      var vs_terran_wins = 0
+      var vs_protoss_games = 0
+      var vs_protoss_wins = 0
 
       matches.forEach(function(match, index, matches) {
-        var games = match.gamePlayed();
-        var wins = match.gameWins(user._id);
-        var opponent = match.opponent(user._id);
-        score += match.score(user._id);
+        var games = match.gamePlayed()
+        var win = user._id.equals(match.winner()) ? 1 : 0
+        var opponentRace = match.opponentRace(user._id)
+        score += win * 10
 
-        if (opponent.race == 'zerg') {
-          vs_zerg_games += games;
-          vs_zerg_wins += wins;
+        if (opponentRace == 'zerg') {
+          vs_zerg_games += 1
+          vs_zerg_wins += win
         }
-        else if (opponent.race == 'protoss') {
-          vs_protoss_games += games;
-          vs_protoss_wins += wins;
+        else if (opponentRace == 'protoss') {
+          vs_protoss_games += 1
+          vs_protoss_wins += win
         }
-        else if (opponent.race == 'terran') {
-          vs_terran_games += games;
-          vs_terran_wins += wins;
+        else if (opponentRace == 'terran') {
+          vs_terran_games += 1
+          vs_terran_wins += win
         }
-      });
+      })
 
-      user.score = score;
+      user.score = score
       user.stats = {
         vs_terran_games: vs_terran_games,
         vs_terran_wins: vs_terran_wins,
@@ -170,9 +170,9 @@ UserSchema.methods = {
         vs_zerg_wins: vs_zerg_wins
       }
       user.save(function(err) {
-        if (err) callback(err);
-      });
-    });
+        if (err) callback(err)
+      })
+    })
   },
 
   totalWins: function() {
@@ -184,7 +184,7 @@ UserSchema.methods = {
   },
 
   totalLosses: function() {
-    return this.totalWins() - this.totalWins()
+    return this.totalGames() - this.totalWins()
   },
 
   addNotification: function(notification) {
