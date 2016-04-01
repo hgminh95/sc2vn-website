@@ -20,17 +20,18 @@
     "express-session": "^1.13.0",
     "jade": "~1.11.0",
     "moment": "^2.12.0",
-    "mongoose": "^4.4.5",
+    "mongoose": "^4.4.10",
     "morgan": "~1.6.1",
     "multer": "^1.1.0",
     "ng-admin": "^0.9.1",
-    "node-sass-middleware": "^0.9.7",
+    "node-sass-middleware": "^0.9.8",
     "object-assign": "^4.0.1",
     "only": "0.0.2",
     "passport": "^0.3.2",
-    "passport-bnet": "^1.2.0",
+    "passport-bnet": "^1.2.1",
     "passport-local": "^1.0.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "tournament-drawer": "0.0.2-beta"
   },
   "devDependencies": {
     "chai": "^3.5.0",

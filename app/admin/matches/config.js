@@ -36,6 +36,10 @@ module.exports = function(nga, admin) {
           .targetEntity(admin.getEntity('tournaments'))
           .targetField(nga.field('name'))
           .label('Tournament'),
+      nga.field('group'),
+      nga.field('index', 'number'),
+      nga.field('link1'),
+      nga.field('link2'),
       nga.field('date', 'datetime'),
       nga.field('games', 'embedded_list')
           .targetFields([
@@ -69,6 +73,10 @@ module.exports = function(nga, admin) {
           .targetEntity(admin.getEntity('tournaments'))
           .targetField(nga.field('name'))
           .label('Tournament'),
+      nga.field('group'),
+      nga.field('index', 'number'),
+      nga.field('link1'),
+      nga.field('link2'),
       nga.field('date', 'datetime'),
       nga.field('games', 'embedded_list')
           .targetFields([

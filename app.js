@@ -29,7 +29,7 @@ app.use(multer({dest: './tmp/'}).single('upload'));
 app.use(sass({
   src: path.join(__dirname, 'app/resources/sass'),
   dest: path.join(__dirname, 'public/stylesheets'),
-  includePaths: [path.join(__dirname, 'node_modules/bootstrap-sass/assets/stylesheets')],
+  includePaths: [path.join(__dirname, 'node_modules/bootstrap-sass/assets/stylesheets'), path.join(__dirname, 'node_modules/tournament-drawer/css')],
   debug: true,
   prefix: '/stylesheets'
 }));

@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Match = require('./matches')
 
 var RegistrationSchema = new Schema({
   registrable: { type: Boolean },
@@ -44,20 +45,25 @@ var TournamentSchema = new Schema({
 });
 
 TournamentSchema.methods = {
-  to_json: function() {
-    return {
-      id: this._id,
-      name: this.name,
-      sections: this.sections.map(section => section._doc)
-    };
-  },
-
   getShowPath: function() {
     return '/tournaments/' + this._id;
   },
 
   getEditPath: function() {
     return '/tournaments/' + this._id + '/edit';
+  },
+
+  toJson: function(callback) {
+    Match.find({ tournament: this._id }).exec(function(err, matches) {
+      if (err) callback(err)
+
+      var json = { players: [ ' ', ' ', ' ' ], matches: [] }
+      for (var match of matches) {
+        json.matches.push(match.toJson())
+      }
+
+      callback(null, json)
+    })
   }
 }
 

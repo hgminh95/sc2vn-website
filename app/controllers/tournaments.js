@@ -3,6 +3,7 @@
 var assign = require('object-assign');
 var only = require('only');
 var Tournament = require('../models/tournaments');
+var Drawer = require('tournament-drawer')
 
 exports.init = function(req, res, next) {
   res.locals.breadcrumbs.push({
@@ -55,10 +56,16 @@ exports.create = function(req, res, next) {
 }
 
 exports.show = function(req, res) {
-  res.render('tournaments/show', {
-    title: req.tournament.name,
-    tournament: req.tournament
-  });
+  var tournament = req.tournament
+  tournament.toJson(function(err, json) {
+    console.log(json)
+
+    res.render('tournaments/show', {
+      title: tournament.name,
+      tournament: tournament,
+      drawer: new Drawer(json)
+    })
+  })
 }
 
 exports.edit = function(req, res) {

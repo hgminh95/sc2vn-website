@@ -18,6 +18,10 @@ var GameSchema = new Schema({
 var MatchSchema = new Schema({
   player_1: { type: Schema.Types.ObjectId, ref: 'User' },
   player_2: { type: Schema.Types.ObjectId, ref: 'User' },
+  group: { type: String },
+  index: { type: Number },
+  link1: { type: String },
+  link2: { type: String },
   tournament: { type: Schema.Types.ObjectId, ref: 'Tournament' },
   date: {type: Date , require: true },
   games: [GameSchema]
@@ -96,6 +100,17 @@ MatchSchema.methods = {
 
   getEditPath: function() {
     return '/matches/' + this._id + '/edit';
+  },
+
+  toJson: function() {
+    return {
+      id: this.index,
+      player1: this.link1,
+      player2: this.link2,
+      group: this.group,
+      score1: 2,
+      score2: 1
+    }
   }
 }
 
@@ -163,13 +178,13 @@ MatchSchema.statics = {
     return this.find({
       $or: [
         { player_1: userId },
-        { player_2: userId }
+        { player_2: userId },
       ]
     }).exec(callback);
   },
 
   fields: function() {
-    return 'player_1 player_2 tournament date games'
+    return 'player_1 player_2 tournament group index link1 link2 date games'
   },
 
   getNewPath: function() {

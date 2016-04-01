@@ -37,7 +37,10 @@ mixin tournament(tournament)
         #prizes.tab-pane.editable
           != tournament.faq
         #schedule.tab-pane
-          +schedule(tournament.stages)
+          - drawer.groups = ['semi-final', 'final']
+          - drawer.calculateName()
+          - drawer.calculatePosition()
+          | !{drawer.html()}
         #faq.tab-pane
           != 2
 
