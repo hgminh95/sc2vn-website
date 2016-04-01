@@ -58,8 +58,6 @@ exports.create = function(req, res, next) {
 exports.show = function(req, res) {
   var tournament = req.tournament
   tournament.toJson(function(err, json) {
-    console.log(json)
-
     res.render('tournaments/show', {
       title: tournament.name,
       tournament: tournament,

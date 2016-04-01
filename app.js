@@ -26,13 +26,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(multer({dest: './tmp/'}).single('upload'));
 
-app.use(sass({
-  src: path.join(__dirname, 'app/resources/sass'),
-  dest: path.join(__dirname, 'public/stylesheets'),
-  includePaths: [path.join(__dirname, 'node_modules/bootstrap-sass/assets/stylesheets'), path.join(__dirname, 'node_modules/tournament-drawer/css')],
-  debug: true,
-  prefix: '/stylesheets'
-}));
+if (app.get('env') === 'development')
+  app.use(sass({
+    src: path.join(__dirname, 'app/resources/sass'),
+    dest: path.join(__dirname, 'public/stylesheets'),
+    includePaths: [path.join(__dirname, 'node_modules/bootstrap-sass/assets/stylesheets'), path.join(__dirname, 'node_modules/tournament-drawer/css')],
+    debug: true,
+    prefix: '/stylesheets'
+  }))
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -86,5 +87,7 @@ function connect () {
   return mongoose.connect(config.db, options).connection;
 }
 
-debug(app, { depth: 5 });
+if (app.get('env') === 'development')
+  debug(app, { depth: 5 })
+
 module.exports = app;

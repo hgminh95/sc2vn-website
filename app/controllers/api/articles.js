@@ -16,7 +16,7 @@ exports.load = function(req, res, next, id) {
 
 exports.create = function(req, res) {
   var article = new Article(only(req.body, Article.fields()));
-  console.log(req.body);
+
   article.save(function(err) {
     if (err) res.sendStatus(406);
 

@@ -39,7 +39,6 @@ exports.index = function(req, res, next) {
     live: function(callback) { return Match.live(callback) },
     upcoming: function(callback) { return Match.upcoming(callback) }
   }, function(err, results) {
-    console.log(results)
     res.render('matches/index', {
       title: 'Matches',
       live: results.live,

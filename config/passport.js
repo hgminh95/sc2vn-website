@@ -23,8 +23,6 @@ passport.use(
     },
     function(accessToken, refreshToken, profile, done) {
       process.nextTick(function() {
-        console.log(profile);
-
         User.findByBnetId(profile.id, function(err, user) {
           if (err) return done(err);
 
