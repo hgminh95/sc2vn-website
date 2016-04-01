@@ -3,21 +3,8 @@ extends ../layout.normal
 include ../mixins/tournament.jade
 
 block content-inside
-  .section
-    .section-title Upcomming tournament
-    .section-content
-      - for tournament in tournaments
-        +tournament-preview(tournament)
-  .section
-    .section-title Current tournament
-    .section-content
-      p Tournament ...
-      p Tournament ...
-  .section
-    .section-title Past tournament
-    .section-content
-      p Tournament ...
-      p Tournament ...
+  for tournament in tournaments
+    +tournament-preview(tournament)
 
 block sidebar
   a.btn.btn-block.button-submit(href='tournaments/new')

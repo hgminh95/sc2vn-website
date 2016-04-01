@@ -1,7 +1,7 @@
 # SC2VN Website
 [![Build Status](https://travis-ci.org/hgminh95/sc2vn-website.svg?branch=master)](https://travis-ci.org/hgminh95/sc2vn-website)
 
-This project is under heavy development.
+**NOTE: This project is under heavy development.**
 
 This project is a web based application which aim to help Vietnamese Starcraft 2
 event organizers, teams, and players to run, compete in, and follow tournament

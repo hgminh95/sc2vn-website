@@ -8,9 +8,9 @@ var Match = require('./matches');
 
 var UserSchema = new Schema({
   // For authentication
-  email: { type: String, index: true, unique: true, sparse: true },
+  email: { type: String, index: { unique: true, sparse: true }},
   password: { type: String },
-  bnet_id: { type: String, index: true, unique: true, sparse: true },
+  bnet_id: { type: String, index: { unique: true, sparse: true }},
   access_token: { type: String },
 
   // Basic informations

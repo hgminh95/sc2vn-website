@@ -1,6 +1,6 @@
 mixin tournament-preview(tournament)
   .tournament-preview
-    img.thumb(src='https://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png')
+    img.thumb(src=tournament.banner)
     .content
       h3.title
         a(href=tournament.getShowPath())= tournament.name
@@ -37,10 +37,11 @@ mixin tournament(tournament)
         #prizes.tab-pane.editable
           != tournament.faq
         #schedule.tab-pane
-          - drawer.groups = ['semi-final', 'final']
-          - drawer.calculateName()
-          - drawer.calculatePosition()
-          | !{drawer.html()}
+          if drawer
+            - drawer.groups = ['quarter-finals', 'semi-finals', 'final']
+            - drawer.calculateName()
+            - drawer.calculatePosition()
+            | !{drawer.html()}
         #faq.tab-pane
           != 2
 
