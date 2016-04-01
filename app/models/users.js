@@ -226,7 +226,10 @@ UserSchema.statics = {
   },
 
   allWithRanking: function(callback) {
-    return this.find({}).sort('-score').exec(callback);
+    return this.find({})
+      .sort('-score')
+      .populate('clan', 'name')
+      .exec(callback)
   },
 
   top: function(options, callback) {

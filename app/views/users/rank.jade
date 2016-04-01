@@ -26,11 +26,14 @@ block content-inside
             else
               i.fa.fa-chevron-down.fa-fw.text-danger
           td= index + 1
-          td
+          td(style='vertical-align: middle;')
             img(src=user.getRaceImagePath())
             | &nbsp;
-            a(href=user.getShowPath(), style='vertical-align: middle;')
-              = user.name
+            if user.clan
+              | #{user.clan.name}.
+            strong
+              a(href=user.getShowPath())
+                = user.name
           td(align='center')= user.score
           td(align='center')= user.totalWins()
           td(align='center')= user.totalLosses()
