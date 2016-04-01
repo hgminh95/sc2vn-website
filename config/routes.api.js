@@ -6,6 +6,7 @@ var users = require('../app/controllers/api/users');
 var articles = require('../app/controllers/api/articles');
 var tournaments = require('../app/controllers/api/tournaments');
 var matches = require('../app/controllers/api/matches');
+var clans = require('../app/controllers/api/clans')
 
 var router = express.Router();
 
@@ -40,6 +41,14 @@ router.post('/matches', matches.create);
 router.get('/matches/:matchID', matches.show);
 router.put('/matches/:matchID', matches.update);
 router.delete('/matches/:matchID', matches.destroy);
+
+router.param('clanId', clans.load)
+
+router.get('/clans', clans.index);
+router.post('/clans', clans.create);
+router.get('/clans/:clanId', clans.show);
+router.put('/clans/:clanId', clans.update);
+router.delete('/clans/:clanId', clans.destroy);
 
 module.exports = function(app) {
   app.use('/api', router);

@@ -25,7 +25,9 @@ module.exports = function(nga, admin) {
       nga.field('name'),
       nga.field('avatar'),
       nga.field('race'),
-      nga.field('clan'),
+      nga.field('clan', 'reference')
+          .targetEntity(admin.getEntity('clans'))
+          .targetField(nga.field('name')),
       nga.field('introduction'),
 
       // Statistics fields
@@ -50,6 +52,9 @@ module.exports = function(nga, admin) {
 
       // Basic Information fields
       nga.field('name'),
+      nga.field('clan', 'reference')
+          .targetEntity(admin.getEntity('clans'))
+          .targetField(nga.field('name')),
       nga.field('avatar'),
       nga.field('race', 'choice')
           .choices([
@@ -58,8 +63,7 @@ module.exports = function(nga, admin) {
             { value: 'protoss', label: 'Protoss' },
             { value: 'random', label: 'Random' }
           ]),
-      nga.field('clan'),
-      nga.field('introduction', 'text')
+      nga.field('introduction', 'wysiwyg')
     ]);
 
   users.editionView().fields(users.creationView().fields());
