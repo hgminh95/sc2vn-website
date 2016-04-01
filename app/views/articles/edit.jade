@@ -6,16 +6,38 @@ block scripts
   script(src='https://cdn.tinymce.com/4/tinymce.min.js')
   script.
     tinymce.init({
-      selector: '#content',
+      selector: '.article-title',
+      inline: true,
+      toolbar: 'undo redo',
+      menubar: false
+    });
+
+    tinymce.init({
+      selector: 'div.editable',
+      inline: true,
       plugins: 'image imagetools media fullscreen',
       toolbar: 'undo redo | bold italic underline strikethrough | alignleft aligncenter alignright | bullist numlist outdent indent | link image media | fullscreen',
-      setup: function(editor) {
-        editor.on('init', function(e) {
-          //Remove new line character
-          editor.setContent(`!{article.content ? article.content.replace(/(\r|\n)/g, "") : ""}`);
-        });
-      }
+      menubar: true
     });
 
 block content-inside
-  +article-form(article, article.getShowPath())
+  +article(article)
+
+block sidebar
+  button#save-button.btn.btn-block.button-submit
+    i.fa.fa-floppy-o.fa-fw
+    | &nbsp; Save
+
+  script.
+    $('#save-button').click(function() {
+      $('#save-button').html('<i class="fa fa-circle-o-notch fa-spin"></i>')
+      $.post('./', {
+        title: $('#article-title').text(),
+        content: $('#article-content').html(),
+      },
+      function(data, status) {
+        setTimeout(function() {
+          $('#save-button').html('<i class="fa fa-floppy-o fa-fw"></i> &nbsp;Save')
+        }, 1000);
+      });
+    })

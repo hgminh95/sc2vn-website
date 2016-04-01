@@ -1,9 +1,12 @@
-mixin article-show(article)
+mixin article(article)
   .article
     .article-thumbnail(style='background-image: url(' + article.thumbnail + ');')
-    .article-title!= article.title
-    .article-meta!= article.getMetaInfo()
-    .article-content!= article.content
+    #article-title.article-title
+      = article.title
+    .article-meta
+      = article.getMetaInfo()
+    #article-content.article-content.editable
+      != article.content
 
 mixin article-preview(article)
   .article-preview

@@ -3,7 +3,7 @@ extends ../layout.normal
 include ../mixins/article.jade
 
 block content-inside
-  +article-show(article)
+  +article(article)
 
 block sidebar
   a.btn.btn-block.button-submit(href=article.getEditPath())

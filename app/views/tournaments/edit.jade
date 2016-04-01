@@ -17,7 +17,7 @@ block scripts
       inline: true,
       plugins: 'image imagetools media fullscreen',
       toolbar: 'undo redo | bold italic underline strikethrough | alignleft aligncenter alignright | bullist numlist outdent indent | link image media | fullscreen',
-      menubar: false
+      menubar: true
     });
 
 block content-header
@@ -25,7 +25,6 @@ block content-header
 
 block content-inside
   +tournament(tournament)
-
 
 block sidebar
   button#save-button.btn.btn-block.button-submit

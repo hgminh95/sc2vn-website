@@ -95,8 +95,9 @@ exports.update = function(req, res, next) {
 
   uploader.upload(article, req.file, function(article) {
     article.save(function(err, article) {
-      if (err) return next(err);
-      res.redirect(article.getShowPath());
+      if (err) return res.sendStatus(406);
+
+      res.sendStatus(204)
     });
   });
 }
