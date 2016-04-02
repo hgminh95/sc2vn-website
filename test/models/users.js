@@ -1,30 +1,23 @@
-process.env.NODE_ENV = 'test';
+'use strict'
 
-var chai = require('chai');
-var server = require('../../app');
-var should = chai.should();
+process.env.NODE_ENV = 'test'
 
-var User = require('../../app/models/users');
-var Notification = require('../../app/models/notifications');
+var chai = require('chai')
+var server = require('../../app')
+var should = chai.should()
+
+var User = require('../../app/models/users')
+var Notification = require('../../app/models/notifications')
 
 describe('Users', function() {
-  var user;
-  beforeEach(function(done) {
-    User.collection.drop();
-    user = new User({
-      name: 'Canh' ,
-      bnet_id: '1234'
-    });
 
-    user.save(function(err, u) {
-      user = u;
-      done();
-    });
-  });
+  beforeEach(function(done) {
+    User.remove({}, done)
+  })
 
   afterEach(function(done) {
-    done();
-  });
+    done()
+  })
 
   describe('#addNotification()', function() {
     it('should create notification for user', function() {
@@ -32,17 +25,21 @@ describe('Users', function() {
         message: 'test notification',
         link: '/',
         icon: 'none'
-      });
+      })
 
-      user.addNotification(notification);
+      var user = new User({
+        name: 'sample'
+      })
+
+      user.addNotification(notification)
 
       user.save(function(err, user) {
-        if (err) throw err;
-        user.should.include('notifications');
-        user.notifications.should.have.length(1);
-        user.notifications[0].message.should.equal(notification.message);
-        done();
-      });
-    });
-  });
-});
+        if (err) return done(err)
+        user.should.include('notifications')
+        user.notifications.should.have.length(1)
+        user.notifications[0].message.should.equal(notification.message)
+        done()
+      })
+    })
+  })
+})
