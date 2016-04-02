@@ -240,6 +240,7 @@ UserSchema.statics = {
       .sort({ score: 'desc' })
       .limit(options.perPage)
       .skip(options.page * options.perPage)
+      .populate('clan', 'name')
       .exec(callback)
   },
 

@@ -39,6 +39,9 @@ mixin top-players(players)
               td.col-md-3(align='left')
                   img(src=player.getRaceImagePath())
                   | &nbsp;
-                  = player.name
+                  if player.clan
+                    | #{player.clan.name}.
+                  strong
+                    = player.name
               td.col-md-1(align='right')
                   = player.score
