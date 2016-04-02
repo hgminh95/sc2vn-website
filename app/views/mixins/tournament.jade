@@ -1,9 +1,19 @@
 mixin tournament-preview(tournament)
-  .tournament-preview
-    img.thumb(src=tournament.banner)
-    .content
+  .row.tournament-preview
+    .col-md-5
+      img.thumb(style='background-image: url(#{tournament.banner})')
+    .col-md-7.content
       h3.title
         a(href=tournament.getShowPath())= tournament.name
+      i.fa.fa-users.fa-fw
+      |  &times; 34 &nbsp;
+      i.fa.fa-money.fa-fw
+      |  1000
+      div(style='margin-top: 34px')
+        a.btn.btn-warning.button-small Register
+        a.btn.btn-primary.button-small(href=tournament.getShowPath()) Learn more
+        .pull-right
+
 
 mixin tournament-form(tournament, action)
   form(action=action, method='post')

@@ -1,7 +1,6 @@
 .tournament-preview {
   width: 100%;
   float: left;
-  clear: both;
   margin-top: 10px;
   margin-bottom: 25px;
 
@@ -10,14 +9,22 @@
     margin-right: 50px;
     display: block;
     vertical-align: baseline;
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    transition: all 1s ease;
+    &:hover {
+      width: 100%;
+    }
   }
 
   .content {
+    overflow: hidden;
+
     .title {
-      margin: 0px;
-      overflow: hidden;
+      margin: 0px 0px 10px 0px;
     }
   }
 }
