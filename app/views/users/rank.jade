@@ -19,7 +19,8 @@ block content-inside
         tr
           if index % 10 == 0
             td(align='center', rowspan=10)
-              = 'Top ' + (index + 10)
+              strong
+                = 'Top ' + (index + 10)
           td
             if Math.random() > .5
               i.fa.fa-chevron-up.fa-fw.text-success

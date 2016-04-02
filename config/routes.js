@@ -26,6 +26,7 @@ module.exports = function(app) {
     '/users',
     express.Router()
       .param('userId', users.load)
+      .get('/recalculate', users.recalculateStatistics)
       .get('/', users.index)
       .get('/new', users.new)
       .post('/', users.create)

@@ -18,8 +18,8 @@ mixin user-statistic(stats)
       tr
         th.col-md-4
         th.col-md-2.text-center Winrate
-        th.col-md-2.text-center Win
-        th.col-md-2.text-center Lose
+        th.col-md-2.text-center.text-success Win
+        th.col-md-2.text-center.text-danger Lose
         th.col-md-2.text-center Total
     tbody
       tr
@@ -65,3 +65,26 @@ mixin user-statistic(stats)
           =  total_loss
         td(align='center')
           = total_games
+
+mixin user-recent-matches-chart(recent_matches)
+  .text-center
+    canvas#recent-matches-chart(width='500px', height='200px')
+
+  script.
+    var data = {
+      labels: [!{recent_matches.map(match => 1)}],
+      datasets: [
+        {
+          label: "Score",
+          fillColor: "rgba(220,220,220,0.2)",
+          strokeColor: "rgba(220,220,220,1)",
+          pointColor: "rgba(220,220,220,1)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+          data: [!{recent_matches}]
+        }
+      ]
+    }
+    var ctx = $("#recent-matches-chart").get(0).getContext("2d");
+    var chart = new Chart(ctx).Line(data, {});

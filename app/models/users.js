@@ -65,114 +65,91 @@ UserSchema.methods = {
   },
 
   addMatch: function(match, callback) {
+    // Extract information from match
+    var win = this._id.equals(match.winner()) ? 1 : 0
+    var opponentRace = match.opponentRace(this._id)
+
     // Add to recent matches
-    var score = match.score(this._id);
-    var length = this.recent_matches.unshift({
+    var length = this.recent_matches.push({
       matchID: match._id,
-      score: score
-    });
-    if (length > 10) this.recent_matches.pop();
+      score: this.score + win * 10
+    })
+    if (length > 10) this.recent_matches.shift()
 
     // Update statistics
-    this.score += score;
-    var games = match.gamePlayed();
-    var wins = match.gameWins(this._id);
-    var opponent = match.opponent(this._id);
-
-    if (opponent.race == 'zerg') {
-      this.stats.vs_zerg_games += games;
-      this.stats.vs_zerg_wins += wins;
+    this.score += win * 10
+    if (opponentRace == 'zerg') {
+      this.stats.vs_zerg_games += 1
+      this.stats.vs_zerg_wins += win
     }
-    else if (opponent.race == 'protoss') {
-      this.stats.vs_protoss_games += games;
-      this.stats.vs_protoss_wins += wins;
+    else if (opponentRace == 'protoss') {
+      this.stats.vs_protoss_games += 1
+      this.stats.vs_protoss_wins += win
     }
-    else if (opponent.race == 'terran') {
-      this.stats.vs_terran_games += games;
-      this.stats.vs_terran_wins += wins;
+    else if (opponentRace == 'terran') {
+      this.stats.vs_terran_games += 1
+      this.stats.vs_terran_wins += win
     }
 
-    // Save
     this.save(function(err) {
-      if (err) callback(err);
-    });
+      if (err && callback) callback(err)
+    })
   },
 
   removeMatch: function(match, callback) {
     for (var i = 0; i < this.recent_matches.length; i ++ ) {
       if (this.recent_matches[i].matchID.equals(match._id)) {
-        this.recent_matches.splice(i, 1);
+        this.recent_matches.splice(i, 1)
       }
     }
 
-    this.score -= match.score(this._id);
-
     var games = match.gamePlayed();
-    var wins = match.gameWins(user._id);
-    var opponent = match.opponent(user._id);
+    var win = this._id.equals(match.winner()) ? 1 : 0
+    var opponentRace = match.opponentRace(this._id)
+    this.score -= win * 10
 
-    if (opponent.race == 'zerg') {
-      this.stats.vs_zerg_games -= games;
-      this.stats.vs_zerg_wins -= wins;
+    if (opponentRace == 'zerg') {
+      this.stats.vs_zerg_games -= 1
+      this.stats.vs_zerg_wins -= win
     }
-    else if (opponent.race == 'protoss') {
-      this.stats.vs_protoss_games -= games;
-      this.stats.vs_protoss_wins -= wins;
+    else if (opponentRace == 'protoss') {
+      this.stats.vs_protoss_games -= 1
+      this.stats.vs_protoss_wins -= win
     }
-    else if (opponent.race == 'terran') {
-      this.stats.vs_terran_games -= games;
-      this.stats.vs_terran_wins -= wins;
+    else if (opponentRace == 'terran') {
+      this.stats.vs_terran_games -= 1
+      this.stats.vs_terran_wins -= win
     }
 
     this.save(function(err) {
-      if (err) callback(err);
-    });
+      if (err) callback(err)
+    })
   },
 
   recalculateStatistics: function(callback) {
-    var user = this
+    var self = this
+
+    self.resetStatistics()
+
     Match.allOfUser(this._id, function(err, matches) {
-      var score = 0
-      var vs_zerg_games = 0
-      var vs_zerg_wins = 0
-      var vs_terran_games = 0
-      var vs_terran_wins = 0
-      var vs_protoss_games = 0
-      var vs_protoss_wins = 0
-
-      matches.forEach(function(match, index, matches) {
-        var games = match.gamePlayed()
-        var win = user._id.equals(match.winner()) ? 1 : 0
-        var opponentRace = match.opponentRace(user._id)
-        score += win * 10
-
-        if (opponentRace == 'zerg') {
-          vs_zerg_games += 1
-          vs_zerg_wins += win
-        }
-        else if (opponentRace == 'protoss') {
-          vs_protoss_games += 1
-          vs_protoss_wins += win
-        }
-        else if (opponentRace == 'terran') {
-          vs_terran_games += 1
-          vs_terran_wins += win
-        }
-      })
-
-      user.score = score
-      user.stats = {
-        vs_terran_games: vs_terran_games,
-        vs_terran_wins: vs_terran_wins,
-        vs_protoss_games: vs_protoss_games,
-        vs_protoss_wins: vs_protoss_wins,
-        vs_zerg_games: vs_zerg_games,
-        vs_zerg_wins: vs_zerg_wins
+      for (var match of matches) {
+        self.addMatch(match)
       }
-      user.save(function(err) {
-        if (err) callback(err)
-      })
     })
+  },
+
+  resetStatistics: function() {
+    this.stats = {
+      vs_terran_games: 0,
+      vs_terran_wins: 0,
+      vs_protoss_games: 0,
+      vs_protoss_wins: 0,
+      vs_zerg_games: 0,
+      vs_zerg_wins: 0
+    }
+
+    this.score = 0
+    this.recent_matches = []
   },
 
   totalWins: function() {
@@ -197,6 +174,13 @@ UserSchema.methods = {
       this.notifications.remove(notifications[i]._id);
     }
     this.save();
+  },
+
+  getChartData: function() {
+    if (!this.recent_matches)
+      return []
+
+    return this.recent_matches.map(match => match.score)
   },
 
   getShowPath: function() {

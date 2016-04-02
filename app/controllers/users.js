@@ -59,16 +59,15 @@ exports.create = function(req, res, next) {
 }
 
 exports.index = function(req, res) {
-  res.render('users/index', {
-    title: 'Users'
-  });
+  res.redirect('/users/rank')
 }
 
 exports.show = function(req, res) {
   var user = req.profile;
   res.render('users/show', {
     title: user.name,
-    user: user
+    user: user,
+    matches_data: user.getChartData()
   });
 }
 
@@ -89,14 +88,25 @@ exports.update = function(req, res) {
   res.redirect(user.getShowPath());
 }
 
-exports.rank = function(req, res, next) {
-  User.allWithRanking(function(err, users) {
-    if (err) return next(err)
-
+exports.recalculateStatistics = function(req, res) {
+  User.all(function(err, users) {
     users.forEach(function(user) {
       user.recalculateStatistics(function(err) {
         if (err) throw err
       })
+    })
+
+    res.sendStatus(200)
+  })
+}
+
+exports.rank = function(req, res, next) {
+  User.allWithRanking(function(err, users) {
+    if (err) return next(err)
+
+    res.locals.breadcrumbs.push({
+      name: 'Rank',
+      address: '/users/rank'
     })
 
     res.render('users/rank', {
