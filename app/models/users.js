@@ -65,6 +65,8 @@ UserSchema.methods = {
   },
 
   addMatch: function(match, callback) {
+    if (!match.winner()) return
+
     // Extract information from match
     var win = this._id.equals(match.winner()) ? 1 : 0
     var opponentRace = match.opponentRace(this._id)

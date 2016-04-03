@@ -139,21 +139,24 @@ MatchSchema.statics = {
       .populate('player_1')
       .populate('player_2')
       .populate('tournament', 'name banner')
-      .exec(callback)
+      .exec(function(err, matches) {
+        callback(err, matches.filter(match => match.winner() == null))
+      })
   },
 
-  upcoming: function(callback) {
+  upcomming: function(callback) {
     return this.find({
         "date": {
-          "$gte": today.toDate(),
-          "$lte": today.add(3, 'days').toDate()
+          "$gt": today.toDate()
         }
       })
       .sort({ date: 'asc' })
       .populate('player_1')
       .populate('player_2')
       .populate('tournament', 'name banner')
-      .exec(callback)
+      .exec(function(err, matches) {
+        callback(err, matches.filter(match => match.winner() == null))
+      })
   },
 
   past: function(options, callback) {
@@ -165,13 +168,15 @@ MatchSchema.statics = {
           "$lte": today.toDate()
         }
       })
-      .sort({ date: 'asc' })
+      .sort({ date: 'desc' })
       .limit(options.perPage)
       .skip(options.page * options.perPage)
       .populate('player_1')
       .populate('player_2')
       .populate('tournament', 'name banner')
-      .exec(callback)
+      .exec(function(err, matches) {
+        callback(err, matches.filter(match => match.winner() != null))
+      })
   },
 
   allOfUser: function(userId, callback) {

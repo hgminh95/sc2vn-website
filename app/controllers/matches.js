@@ -36,13 +36,26 @@ exports.load = function(req, res, next, id) {
 
 exports.index = function(req, res, next) {
   async.parallel({
-    live: function(callback) { return Match.live(callback) },
-    upcoming: function(callback) { return Match.upcoming(callback) }
+    upcomming: function(callback) {
+      return Match.upcomming(callback)
+    },
+    live: function(callback) {
+      return Match.live(callback)
+    },
+    past: function(callback) {
+      return Match.past({
+        perPage: settings.matches_per_page,
+        page: req.params.page
+      }, callback)
+    }
   }, function(err, results) {
+    console.log(results)
+
     res.render('matches/index', {
       title: 'Matches',
       live: results.live,
-      upcoming: results.upcoming
+      upcomming: results.upcomming,
+      past: results.past
     })
   })
 }

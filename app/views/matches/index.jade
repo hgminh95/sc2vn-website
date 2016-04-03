@@ -3,12 +3,28 @@ extends ../layout.normal
 include ../mixins/match.jade
 
 block content-inside
-  p Live
+  p
+    strong Live
   +matches-list(live)
-  p Upcoming
-  +matches-list(upcoming)
+  p
+    strong Upcoming
+  +matches-list(upcomming)
+  p
+    strong Past
+  +matches-list(past)
 
-block sidebar
-  a.btn.btn-block.button-submit(href='/matches/new')
-    i.fa.fa-plus.fa-fw
-    | &nbsp; New Match
+  nav
+    ul.pager
+      if prevPage != -1
+        li.previous
+          a(href='?page=' + prevPage) &larr; &nbsp; Newer
+      else
+        li.previous.disabled
+          a(href='?#') &larr; &nbsp; Newer
+
+      if nextPage != -1
+        li.next
+          a(href='?page=' + nextPage) Older &nbsp; &rarr;
+      else
+        li.next.disabled
+          a(href='#') Older &nbsp; &rarr;
