@@ -18,9 +18,7 @@ browse the previous.
 
 ## Installation
 
-**System requirement:**
-* Node.js
-* MongoDB
+Installation guide can be found at [installation](https://github.com/hgminh95/sc2vn-website/blob/master/docs/INSTALLATION.md).
 
 ## Documentations
 
