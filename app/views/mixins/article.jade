@@ -10,8 +10,9 @@ mixin article(article)
 
 mixin article-preview(article)
   .article-preview
-    .article-thumbnail(style='background-image: url(' + article.thumbnail + ');')
-    .article-title!= article.title
+    a(href=href=article.getShowPath())
+      .article-thumbnail(style='background-image: url(' + article.thumbnail + ');')
+    a.article-title(href=article.getShowPath())= article.title
     .article-meta!= article.getMetaInfo()
     .article-content!= article.brief
     .article-footer
