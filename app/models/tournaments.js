@@ -45,6 +45,21 @@ var TournamentSchema = new Schema({
 });
 
 TournamentSchema.methods = {
+  addParticipant: function(user) {
+    this.registration.participants.push(user);
+    this.save();
+  },
+
+  addPending: function(user) {
+    this.registration.pending.push(user);
+    this.save();
+  },
+
+  removePending: function(user) {
+    this.registration.pending.remove(user._id);
+    this.save();
+  },
+
   getShowPath: function() {
     return '/tournaments/' + this._id;
   },
