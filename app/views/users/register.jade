@@ -5,7 +5,7 @@ block scripts
     $(document).ready(function() {
       var local = 'local';
       var bnet = 'bnet';
-      $('#' + local).hide();
+      
       $('#' + bnet).hide();
       
       $('#selectRegister input').on('change', function() {
@@ -13,7 +13,7 @@ block scripts
         if (select == local) {
           unSelect = bnet
         } else unSelect = local;
-        $('#' + unSelect).hide(400, function() {
+        $('#' + unSelect).hide(0, function() {
           $('#' + select).show(400);
         });
       });
@@ -28,22 +28,20 @@ block content
         |Already have an account? 
         a(href='/users/login') Login now!
       .clearfix
-      .form#selectRegister
+      form#selectRegister
         .form-group
           .radio
-            input(type='radio', name='register', value='local')
-            p Using email/password
+            input#bnetRadio(type='radio', name='register', value='local', checked)
+            label(for='bnetRadio') Using email/password
           .radio
-            input(type='radio', name='register', value='bnet')
-            p Using Battle account
-                  
-       a#bnet.btn.button-submit.center-block(href='/auth/bnet') Register with Battle.net account
-       
-      #local.form(method='post', action='/auth/local')
+            input#localRadio(type='radio', name='register', value='bnet')
+            label(for='localRadio') Using Battle account
+      a#bnet.btn.button-submit.center-block(href='/auth/bnet') Register with Battle.net account
+      form#local(method='post', action='/auth/local')
         .form-group
           label Email
           input.form-control(type='email', name='email', placeholder='Email@example.com')
         .form-group
           label Password
           input.form-control(type='password', name='password', placeholder='Password')
-        button.btn.button-submit.pull-right(type='submit') Register
+        button.btn.button-submit.pull-right(type='submit', hidden) Register
