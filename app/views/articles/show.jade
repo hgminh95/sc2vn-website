@@ -2,6 +2,9 @@ extends ../layout.normal
 
 include ../mixins/article.jade
 
+block scripts
+  script(src='/javascripts/fblike.js')
+
 block content-inside
   +article(article)
 

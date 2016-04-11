@@ -7,6 +7,7 @@ mixin article(article)
       = article.getMetaInfo()
     #article-content.article-content.editable
       != article.content
+    .fb-like(data-href='https://128.199.229.156:3000/' + article.getShowPath(), data-layout='standard', data-action='like', data-show-faces='true', data-share='true')
 
 mixin article-preview(article)
   .article-preview
@@ -18,6 +19,7 @@ mixin article-preview(article)
       a(href=article.getShowPath())
         | Read more &nbsp
         i.fa.fa-angle-double-right
+      .fb-like.pull-right(data-href='https://128.199.229.156:3000/' + article.getShowPath(), data-layout='button_count', data-action='like', data-show-faces='true', data-share='true')
 
 mixin article-form(article, action)
   form(action=action, method='post', enctype='multipart/form-data')
