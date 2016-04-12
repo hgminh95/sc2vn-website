@@ -8,6 +8,7 @@ mixin article(article)
     #article-content.article-content.editable
       != article.content
     .fb-like(data-href='https://128.199.229.156:3000/' + article.getShowPath(), data-layout='standard', data-action='like', data-show-faces='true', data-share='true')
+    .fb-comments(data-href='https://128.199.229.156:3000/' + article.getShowPath(), data-numposts='4', data-width='100%')
 
 mixin article-preview(article)
   .article-preview
