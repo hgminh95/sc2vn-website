@@ -5,9 +5,9 @@ block scripts
     $(document).ready(function() {
       var local = 'local';
       var bnet = 'bnet';
-      
+
       $('#' + bnet).hide();
-      
+
       $('#selectRegister input').on('change', function() {
         var select = $('input[name=register]:checked', '#selectRegister').val();
         if (select == local) {
@@ -17,7 +17,7 @@ block scripts
           $('#' + select).show(400);
         });
       });
-      
+
     });
 
 block content
@@ -25,7 +25,7 @@ block content
     .register
       h1.title Register
       p.tips.pull-right
-        |Already have an account? 
+        |Already have an account?
         a(href='/users/login') Login now!
       .clearfix
       form#selectRegister
@@ -37,7 +37,7 @@ block content
             input#localRadio(type='radio', name='register', value='bnet')
             label(for='localRadio') Using Battle account
       a#bnet.btn.button-submit.center-block(href='/auth/bnet') Register with Battle.net account
-      form#local(method='post', action='/auth/local')
+      form#local(method='post', action='/users')
         .form-group
           label Email
           input.form-control(type='email', name='email', placeholder='Email@example.com')

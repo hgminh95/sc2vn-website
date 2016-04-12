@@ -12,6 +12,7 @@ if (fs.existsSync(envFile)) {
 }
 
 module.exports = {
+  host: 'https://128.199.229.156:3000',
   db: process.env.MONGODB_URL,
   bnet: {
     clientID: process.env.BNET_ID,
@@ -22,5 +23,14 @@ module.exports = {
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
+  },
+  smtpConfig: {
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASSWORD
+    }
   }
 }
