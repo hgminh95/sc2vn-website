@@ -59,6 +59,7 @@ module.exports = function(app) {
     express.Router()
       .use(tournaments.init)
       .param('tournamentId', tournaments.load)
+      .param('userId', users.load)
       .get('/', tournaments.index)
       .get('/new', tournaments.new)
       .post('/', tournaments.create)
@@ -66,6 +67,9 @@ module.exports = function(app) {
       .get('/:tournamentId/edit', tournaments.edit)
       .post('/:tournamentId', tournaments.update)
       .delete('/:tournamentId', tournaments.destroy)
+      .post('/Register/:tournamentId', tournaments.tournamentRegister)
+      .post('/:tournamentId/accept/:userId')
+      .post('/:tournamentId/deny/:userId')
   )
 
   // Match Routes

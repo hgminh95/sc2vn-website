@@ -3,7 +3,9 @@
 var assign = require('object-assign');
 var only = require('only');
 var Tournament = require('../models/tournaments');
-var Drawer = require('tournament-drawer')
+var Drawer = require('tournament-drawer');
+var User = require('../models/users');
+var Notification = require('../models/notifications');
 
 exports.init = function(req, res, next) {
   res.locals.breadcrumbs.push({
@@ -88,4 +90,41 @@ exports.destroy = function(req, res) {
   req.tournament.remove();
 
   res.redirect('/tournaments');
+}
+
+exports.tournamentRegister = function (req, res, next) {
+  var user = res.locals.current_user;
+  var tournament = req.tournament;
+  var owner = tournament.owner;
+  var notification = new Notification({
+    message: user.name + 'Muốn đăng ký tham gia vào' + tournament.name,
+    link: '/tournament' + tournament._id
+  });
+  Tournament.addPending(user);
+  owner.addNotification(notification);
+}
+
+exports.acceptUser = function(req, res) {
+  var user =  req.profile
+  var tournament = req.tournament;
+  var notification = new Notification({
+    message: 'bạn được chấp nhận tham gia vào ' + tournament.name,
+    link: '/tournament' + tournament._id
+  })
+
+  tournament.removePending(user);
+  tournament.addParticipant(user);
+  user.addNotification(notification);
+}
+
+exports.denyUser = function(req, res) {
+  var user =  req.profile
+  var tournament = req.tournament;
+  var notification = new Notification({
+    message: 'bạn không được chấp nhận tham gia vào ' + tournament.name,
+    link: '/tournament' + tournament._id
+  })
+
+  tournament.removePending(user);
+  user.addNotification(notification);
 }
