@@ -30,6 +30,14 @@ module.exports = function(nga, admin) {
           .targetField(nga.field('name')),
       nga.field('introduction'),
 
+      // Notifications
+      nga.field('notifications', 'embedded_list')
+          .targetFields([
+            nga.field('message'),
+            nga.field('link'),
+            nga.field('icon')
+          ]),
+
       // Statistics fields
       nga.field('score'),
       nga.field('rank'),
@@ -63,7 +71,15 @@ module.exports = function(nga, admin) {
             { value: 'protoss', label: 'Protoss' },
             { value: 'random', label: 'Random' }
           ]),
-      nga.field('introduction', 'wysiwyg')
+      nga.field('introduction', 'wysiwyg'),
+
+      // Notifications
+      nga.field('notifications', 'embedded_list')
+          .targetFields([
+            nga.field('message'),
+            nga.field('link'),
+            nga.field('icon')
+          ])
     ]);
 
   users.editionView().fields(users.creationView().fields());

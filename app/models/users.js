@@ -254,7 +254,7 @@ UserSchema.statics = {
   },
 
   fields: function(callback) {
-    return 'email password bnet_id name avatar race clan introduction';
+    return 'email password bnet_id name avatar race clan introduction notifications';
   },
 
   createFields: function() {

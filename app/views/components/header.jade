@@ -11,16 +11,30 @@ nav#nav.navbar.navbar-default.navbar-fixed-top
 
     // Collect the nav links, forms and other content for toggling
     .collapse.navbar-collapse(id='navbar-collapse')
-      if (locals.current_user.name)
+      if (current_user.name)
         ul.nav.navbar-nav.navbar-right
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-              = locals.current_user.name
+              if current_user.notifications.length
+                i.fa.fa-bell.fa-fw
+              else
+                i.fa.fa-bell-o.fa-fw
+            ul.dropdown-menu
+              each notification in current_user.notifications
+                li
+                  a(href=notification.link)
+                    i.fa.fa-fw(class='fa-' + notification.icon)
+                    | &nbsp;
+                    = notification.message
+
+          li.dropdown
+            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+              = current_user.name
               | &nbsp;
               span.caret
             ul.dropdown-menu
               li
-                a(href=locals.current_user.getShowPath())
+                a(href=current_user.getShowPath())
                   i.fa.fa-fw.fa-gears
                   | &nbsp;Account
               li
