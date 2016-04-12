@@ -4,6 +4,7 @@ var assign = require('object-assign');
 var only = require('only');
 var User = require('../models/users');
 var settings = require('../../config/settings')
+var userMailer = require('../mailer/user_mailer')
 
 exports.load = function(req, res, next, id) {
   User.findById(id, function(err, user) {
@@ -42,18 +43,17 @@ exports.login = function(req, res) {
   });
 }
 
-exports.new = function(req, res) {
-  res.render('users/new', {
-    title: 'New user'
-  });
-}
-
 exports.create = function(req, res, next) {
   var user = new User();
   assign(user, only(req.body, User.createFields()));
+  user.confirm_token = User.generateConfirmToken()
 
   user.save(function(err, user) {
     if (err) return next(err);
+    userMailer.sendConfirmEmail(user, function(err, info) {
+      if (err) return console.log(err);
+      console.log(info.response)
+    })
     res.redirect('/users/login');
   });
 }
@@ -113,5 +113,23 @@ exports.rank = function(req, res, next) {
       title: 'Ranking',
       users: users
     })
+  })
+}
+
+exports.resendConfirmEmail = function (req, res, next) {
+  userMailer.sendConfirmEmail(req.profile, function (err, info) {
+    if (err) return next(err)
+    console.log(info.response)
+    res.sendStatus(200)
+  })
+}
+
+exports.confirm = function(req, res, next) {
+  var user = req.profile
+  if (user.confirm_token != req.params.confirm_token) return next(new Error('Confirm token invalid'))
+  user.confirmed_at = new Date()
+  user.save(function(err, user) {
+    if (err) return next(err)
+    res.redirect('/')
   })
 }

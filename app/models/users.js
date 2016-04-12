@@ -5,6 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 var Schema = mongoose.Schema;
 var Notification = require('./notifications');
 var Match = require('./matches');
+var Randtoken = require('rand-token')
 
 var UserSchema = new Schema({
   // For authentication
@@ -12,9 +13,11 @@ var UserSchema = new Schema({
   password: { type: String },
   bnet_id: { type: String, index: { unique: true, sparse: true }},
   access_token: { type: String },
+  confirm_token: { type: String },
+  confirmed_at: { type: Date },
 
   // Basic informations
-  name: { type: String, unique: true },
+  name: { type: String, index: { unique: true, sparse: true }},
   avatar: { type: String },
   race: { type: String, enum: ['zerg', 'terran', 'protoss', 'random'] },
   clan: { type: Schema.Types.ObjectId, ref: 'Clan' },
@@ -193,6 +196,10 @@ UserSchema.methods = {
     return '/users/' + this._id + '/edit';
   },
 
+  getConfirmPath: function() {
+    return '/users/' + this._id + '/confirm/' + this.confirm_token
+  },
+
   getRaceImagePath: function() {
     return '/images/' + this.race + '-gray.png'
   }
@@ -240,6 +247,10 @@ UserSchema.statics = {
 
   findByEmail: function(email, callback) {
     return this.findOne({ email: email }).exec(callback);
+  },
+
+  generateConfirmToken: function() {
+    return Randtoken.generate(16)
   },
 
   fields: function(callback) {

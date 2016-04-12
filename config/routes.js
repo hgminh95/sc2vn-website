@@ -28,7 +28,6 @@ module.exports = function(app) {
       .param('userId', users.load)
       .get('/recalculate', users.recalculateStatistics)
       .get('/', users.index)
-      .get('/new', users.new)
       .post('/', users.create)
       .get('/rank', users.rank)
       .get('/login', users.login)
@@ -36,6 +35,8 @@ module.exports = function(app) {
       .get('/:userId', users.show)
       .get('/:userId/edit', users.edit)
       .post('/:userId', users.update)
+      .get('/:userId/resend_confirm_email', users.resendConfirmEmail)
+      .get('/:userId/confirm/:confirm_token', users.confirm)
   )
 
   // Article Routes
