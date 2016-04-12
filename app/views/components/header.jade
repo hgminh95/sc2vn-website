@@ -12,9 +12,22 @@ nav#nav.navbar.navbar-default.navbar-fixed-top
     // Collect the nav links, forms and other content for toggling
     .collapse.navbar-collapse(id='navbar-collapse')
       if (locals.current_user.name)
-        p.navbar-text.navbar-right
-          = 'Hello, '
-          a(href=current_user.getShowPath())= locals.current_user.name
+        ul.nav.navbar-nav.navbar-right
+          li.dropdown
+            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+              = locals.current_user.name
+              | &nbsp;
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href=locals.current_user.getShowPath())
+                  i.fa.fa-fw.fa-gears
+                  | &nbsp;Account
+              li
+                a(href='/logout')
+                  i.fa.fa-fw.fa-sign-out
+                  | &nbsp;Logout
+
       else
         a.btn.btn-primary.btn-sm.navbar-btn.navbar-right(href='/users/register') Sign up
         p.navbar-text.navbar-right
