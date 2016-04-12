@@ -117,10 +117,16 @@ exports.rank = function(req, res, next) {
 }
 
 exports.resendConfirmEmail = function (req, res, next) {
-  userMailer.sendConfirmEmail(req.profile, function (err, info) {
+  var user = req.profile
+  user.confirm_token = User.generateConfirmToken()
+
+  user.save(function(err, user) {
     if (err) return next(err)
-    console.log(info.response)
-    res.sendStatus(200)
+    userMailer.sendConfirmEmail(req.profile, function (err, info) {
+      if (err) return next(err)
+      console.log(info.response)
+      res.sendStatus(200)
+    })
   })
 }
 
