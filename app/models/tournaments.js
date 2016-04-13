@@ -68,6 +68,10 @@ TournamentSchema.methods = {
     return '/tournaments/' + this._id + '/edit';
   },
 
+  getRegisterPath: function() {
+    return '/tournaments/' + this._id + '/register'
+  },
+
   toJson: function(callback) {
     Match.find({ tournament: this._id }).exec(function(err, matches) {
       if (err) callback(err)

@@ -11,6 +11,24 @@ block content-inside
 p= drawer
 
 block sidebar
+  a#register-button.btn.btn-block.button-submit
+    i.fa.fa-edit.fa-fw
+    | &nbsp; Register
+
   a.btn.btn-block.button-submit(href=tournament.getEditPath())
     i.fa.fa-edit.fa-fw
     | &nbsp; Edit Tournament
+
+  script.
+    $('#register-button').click(function() {
+      $('#register-button').html('<i class="fa fa-circle-o-notch fa-spin"></i>');
+      $.post('#{tournament.getRegisterPath()}', {}, function(data, status) {})
+        .fail(function() {
+          alert("You must login in order to register");
+        })
+        .always(function() {
+          setTimeout(function() {
+            $('#register-button').html('<i class="fa fa-floppy-o fa-fw"></i> &nbsp;Register')
+          }, 1000);
+        });
+    });
