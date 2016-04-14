@@ -20,21 +20,16 @@ $(function() {
   });
 
   $('#thumbnail:file').change(function() {
-    var _URL = window.URL || window.webkitURL;
     var file = this.files[0];
-    var imgFile = new Image();
     var reader = new FileReader();
-    imgFile.onload = function() {
-      var img = $('<img/>', {
-        id: 'image-preview'
-      });
-      reader.onload = function(e) {
-        img.attr('src', e.target.result);
-        img.attr('style', 'max-width: 100%; max-height: 100%')
-        $('#thumbnail').attr('data-content', $(img)[0].outerHTML).popover('show');
-      };
-      reader.readAsDataURL(file);
+    var img = $('<img/>', {
+      id: 'image-preview'
+    });
+    reader.onload = function(e) {
+      img.attr('src', e.target.result);
+      img.attr('style', 'max-width: 100%; max-height: 100%')
+      $('#thumbnail').attr('data-content', $(img)[0].outerHTML).popover('show');
     };
-    imgFile.src = _URL.createObjectURL(file);
+    reader.readAsDataURL(file);
   });
 });
