@@ -5,10 +5,12 @@ include ../mixins/article.jade
 block scripts
   script(src='https://cdn.tinymce.com/4/tinymce.min.js')
   script.
-    tinymce.init({
-      selector: '#content',
-      plugins: 'image imagetools media fullscreen textcolor link'
-      toolbar: 'undo edo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright | bullist numlist outdent indent | link image media | fullscreen'
+    $(document).ready(function(){
+      tinymce.init({
+        selector: '#content',
+        plugins: 'image imagetools media fullscreen textcolor link',
+        toolbar: 'undo edo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright | bullist numlist outdent indent | link image media | fullscreen'
+      });
     });
 
 block content-inside
