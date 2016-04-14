@@ -4,6 +4,7 @@ include ../mixins/article.jade
 
 block scripts
   script(src='https://cdn.tinymce.com/4/tinymce.min.js')
+  script(src='/javascripts/previewImageForNewArticle.js')
   script.
     $(document).ready(function(){
       tinymce.init({
@@ -12,6 +13,6 @@ block scripts
         toolbar: 'undo edo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright | bullist numlist outdent indent | link image media | fullscreen'
       });
     });
-
+    
 block content-inside
   +article-form(article, '/articles')
