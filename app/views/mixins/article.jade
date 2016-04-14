@@ -24,7 +24,7 @@ mixin article-preview(article)
       .fb-like.pull-right(data-href='https://128.199.229.156:3000/' + article.getShowPath(), data-layout='button_count', data-action='like', data-show-faces='true', data-share='true')
 
 mixin article-form(article, action)
-  form(action=action, method='post', enctype='multipart/form-data')
+  form(action=action, method='post', enctype='multipart/form-data', class='article-form')
     .form-group
       label(for='title') Title
       input#title.form-control(type='text', name='title', placeholder='Title', value=article.title)
