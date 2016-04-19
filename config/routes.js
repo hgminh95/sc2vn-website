@@ -10,16 +10,21 @@ var usersMiddleware = require('../app/middlewares/users')
 var matches = require('../app/controllers/matches')
 var widgets = require('../app/controllers/widgets')
 var base = require('../app/controllers/base')
+var permission = require('../app/middlewares/permission')
 
 module.exports = function(app) {
 
   app.use(base.init)
 
   app.use(users.loadCurrentUser)
+
+  app.use(permission.middleware)
+
   app.use(usersMiddleware.checkNotification)
 
   app.use(widgets.recentMatches)
   app.use(widgets.topPlayers)
+
 
   // User Routes
   app.use(
@@ -49,9 +54,9 @@ module.exports = function(app) {
       .get('/new', articles.new)
       .post('/', articles.create)
       .get('/:articleId', articles.show)
-      .get('/:articleId/edit', articles.edit)
-      .post('/:articleId', articles.update)
-      .delete('/:articleId', articles.destroy)
+      .get('/:articleId/edit', permission.isArticleAuthor, articles.edit)
+      .post('/:articleId', permission.isArticleAuthor, articles.update)
+      .delete('/:articleId', permission.isArticleAuthor, articles.destroy)
   )
 
   // Tournament Routes
