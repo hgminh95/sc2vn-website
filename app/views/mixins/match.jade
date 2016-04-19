@@ -33,13 +33,13 @@ mixin match(match)
           td.col-md-2(align='left')
             = match.player_1.name
           td.col-md-3(align='right')
-            img.avatar(src=match.player_1.avatar)
+            img.avatar(src=match.player_1.avatar, class='race-' + match.player_1.race)
           td.col-md-2(align='center')
             button.btn.btn-default
               = match.winner() ? match.winner().name + ' wins' : 'Draw'
             h6= match.date.toDateString()
           td.col-md-3(align='left')
-            img.avatar(src=match.player_2.avatar)
+            img.avatar(src=match.player_2.avatar, class='race-' + match.player_2.race)
           td.col-md-3(align='right')
             = match.player_2.name
     #games-accordion.panel-group(role='tablist', aria-multiselectable='true')

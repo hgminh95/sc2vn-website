@@ -1,6 +1,6 @@
 mixin user-profile(user)
   .profile
-    img.avatar.img(src=user.avatar)
+    img.avatar.img(src=user.avatar, class='race-' + user.race)
     .details
       .heading
         = user.name
