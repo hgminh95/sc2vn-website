@@ -95,6 +95,7 @@ module.exports = function(app) {
 
   // Static Routes
   app.get('/admin', statics.admin)
+  app.get('/adminarea', statics.adminarea)
   app.get('/changelog', statics.changelog)
   app.get('/faq', statics.faq)
   app.get('/features', statics.features)

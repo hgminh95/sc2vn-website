@@ -3,8 +3,8 @@ extends layout
 include ./mixins/widget.jade
 
 block content
-  if locals.breadcrumbs
-    +breadcrumbs(locals.breadcrumbs)
+  if breadcrumbs
+    +breadcrumbs(breadcrumbs)
 
   .container
     block content-header
@@ -15,5 +15,5 @@ block content
       .col-md-3.no-padding
         .box-left
           block sidebar
-          +recent-matches(locals.recent_matches)
-          +top-players(locals.top_players)
+          +recent-matches(recent_matches)
+          +top-players(top_players)

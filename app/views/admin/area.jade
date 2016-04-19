@@ -1,0 +1,72 @@
+extends ../layout
+
+block content
+  if breadcrumbs
+    +breadcrumbs(breadcrumbs)
+
+  .container.box
+    .tabs-left
+      ul.nav.nav-tabs
+        li.active
+          a(href='#overview', data-toggle='tab')
+            i.fa.fa-file-text.fa-fw
+            | &nbsp;Overview
+        li
+          a(href='#pending-tournament', data-toggle='tab')
+            i.fa.fa-ellipsis-h.fa-fw
+            | &nbsp;Pending Tournament &nbsp;
+            if pending.length > 0
+              span.badge= pending.length
+        li
+          a(href='#settings', data-toggle='tab')
+            i.fa.fa-cogs.fa-fw
+            | &nbsp;Settings
+
+      .tab-content
+        #overview.tab-pane.active
+          p Overview
+
+          table.table.table-hover
+            tbody
+              tr
+                th.col-md-6 Number of users
+                td.col-md-2(align='center') 137
+              tr
+                th Number of tournaments
+                td(align='center') 22
+              tr
+                th Number of post
+                td(align='center') 78
+              tr
+                th Number of abcxyz
+                td(align='center') 3
+
+        #pending-tournament.tab-pane Pending tournament
+          #tournaments-accordion.panel-group(role='tablist', aria-multiselectable='true')
+            each tournament, index in pending
+              .panel.panel-default
+                .panel-heading(role='tab', id='heading' + index)
+                  h4.panel-title
+                    a(role='button', data-toggle='collapse', data-parent='#tournaments-accordion', href='#collapse' + index, aria-expanded='true', aria-controls='collapse' + index)
+                      = tournament.name
+                    .pull-right
+                      a(href='#')
+                        small.text-success
+                          i.fa.fa-check.fa-fw
+                          | Approve
+                      | &nbsp;
+                      a(href='#')
+                        small.text-danger
+                          i.fa.fa-close.fa-fw
+                          | Reject
+                .panel-collapse.collapse(role='tabpanel', aria-labelledby='heading' + index, id='collapse' + index)
+                  .panel-body
+                    | TODO
+
+        #settings.tab-pane Settings
+          form(action='todo', method='post')
+            .checkbox
+              label
+                input(type='checkbox')
+                | Check me out
+            button.btn.button-submit Submit
