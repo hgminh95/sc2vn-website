@@ -17,4 +17,13 @@ settings.recent_matches_count = data.recent_matches_count || 5
 settings.top_players_count    = data.top_players_count    || 5
 settings.players_per_page     = data.players_per_page     || 50
 
+settings.save = function(callback) {
+  var jsonSettings = JSON.stringify(this, null, 2)
+
+  fs.writeFile(settingsFile, jsonSettings, function(err) {
+    if (err) return callback(err)
+    return callback(null)
+  })
+}
+
 module.exports = settings
