@@ -74,8 +74,13 @@ module.exports = function(app) {
       .post('/:tournamentId/register', tournaments.tournamentRegister)
       .post('/:tournamentId', tournaments.update)
       .delete('/:tournamentId', tournaments.destroy)
-      .post('/:tournamentId/accept/:userId')
-      .post('/:tournamentId/deny/:userId')
+      .post('/:tournamentId/accept/:userId', tournaments.acceptUser)
+      .post('/:tournamentId/deny/:userId', tournaments.denyUser)
+      .post('/:tournamentId/invitation/:userId', tournaments.invitation)
+      .post('/:tournamentId/acceptInvitation', tournaments.acceptInvitation)
+      .post('/:tournamentId/declineInvitation', tournaments.declineInvitation)
+      .post('/:tournamentId/addStaff/:userId', tournaments.addStaff)
+      .post('/:tournamentId/removeStaff/:userId', tournaments.removeStaff)
   )
 
   // Match Routes
