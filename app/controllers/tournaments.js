@@ -95,21 +95,29 @@ exports.destroy = function(req, res) {
 exports.tournamentRegister = function (req, res, next) {
   var user = res.locals.current_user;
   var tournament = req.tournament;
-  var owner = tournament.owner;
+  var ownerId = tournament.owner;
   var notification = new Notification({
-    message: user.name + 'Muốn đăng ký tham gia vào' + tournament.name,
+    message: user.name + ' muốn đăng ký tham gia vào ' + tournament.name,
     link: '/tournament' + tournament._id
   });
-  Tournament.addPending(user);
-  owner.addNotification(notification);
+  console.log(user);
+  tournament.addPending(user);
+  User.findById(ownerId, function(err, owner){
+    if (err) next(err);
+
+    console.log(tournament.registration);
+    owner.addNotification(notification);
+  });
+
+  res.sendStatus(201);
 }
 
 exports.acceptUser = function(req, res) {
   var user =  req.profile
   var tournament = req.tournament;
   var notification = new Notification({
-    message: 'bạn được chấp nhận tham gia vào ' + tournament.name,
-    link: '/tournament' + tournament._id
+    message: ' bạn được chấp nhận tham gia vào ' + tournament.name,
+    link: '/tournaments/' + tournament._id
   })
 
   tournament.removePending(user);
@@ -121,8 +129,8 @@ exports.denyUser = function(req, res) {
   var user =  req.profile
   var tournament = req.tournament;
   var notification = new Notification({
-    message: 'bạn không được chấp nhận tham gia vào ' + tournament.name,
-    link: '/tournament' + tournament._id
+    message: ' bạn không được chấp nhận tham gia vào ' + tournament.name,
+    link: '/tournaments/' + tournament._id
   })
 
   tournament.removePending(user);
