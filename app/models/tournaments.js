@@ -62,6 +62,22 @@ TournamentSchema.methods = {
     this.save();
   },
 
+  addInvitation: function(user) {
+    this.invitation.participants.push(user);
+    this.save();
+  },
+
+  addPendingInvitation: function(user) {
+    console.log(this.registration.registrable);
+    this.invitation.pending.push(user);
+    this.save();
+  },
+
+  removePendingInvitation: function(user) {
+    this.invitation.pending.remove(user._id);
+    this.save();
+  },
+
   getShowPath: function() {
     return '/tournaments/' + this._id;
   },

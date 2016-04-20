@@ -98,9 +98,8 @@ exports.tournamentRegister = function (req, res, next) {
   var ownerId = tournament.owner;
   var notification = new Notification({
     message: user.name + ' muốn đăng ký tham gia vào ' + tournament.name,
-    link: '/tournament' + tournament._id
+    link: '/tournaments/' + tournament._id
   });
-  console.log(user);
   tournament.addPending(user);
   User.findById(ownerId, function(err, owner){
     if (err) next(err);
@@ -135,4 +134,71 @@ exports.denyUser = function(req, res) {
 
   tournament.removePending(user);
   user.addNotification(notification);
+}
+
+exports.invitation = function(req, res) {
+  var owner = req.user;
+  var user =  req.profile
+  var tournament = req.tournament;
+  var notification = new Notification({
+    message: owner.name + ' invite you to ' + tournament.name,
+    link: '/tournaments/' + tournament._id
+  });
+  tournament.addPendingInvitation(user);
+  user.addNotification(notification);
+  res.sendStatus(201);
+}
+
+exports.acceptInvitation = function(req, res) {
+  var user = req.user
+  var tournament = req.tournament;
+  var ownerId = tournament.owner;
+
+  if(registrable){
+    var notification = new Notification({
+      message: user.name + ' accept your ivitation',
+      link: '/tournaments/' + tournament._id
+    });
+    tournament.removePendingInvitation(user);
+    tournament.addInvitation(user);
+
+    User.findById(ownerId, function(err, owner){
+      if (err) next(err);
+
+      owner.addNotification(notification);
+    });
+  }
+
+  else{
+    var notification = new Notification({
+      message: user.name + ' decline your ivitation',
+      link: '/tournaments/' + tournament._id
+    });
+
+    User.findById(ownerId, function(err, owner){
+      if (err) next(err);
+
+      owner.addNotification(notification);
+    });
+  }
+
+  res.sendStatus(201);
+}
+
+exports.declineInvitation = function(req, res) {
+  var user = req.user
+  var tournament = req.tournament;
+  var ownerId = tournament.owner;
+  var notification = new Notification({
+    message: user.name + ' decline your ivitation',
+    link: '/tournaments/' + tournament._id
+  });
+
+  tournament.removePendingInvitation(user);
+
+  User.findById(ownerId, function(err, owner){
+    if (err) next(err);
+
+    owner.addNotification(notification);
+  });
 }
