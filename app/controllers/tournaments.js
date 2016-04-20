@@ -202,3 +202,33 @@ exports.declineInvitation = function(req, res) {
     owner.addNotification(notification);
   });
 }
+
+exports.addStaff = function(req, res){
+  var user = req.profile;
+  var owner = req.user;
+  var tournament = req.tournament;
+
+  var notification = new Notification({
+    message: owner.name + ' add you as a staff of ' + tournament.name,
+    link: '/tournaments/' + tournament._id
+  });
+
+  tournament.addStaff(user);
+  user.addNotification(notification);
+  res.sendStatus(201);
+}
+
+exports.removeStaff = function(req, res){
+  var user = req.profile;
+  var owner = req.user;
+  var tournament = req.tournament;
+
+  var notification = new Notification({
+    message: owner.name + ' remove you from staffs of ' + tournament.name,
+    link: '/tournaments/' + tournament._id
+  });
+
+  tournament.removeStaff(user);
+  user.addNotification(notification);
+  res.sendStatus(201);
+}

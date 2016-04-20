@@ -78,6 +78,16 @@ TournamentSchema.methods = {
     this.save();
   },
 
+  addStaff: function(user) {
+    this.staffs.push(user);
+    this.save();
+  },
+
+  removeStaff: function(user) {
+    this.staffs.remove(user._id);
+    this.save();
+  },
+
   getShowPath: function() {
     return '/tournaments/' + this._id;
   },
