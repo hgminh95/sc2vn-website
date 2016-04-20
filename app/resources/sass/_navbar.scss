@@ -26,3 +26,13 @@
 .navbar-btn {
   margin-top: 16px;
 }
+
+.dropdown-menu .dropdown-item{
+  padding: 10px 20px;
+  white-space: nowrap;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 0px;
+
+}

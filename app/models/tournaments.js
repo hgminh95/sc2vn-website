@@ -16,6 +16,7 @@ var RegistrationSchema = new Schema({
   _id: false
 })
 
+
 var InvitationSchema = new Schema({
   pending: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   participants: [{ type: Schema.Types.ObjectId, ref: 'User' }]
@@ -33,8 +34,8 @@ var TournamentSchema = new Schema({
   introduction: { type: String },
   rule: { type: String },
   faq: { type: String },
-  registration: { type: RegistrationSchema },
-  invitation: { type: InvitationSchema },
+  registration: { type: RegistrationSchema, required: true, default: {}  },
+  invitation: { type: InvitationSchema, required: true, default: {} },
   stages: [StageSchema]
 },
 {
@@ -51,6 +52,7 @@ TournamentSchema.methods = {
   },
 
   addPending: function(user) {
+    console.log(this.registration.registrable);
     this.registration.pending.push(user);
     this.save();
   },
