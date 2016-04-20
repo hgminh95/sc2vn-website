@@ -43,3 +43,6 @@ public/images/*
 
 # Temp
 tmp/*
+
+#Settings
+config/settings.json
