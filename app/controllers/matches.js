@@ -5,6 +5,7 @@ var only = require('only');
 var Match = require('../models/matches');
 var async = require('async');
 var settings = require('../../config/settings')
+var uploader = require('../uploaders/replay');
 
 exports.init = function(req, res, next) {
   res.locals.breadcrumbs.push({
@@ -68,6 +69,8 @@ exports.new = function(req, res) {
 
 exports.create = function(req, res, next) {
   var match = new Match(only(req.body, Match.fields()));
+
+
   match.save(function(err) {
     if (err) return next(err);
 
@@ -92,6 +95,17 @@ exports.update = function(req, res) {
   var match = req.match;
 
   assign(match, only(req.body, Match.fields()));
+  for(var i = 0 ; i < req.body.games.length(); i++){
+    var game = req.body.games[i];
+    var file = req.files[game._id]
+
+    uploader.upload(game, file, function(match) {
+      match.save(function(err, match) {
+        if (err) return next(err);
+      });
+    });
+  }
+
   match.save();
 
   res.redirect(match.getShowPath());
