@@ -6,6 +6,7 @@ var Tournament = require('../models/tournaments');
 var Drawer = require('tournament-drawer');
 var User = require('../models/users');
 var Notification = require('../models/notifications');
+var uploader = require('../uploaders/banner');
 
 exports.init = function(req, res, next) {
   res.locals.breadcrumbs.push({
@@ -50,6 +51,14 @@ exports.new = function(req, res) {
 
 exports.create = function(req, res, next) {
   var tournament = new Tournament(only(req.body, Tournament.fields()));
+
+  uploader.upload(tournament, req.file, function(tournament) {
+    tournament.save(function(err, tournament) {
+      if (err) return next(err);
+      res.redirect(tournament.getShowPath());
+    });
+  });
+
   tournament.save(function(err) {
     if (err) return next(err);
 
@@ -79,6 +88,14 @@ exports.update = function(req, res) {
   var tournament = req.tournament;
 
   assign(tournament, only(req.body, Tournament.fields()));
+
+  uploader.upload(tournament, req.file, function(tournament) {
+    tournament.save(function(err, tournament) {
+      if (err) return next(err);
+      res.redirect(tournament.getShowPath());
+    });
+  });
+
   tournament.save(function(err) {
     if (err) return res.sendStatus(406)
 

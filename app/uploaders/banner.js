@@ -3,14 +3,14 @@ var cloudinary = require('cloudinary');
 
 cloudinary.config(config.cloudinary);
 
-exports.upload = function(game, file, callback) {
+exports.upload = function(tournament, file, callback) {
   if (!file)
-    return callback(game);
+    return callback(tournament);
 
-  options = { public_id: 'games/' + game._id };
+  options = { public_id: 'tournaments/' + tournament._id };
 
   cloudinary.uploader.upload(file.path, function(replay) {
-    game.replay = replay.url;
-    callback(game);
+    tournament.replay = replay.url;
+    callback(tournament);
   }, options);
 }
