@@ -4,7 +4,7 @@ var myApp = angular.module('myApp', ['ng-admin']);
 // declare a function to run when the module bootstraps (during the 'config' phase)
 myApp.config(['NgAdminConfigurationProvider', function (nga) {
   // create an admin application
-  var admin = nga.application('My First Admin')
+  var admin = nga.application('Admin Control Panel')
     .baseApiUrl('https://localhost:3000/api/');
 
   admin.addEntity(nga.entity('users'))
@@ -37,12 +37,12 @@ myApp.config(['NgAdminConfigurationProvider', function (nga) {
 }]);
 
 myApp.config(['RestangularProvider', function (RestangularProvider) {
-  RestangularProvider.addElementTransformer('users', function(element) {
+  var convertId = function(element) {
     element.id = element._id
     delete element['_id']
 
     return element
-  })
+  }
 
   RestangularProvider.addElementTransformer('articles', function(element) {
     element.id = element._id
@@ -54,31 +54,9 @@ myApp.config(['RestangularProvider', function (RestangularProvider) {
     return element
   })
 
-  RestangularProvider.addElementTransformer('tournaments', function(element) {
-    element.id = element._id
-    delete element['_id']
-
-    return element
-  })
-
-  RestangularProvider.addElementTransformer('matches', function(element) {
-    element.id = element._id
-    delete element['_id']
-
-    return element
-  })
-
-  RestangularProvider.addElementTransformer('clans', function(element) {
-    element.id = element._id
-    delete element['_id']
-
-    return element
-  })
-
-  RestangularProvider.addElementTransformer('maps', function(element) {
-    element.id = element._id
-    delete element['_id']
-
-    return element
-  })
+  RestangularProvider.addElementTransformer('users', convertId)
+  RestangularProvider.addElementTransformer('tournaments', convertId)
+  RestangularProvider.addElementTransformer('matches', convertId)
+  RestangularProvider.addElementTransformer('clans', convertId)
+  RestangularProvider.addElementTransformer('maps', convertId)
 }])

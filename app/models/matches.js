@@ -7,7 +7,7 @@ var moment = require('moment')
 var today = moment().startOf('day')
 
 var GameSchema = new Schema({
-  map: { type: String, require: true },
+  map: { type: Schema.Types.ObjectId, ref: 'Map' },
   status: { type: String, enum: ['win', 'lose', 'draw', 'not available'] },
   duration: { type: String },
   race1: { type: String, enum: ['zerg', 'protoss', 'terran'] },
@@ -18,10 +18,6 @@ var GameSchema = new Schema({
 var MatchSchema = new Schema({
   player_1: { type: Schema.Types.ObjectId, ref: 'User' },
   player_2: { type: Schema.Types.ObjectId, ref: 'User' },
-  group: { type: String },
-  index: { type: Number },
-  link1: { type: String },
-  link2: { type: String },
   tournament: { type: Schema.Types.ObjectId, ref: 'Tournament' },
   date: {type: Date , require: true },
   games: [GameSchema]
@@ -189,7 +185,7 @@ MatchSchema.statics = {
   },
 
   fields: function() {
-    return 'player_1 player_2 tournament group index link1 link2 date games'
+    return 'player_1 player_2 tournament date games'
   },
 
   getNewPath: function() {
