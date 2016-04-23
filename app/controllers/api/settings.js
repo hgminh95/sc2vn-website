@@ -9,7 +9,8 @@ exports.create = function(req, res) {
 }
 
 exports.index = function(req, res) {
-  res.json(settings)
+  assign(settings, { id: 1 })
+  res.json([settings])
 }
 
 exports.show = function(req, res) {
