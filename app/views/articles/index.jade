@@ -37,7 +37,8 @@ block content-inside
       |  This site is under construction. Please be careful!
 
 block sidebar
-  a.btn.btn-block.button-submit(href='/articles/new')
-    i.fa.fa-plus.fa-fw
-    | &nbsp; New Article
+  if isLoggedIn && currentUser.isModerator()
+    a.btn.btn-block.button-submit(href='/articles/new')
+      i.fa.fa-plus.fa-fw
+      | &nbsp; New Article
 

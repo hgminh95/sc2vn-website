@@ -18,10 +18,12 @@ exports.load = function(req, res, next, id) {
 
 exports.loadCurrentUser = function(req, res, next) {
   if (req.isAuthenticated()) {
-    res.locals.current_user = req.user;
+    res.locals.isLoggedIn = true
+    res.locals.currentUser = req.user
   }
   else {
-    res.locals.current_user = {};
+    res.locals.isLoggedIn = false
+    res.locals.currentUser = {}
   }
 
   next();

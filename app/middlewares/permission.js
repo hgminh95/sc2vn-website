@@ -29,10 +29,3 @@ exports.isArticleAuthor = function(req, res, next) {
 
   next()
 }
-
-
-exports.middleware = function(req, res, next) {
-  res.locals.isUser = req.isAuthenticated()
-
-  next()
-}

@@ -18,8 +18,6 @@ module.exports = function(app) {
 
   app.use(users.loadCurrentUser)
 
-  app.use(permission.middleware)
-
   app.use(usersMiddleware.checkNotification)
 
   app.use(widgets.recentMatches)
