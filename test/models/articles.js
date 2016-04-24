@@ -3,12 +3,15 @@
 process.env.NODE_ENV = 'test'
 
 var chai = require('chai')
+var chaiHttp = require('chai-http')
 var server = require('../../app')
 var should = chai.should()
 
 var factory = require('../factory')
 
-describe('Users', function() {
+chai.use(chaiHttp)
+
+describe('Articles', function() {
 
   before(function(done) {
     factory.cleanup()
@@ -29,15 +32,16 @@ describe('Users', function() {
     done()
   })
 
-  describe('#addNotification()', function() {
-    it('should add 3 notifications for user', function(done) {
-    	factory.create('user_with_3_notifications', function(err, user) {
-    		user.should.have.property('notifications')
-    		user.notifications.should.be.a('array')
-    		user.notifications.should.have.length(3)
-    		done()
-    	})
+  describe('Article method', function() {
+
+    it('Test get path', function(done) {
+      factory.create('article_normal', function(err, article) {
+        article.getShowPath().should.be.a('string')
+        article.getShowPath().should.equal('/articles/' + article._id)
+        done()
+      })
     })
+
   })
 
 })
