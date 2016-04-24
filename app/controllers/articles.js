@@ -2,7 +2,7 @@
 
 var assign = require('object-assign');
 var only = require('only');
-var uploader = require('../uploaders/thumbnails');
+var uploader = require('../uploaders/article_thumbnails');
 var Article = require('../models/articles');
 var settings = require('../../config/settings')
 

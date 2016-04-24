@@ -31,17 +31,25 @@ mixin match(match)
       tbody
         tr
           td.col-md-2(align='left')
-            = match.player_1.name
+            h5
+              strong= match.player_1.name
+            = '#' + match.player_1.rank
           td.col-md-3(align='right')
             img.avatar(src=match.player_1.avatar, class='race-' + match.player_1.race)
           td.col-md-2(align='center')
             button.btn.btn-default
               = match.winner() ? match.winner().name + ' wins' : 'Draw'
-            h6= match.date.toDateString()
+            h5
+              = 'Best of ' + match.games.length
+            h6
+              = match.date.getDate() + '/' + match.date.getMonth() + '/' + match.date.getUTCFullYear()
           td.col-md-3(align='left')
             img.avatar(src=match.player_2.avatar, class='race-' + match.player_2.race)
           td.col-md-3(align='right')
-            = match.player_2.name
+            h5
+              strong= match.player_2.name
+            = '#' + match.player_2.rank
+
     #games-accordion.panel-group(role='tablist', aria-multiselectable='true')
       each game, index in match.games
         .panel.panel-default

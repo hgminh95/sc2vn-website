@@ -36,14 +36,12 @@ module.exports = function(nga, admin) {
           .targetEntity(admin.getEntity('tournaments'))
           .targetField(nga.field('name'))
           .label('Tournament'),
-      nga.field('group'),
-      nga.field('index', 'number'),
-      nga.field('link1'),
-      nga.field('link2'),
       nga.field('date', 'datetime'),
       nga.field('games', 'embedded_list')
           .targetFields([
-            nga.field('map'),
+            nga.field('map', 'reference')
+              .targetEntity(admin.getEntity('maps'))
+              .targetField(nga.field('name')),
             nga.field('race1'),
             nga.field('race2'),
             nga.field('replay'),
@@ -73,14 +71,12 @@ module.exports = function(nga, admin) {
           .targetEntity(admin.getEntity('tournaments'))
           .targetField(nga.field('name'))
           .label('Tournament'),
-      nga.field('group'),
-      nga.field('index', 'number'),
-      nga.field('link1'),
-      nga.field('link2'),
       nga.field('date', 'datetime'),
       nga.field('games', 'embedded_list')
           .targetFields([
-            nga.field('map'),
+            nga.field('map', 'reference')
+              .targetEntity(admin.getEntity('maps'))
+              .targetField(nga.field('name')),
             nga.field('race1'),
             nga.field('race2'),
             nga.field('replay'),

@@ -7,6 +7,7 @@ var articles = require('../app/controllers/api/articles');
 var tournaments = require('../app/controllers/api/tournaments');
 var matches = require('../app/controllers/api/matches');
 var clans = require('../app/controllers/api/clans')
+var maps = require('../app/controllers/api/maps')
 var settings = require('../app/controllers/api/settings')
 
 var router = express.Router();
@@ -57,6 +58,14 @@ router.post('/settings', settings.create);
 router.get('/settings/:settingId', settings.show);
 router.put('/settings/:settingId', settings.update);
 router.delete('/settings/:settingId', settings.destroy);
+
+//For maps
+router.param('mapId', maps.load)
+router.get('/maps', maps.index)
+router.post('/maps', maps.create)
+router.get('/maps/:mapId', maps.show)
+router.put('/maps/:mapId', maps.update)
+router.delete('/maps/:mapId', maps.destroy)
 
 module.exports = function(app) {
   app.use('/api', router);
