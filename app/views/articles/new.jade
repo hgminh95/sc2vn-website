@@ -4,15 +4,9 @@ include ../mixins/article.jade
 
 block scripts
   script(src='https://cdn.tinymce.com/4/tinymce.min.js')
-  script(src='/javascripts/previewImageForNewArticle.js')
-  script.
-    $(document).ready(function(){
-      tinymce.init({
-        selector: '#content',
-        plugins: 'image imagetools media fullscreen textcolor link',
-        toolbar: 'undo edo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright | bullist numlist outdent indent | link image media | fullscreen'
-      });
-    });
+  script(src='/javascripts/tinymce.js')
+  script.  
+    tinymce_init('#content', false);
     
 block content-inside
   +article-form(article, '/articles')

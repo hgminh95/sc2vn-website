@@ -4,6 +4,7 @@ include ../mixins/article.jade
 
 block scripts
   script(src='https://cdn.tinymce.com/4/tinymce.min.js')
+  script(src='/javascripts/tinymce.js')
   script.
     tinymce.init({
       selector: '.article-title',
@@ -11,14 +12,7 @@ block scripts
       toolbar: 'undo redo',
       menubar: false
     });
-
-    tinymce.init({
-      selector: 'div.editable',
-      inline: true,
-      plugins: 'image imagetools media fullscreen textcolor link',
-      toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright | bullist numlist outdent indent | link image media | fullscreen',
-      menubar: true
-    });
+    tinymce_init('div.editable', true);
 
 block content-inside
   +article(article)
