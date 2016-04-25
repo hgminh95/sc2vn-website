@@ -32,16 +32,14 @@ describe('Articles', function() {
     done()
   })
 
-  describe('Article method', function() {
-
-    it('Test get path', function(done) {
+  describe('#getShowPath()', function() {
+    it('should get right show path', function(done) {
       factory.create('article_normal', function(err, article) {
         article.getShowPath().should.be.a('string')
         article.getShowPath().should.equal('/articles/' + article._id)
         done()
       })
     })
-
   })
 
 })
