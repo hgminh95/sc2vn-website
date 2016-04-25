@@ -1,4 +1,30 @@
 mixin breadcrumbs(breadcrumbs)
+
+  script.
+    (function (){
+      var cx = '006213579805173758021:wcc_o_s42ke';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+      '//cse.google.com/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(gcse, s);
+    })();
+    
+  style(type="text/css").
+    .reset-box-sizing, .reset-box-sizing *, .reset-box-sizing *:before, .reset-box-sizing *:after,  .gsc-inline-block
+    {
+      -webkit-box-sizing: content-box;
+      -moz-box-sizing: content-box;
+      box-sizing: content-box;
+    }
+    input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gsc-search-button
+    {
+      box-sizing: content-box;
+      line-height: normal;
+    }
+
   .breadcrumbs.light
     .container
       .breadcrumbs-left
@@ -9,4 +35,5 @@ mixin breadcrumbs(breadcrumbs)
             = entry.name
 
       .breadcrumbs-right
-        i.fa.fa-search.fa-fw
+        gcse:search()
+
