@@ -60,15 +60,15 @@ describe('Users', function() {
   })
 
   describe('#removeNotification()', function() {
-    // it('should remove notifications for user', function(done) {
-    //   factory.create('user_with_3_notifications', function(err, user) {
-    //     user.removeNotifications(user.notifications)
-    //     user.should.have.property('notifications')
-    //     user.notifications.should.be.a('array')
-    //     user.notifications.should.have.length(0)
-    //     done()
-    //   })
-    // })
+    it('should remove notifications for user', function(done) {
+      factory.create('user_with_3_notifications', function(err, user) {
+        user.removeNotifications(user.notifications)
+        user.should.have.property('notifications')
+        user.notifications.should.be.a('array')
+        user.notifications.should.have.length(0)
+        done()
+      })
+    })
     it('should remove a specific notification', function(done) {
       factory.create('user_normal', function(err, user) {
         factory.createMany('notification_normal', 5, function(err, notis) {
