@@ -16,7 +16,7 @@ factory.define('user_with_3_notifications', User, {
 	notifications: factory.assocMany('notification_normal', 3)
 })
 
-factory.define('user_with_useful_info_without_matches', User, {
+factory.define('user_with_useful_info_without_recent_matches', User, {
 	email: factory.sequence(function(n) {
 		return 'user#' + n + 'email@email.com'
 	}),

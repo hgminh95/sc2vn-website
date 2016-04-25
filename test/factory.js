@@ -7,5 +7,7 @@ factory.setAdapter(MongooseAdapter)
 require('./factories/users')
 require('./factories/notifications')
 require('./factories/articles')
+require('./factories/matches')
+require('./factories/maps')
 
 module.exports = factory
