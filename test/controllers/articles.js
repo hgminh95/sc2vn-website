@@ -1,13 +1,53 @@
-process.env.NODE_ENV = 'test';
+'use strict'
 
-var chai = require('chai');
-var chaiHttp = require('chai-http');
-var server = require('../../app');
-var should = chai.should();
-var User = require('../../app/models/users');
-var Article = require('../../app/models/articles');
+process.env.NODE_ENV = 'test'
 
-chai.use(chaiHttp);
+var chai = require('chai')
+var chaiHttp = require('chai-http')
+var server = require('../../app')
+var should = chai.should()
+
+chai.use(chaiHttp)
+
+// describe('Articles', function() {
+
+//   before(function() {
+//     factory.cleanup()
+//   })
+
+//   beforeEach(function() {
+//     var user = factory.buildSync('user')
+//     var article = factory.buildSync('article')
+//     article.author = user._id
+//     user.save()
+//     article.save()
+//   })
+
+//   afterEach(function(done) {
+//     done()
+//   })
+
+//   after(function(done) {
+//     factory.cleanup()
+//     done()
+//   })
+
+//   describe('GET /articles', function() {
+
+//     it('should return index page', function(done) {
+//       chai.request(server)
+//         .get('/articles')
+//         .end(function(err, res) {
+//           res.should.have.status(200)
+//           done()
+//         })
+//     })
+
+//   })
+
+// })
+
+
 /*
 describe('Articles', function() {
   var article;

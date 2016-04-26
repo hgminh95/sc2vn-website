@@ -1,19 +1,23 @@
-var chai = require('chai');
-var chaiHttp = require('chai-http');
-var server = require('../app');
-var should = chai.should();
+'use strict'
 
-chai.use(chaiHttp);
+process.env.NODE_ENV = 'test'
 
-/*
-describe('Static pages', function() {
-  it('should return main page', function(done) {
-    chai.request(server)
-      .get('/users')
-      .end(function(err, res){
-        res.should.have.status(200);
-        done();
-      });
-  });
-})
-*/
+var chai = require('chai')
+var chaiHttp = require('chai-http')
+var server = require('../app')
+var should = chai.should()
+
+chai.use(chaiHttp)
+
+// describe('Main page', function() {
+
+// 	it('should return main page', function(done) {
+// 		chai.request(server)
+// 			.get('/')
+// 			.end(function(err, res) {
+// 				res.should.have.status(200)
+// 				done()
+// 			})
+// 	})
+
+// })
