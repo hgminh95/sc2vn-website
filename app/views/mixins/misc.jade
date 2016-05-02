@@ -11,19 +11,6 @@ mixin breadcrumbs(breadcrumbs)
       var s = document.getElementsByTagName('script')[0];
       s.parentNode.insertBefore(gcse, s);
     })();
-    
-  style(type="text/css").
-    .reset-box-sizing, .reset-box-sizing *, .reset-box-sizing *:before, .reset-box-sizing *:after,  .gsc-inline-block
-    {
-      -webkit-box-sizing: content-box;
-      -moz-box-sizing: content-box;
-      box-sizing: content-box;
-    }
-    input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gsc-search-button
-    {
-      box-sizing: content-box;
-      line-height: normal;
-    }
 
   .breadcrumbs.light
     .container
@@ -35,5 +22,24 @@ mixin breadcrumbs(breadcrumbs)
             = entry.name
 
       .breadcrumbs-right
-        gcse:search()
+        input#cse-search-input.searchbar(type='text', size=23, autocomplete='off', required)
+        i.fa.fa-search.fa-fw.searchbutton(onclick='executeQuery();')
+        script.
+          function executeQuery() {
+            var input = document.getElementById('cse-search-input');
+            var element = google.search.cse.element.getElement('searchresults-only0');
+            if (input.value == '') {
+              element.clearAllResults();
+            } else {
+              element.execute(input.value);
+            }
+            return false;
+          }
+
+        gcse:searchresults-only()
+
+
+
+
+
 
