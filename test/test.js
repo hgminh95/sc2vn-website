@@ -6,6 +6,11 @@ var chai = require('chai')
 var chaiHttp = require('chai-http')
 var server = require('../app')
 var should = chai.should()
+var mongoose = require('mongoose')
+
+for (var i in mongoose.connection.collections) {
+  mongoose.connection.collections[i].remove(function() {});
+}
 
 chai.use(chaiHttp)
 
