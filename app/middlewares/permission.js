@@ -24,8 +24,22 @@ exports.isAdmin = function(req, res, next) {
 
 // must use after articles.load
 exports.isArticleAuthor = function(req, res, next) {
-  if (!req.isAuthenticated() || !req.article || !req.article.author.equals(req.user._id))
-    return res.render('404')
+  if (req.isAuthenticated() && req.user.isAuthorOf(req.article))
+    return next()
 
-  next()
+  res.render('404')
+}
+
+exports.isTournamentOwner = function(req, res, next) {
+  if (req.isAuthenticated() && req.user.isOwnerOf(req.tournament))
+    return next()
+
+  res.render('404')
+}
+
+exports.isSameUser = function(req, res, next) {
+  if (req.isAuthenticated() && req.user._id.equals(req.profile._id))
+    return next()
+
+  res.render('404')
 }

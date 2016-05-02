@@ -12,9 +12,10 @@ p= drawer
 
 block sidebar
   if isLoggedIn
-    a#register-button.btn.btn-block.button-submit
-      i.fa.fa-edit.fa-fw
-      | &nbsp; Register
+    if !currentUser.isOwnerOf(tournament)
+      a#register-button.btn.btn-block.button-submit
+        i.fa.fa-edit.fa-fw
+        | &nbsp; Register
   else
     a#register-without-login-button.btn.btn-block.button-submit
       .fa.fa-edit.fa-fw
@@ -38,3 +39,7 @@ block sidebar
           }, 1000);
         });
     });
+
+    $('#register-without-login-button').click(function() {
+      alert('You must login in order to register to this tournament');
+    })
