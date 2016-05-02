@@ -4,14 +4,21 @@ doctype html
 html
   head
     title= title
+
+    if 'production' == process.env.NODE_ENV
+      script(src='//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js')
+      script(src='//code.jquery.com/jquery-2.2.3.min.js')
+      script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+      script(src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js')
+      link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css')
+    else
+      script(src='/javascripts/pace.min.js')
+      script(src="/javascripts/jquery.min.js")
+      script(src='/javascripts/bootstrap.min.js')
+      script(src='/javascripts/chartjs.min.js')
+      link(rel='stylesheet', href='/stylesheets/fontawesome.min.css')
+
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='/javascripts/pace.min.js')
-
-    link(rel='stylesheet', href='/stylesheets/fontawesome.min.css')
-
-    script(src="/javascripts/jquery.min.js")
-    script(src='/javascripts/bootstrap.min.js')
-    script(src='/javascripts/chartjs.min.js')
     script(src='/javascripts/utilities.js')
     link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,vietnamese')
     block scripts
