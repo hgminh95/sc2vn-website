@@ -1,6 +1,7 @@
 extends ../layout.normal
 
 include ../mixins/tournament
+include ../mixins/widget
 
 block content-header
   img.tournament-banner(src=tournament.banner)
@@ -43,3 +44,9 @@ block sidebar
     $('#register-without-login-button').click(function() {
       alert('You must login in order to register to this tournament');
     })
+
+  +tournament-info(tournament)
+
+block sidebar-widget
+  +matches-widget("Upcoming Matches", recent_matches)
+  +players-widget("Top players", top_players)

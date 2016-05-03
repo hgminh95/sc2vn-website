@@ -15,5 +15,6 @@ block content
       .col-md-3.no-padding
         .box-left
           block sidebar
-          +recent-matches(recent_matches)
-          +top-players(top_players)
+          block sidebar-widget
+            +matches-widget("Recent Matches", recent_matches)
+            +players-widget("Top players", top_players)

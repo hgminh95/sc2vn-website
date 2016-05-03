@@ -37,7 +37,8 @@ block sidebar
       $.post('./', {
         name: $('#tournament-title').text(),
         introduction: $('#introduction').html(),
-        rule: $('#rule').html()
+        rule: $('#rule').html(),
+        faq: $('#faq').html()
       },
       function(data, status) {
         setTimeout(function() {
@@ -45,4 +46,3 @@ block sidebar
         }, 1000);
       });
     })
-
