@@ -16,11 +16,37 @@ mixin tournament-preview(tournament)
 
 
 mixin tournament-form(tournament, action)
+  h4(style='margin-bottom: 30px;')
+    strong CREATE TOURNAMENT
   form(action=action, method='post')
-    .form-group
-      label(for='name') Name
-      input#title.form-control(type='text', name='name', placeholder='Name', value=tournament.name)
-    button.btn.button-submit(type='submit') Submit
+    .rows
+      .col-md-6.no-padding
+        .form-group
+          label(for='name') Name
+          .input-group
+            span.input-group-addon
+              i.fa.fa-question.fa-fw
+            input.form-control(type='text', name='name', placeholder='Name', value=tournament.name)
+        .form-group
+          label(for='') Start
+          .input-group
+            span.input-group-addon
+              i.fa.fa-calendar.fa-fw
+            input.form-control(type='date', name='start', placeholder='Start date')
+        .form-group
+          label(for='') Number of players
+          .input-group
+            span.input-group-addon
+              i.fa.fa-users.fa-fw
+            input.form-control(type='number', name='todoname')
+      .col-md-6
+        .form-group
+          label(for='introduction') Introduction
+          textarea.form-control(name='introduction', rows=10)
+
+      button.btn.button-submit(type='submit') Submit
+
+
 
 mixin tournament(tournament)
   .tournament
