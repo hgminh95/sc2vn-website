@@ -23,7 +23,7 @@ mixin matches-list(matches)
               a(href='#')
                 i.fa.fa-youtube-play.fa-fw
 
-mixin match(match)
+mixin match(match, type)
   .box
     h3.text-center= match.tournament ? match.tournament.name : 'Public match'
     hr
@@ -50,15 +50,18 @@ mixin match(match)
               strong= match.player_2.name
             = '#' + match.player_2.rank
 
-    #games-accordion.panel-group(role='tablist', aria-multiselectable='true')
-      each game, index in match.games
-        .panel.panel-default
-          .panel-heading(role='tab', id='heading' + index)
-            h4.panel-title
-              a(role='button', data-toggle='collapse', data-parent='#games-accordion', href='#collapse' + index, aria-expanded='true', aria-controls='collapse' + index)
-                = 'Game ' + (index + 1)
-          .panel-collapse.collapse(role='tabpanel', aria-labelledby='heading' + index, id='collapse' + index)
-            .panel-body
+    .tabs-left
+      ul.nav.nav-tabs
+        each game, index in match.games
+          li(class= index == 0 ? 'active' : '')
+            a(href='#game' + index, data-toggle='tab', aria-expanded='true')
+              = 'Game ' + (index + 1)
+      .tab-content
+        each game, index in match.games
+          .tab-pane(id='game' + index, class=index == 0 ? 'active' : '')
+            if type == 'edit'
+              +game-form(index)
+            else
               +game(game)
 
 mixin game(game)
@@ -66,3 +69,29 @@ mixin game(game)
   p= "Player 1 race: " + game.race1
   p= "Player 2 race: " + game.race2
   p= "Status: " + game.status
+
+mixin game-form(index)
+  .form-group
+    label Player 1 race
+    .input-group
+      span.input-group-addon
+        i.fa.fa-flag.fa-fw
+      input.form-control(id='#g#{index}p1race', type='text')
+  .form-group
+    label Player 2 race
+    .input-group
+      span.input-group-addon
+        i.fa.fa-flag.fa-fw
+      input.form-control(id='#g#{index}p2race', type='text')
+  .form-group
+    label Map
+    .input-group
+      span.input-group-addon
+        i.fa.fa-map.fa-fw
+      input.form-control(id='#g#{index}map', type='text')
+  .form-group
+    label Winner
+    .input-group
+      span.input-group-addon
+        i.fa.fa-trophy.fa-fw
+      input.form-control(id='#g#{index}status', type='text')
