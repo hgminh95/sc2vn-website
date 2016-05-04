@@ -23,6 +23,38 @@ mixin matches-list(matches)
               a(href='#')
                 i.fa.fa-youtube-play.fa-fw
 
+mixin match-form()
+  h4(style='margin-bottom: 30px;')
+    strong New Match
+  .form
+    .form-group
+      label Player 1
+      .input-group
+        span.input-group-addon
+          i.fa.fa-user.fa-fw
+        input.form-control(type='text', name='player1')
+    .form-group
+      label Player 2
+      .input-group
+        span.input-group-addon
+          i.fa.fa-user.fa-fw
+        input.form-control(type='text', name='player2')
+    .form-group
+      label Number of matches
+      .input-group
+        span.input-group-addon
+          i.fa.fa-map.fa-fw
+        input.form-control(type='number', name='matchesCount')
+    .form-group
+      label Start date
+      .input-group
+        span.input-group-addon
+          i.fa.fa-calendar.fa-fw
+        input.form-control(type='date', name='start')
+
+    button.btn.button-submit(type='submit') Submit
+
+
 mixin match(match, type)
   .box
     h3.text-center= match.tournament ? match.tournament.name : 'Public match'
