@@ -3,6 +3,7 @@
 var assign = require('object-assign');
 var only = require('only');
 var Match = require('../models/matches');
+var User = require('../models/users');
 var async = require('async');
 var settings = require('../../config/settings')
 
@@ -61,9 +62,14 @@ exports.index = function(req, res, next) {
 }
 
 exports.new = function(req, res) {
-  res.render('matches/new', {
-    match: new Match()
-  });
+  User.all(function(err, users) {
+    if (err) return next(err)
+
+    res.render('matches/new', {
+      match: new Match(),
+      users: users
+    });
+  })
 }
 
 exports.create = function(req, res, next) {

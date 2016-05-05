@@ -26,31 +26,39 @@ mixin matches-list(matches)
 mixin match-form()
   h4(style='margin-bottom: 30px;')
     strong New Match
-  .form
+  form(action='/matches', method='post')
     .form-group
       label Player 1
       .input-group
         span.input-group-addon
           i.fa.fa-user.fa-fw
-        input.form-control(type='text', name='player1')
+        select.form-control(name='player_1')
+          each user in users
+            option(value=user._id)= user.name
     .form-group
       label Player 2
       .input-group
         span.input-group-addon
           i.fa.fa-user.fa-fw
-        input.form-control(type='text', name='player2')
+        select.form-control(name='player_2')
+          each user in users
+            option(value=user._id)= user.name
     .form-group
       label Number of matches
       .input-group
         span.input-group-addon
           i.fa.fa-map.fa-fw
-        input.form-control(type='number', name='matchesCount')
+        select.form-control(name='matchesCount')
+          option(value='1') 1
+          option(value='3') 3
+          option(value='5') 5
+          option(value='7') 7
     .form-group
       label Start date
       .input-group
         span.input-group-addon
           i.fa.fa-calendar.fa-fw
-        input.form-control(type='date', name='start')
+        input.form-control(type='date', name='date')
 
     button.btn.button-submit(type='submit') Submit
 
