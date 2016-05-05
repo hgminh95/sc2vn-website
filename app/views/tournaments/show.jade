@@ -1,6 +1,7 @@
 extends ../layout.normal
 
 include ../mixins/tournament
+include ../mixins/widget
 
 block content-header
   img.tournament-banner(src=tournament.banner)
@@ -11,13 +12,20 @@ block content-inside
 p= drawer
 
 block sidebar
-  a#register-button.btn.btn-block.button-submit
-    i.fa.fa-edit.fa-fw
-    | &nbsp; Register
+  if isLoggedIn
+    if !currentUser.isOwnerOf(tournament)
+      a#register-button.btn.btn-block.button-submit
+        i.fa.fa-edit.fa-fw
+        | &nbsp; Register
+  else
+    a#register-without-login-button.btn.btn-block.button-submit
+      .fa.fa-edit.fa-fw
+      | &nbsp; Register
 
-  a.btn.btn-block.button-submit(href=tournament.getEditPath())
-    i.fa.fa-edit.fa-fw
-    | &nbsp; Edit Tournament
+  if isLoggedIn && currentUser.isOwnerOf(tournament)
+    a.btn.btn-block.button-submit(href=tournament.getEditPath())
+      i.fa.fa-edit.fa-fw
+      | &nbsp; Edit Tournament
 
   script.
     $('#register-button').click(function() {
@@ -32,3 +40,13 @@ block sidebar
           }, 1000);
         });
     });
+
+    $('#register-without-login-button').click(function() {
+      alert('You must login in order to register to this tournament');
+    })
+
+  +tournament-info(tournament)
+
+block sidebar-widget
+  +matches-widget("Upcoming Matches", recent_matches)
+  +players-widget("Top players", top_players)

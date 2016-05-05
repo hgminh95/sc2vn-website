@@ -9,6 +9,7 @@ block content-inside
   +user-recent-matches-chart(matches_data)
 
 block sidebar
-  a.btn.btn-block.button-submit(href=user.getEditPath())
-    i.fa.fa-edit.fa-fw
-    | &nbsp; Edit Information
+  if isLoggedIn && currentUser._id.equals(user._id)
+    a.btn.btn-block.button-submit(href=user.getEditPath())
+      i.fa.fa-edit.fa-fw
+      | &nbsp; Edit Information

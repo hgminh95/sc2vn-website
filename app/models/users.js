@@ -22,6 +22,7 @@ var UserSchema = new Schema({
   race: { type: String, enum: ['zerg', 'terran', 'protoss', 'random'] },
   clan: { type: Schema.Types.ObjectId, ref: 'Clan' },
   introduction: { type: String, maxlength: 100 },
+  role: { type: String, default: 'user' },
 
   // For statistics
   score: { type: Number, default: 0 },
@@ -181,6 +182,26 @@ UserSchema.methods = {
     this.save();
   },
 
+  isAuthorOf: function(article) {
+    return this.equals(article.author) || this._id.equals(article.author)
+  },
+
+  isOwnerOf: function(tournament) {
+    return this.equals(tournament.owner) || this._id.equals(tournament.owner)
+  },
+
+  isAdmin: function() {
+    return this.type === 'admin'
+  },
+
+  isModerator: function() {
+    return this.type === 'mod'
+  },
+
+  isPlayer: function() {
+    return this.bnet_id != null
+  },
+
   getChartData: function() {
     if (!this.recent_matches)
       return []
@@ -254,7 +275,7 @@ UserSchema.statics = {
   },
 
   fields: function(callback) {
-    return 'email password bnet_id name avatar race clan introduction notifications';
+    return 'email password bnet_id name avatar role race clan introduction notifications';
   },
 
   createFields: function() {

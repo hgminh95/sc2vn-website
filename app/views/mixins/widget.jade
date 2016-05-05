@@ -1,8 +1,8 @@
-mixin recent-matches(matches)
+mixin matches-widget(title, matches)
   .widget
     .widget-title
       i.fa.fa-bolt.fa-fw
-      | &nbsp; Recent Matches
+      = ' ' + title
       span.pull-right
         a(href='/matches')
           i.fa.fa-bars.fa-fw
@@ -23,11 +23,11 @@ mixin recent-matches(matches)
                   | &nbsp;
                   = match.player_2.name
 
-mixin top-players(players)
+mixin players-widget(title, players)
   .widget
     .widget-title
       i.fa.fa-users.fa-fw
-      | &nbsp; Top Players
+      = ' ' + title
       span.pull-right
         a(href='/users/rank')
           i.fa.fa-bars.fa-fw
@@ -45,3 +45,25 @@ mixin top-players(players)
                     = player.name
               td.col-md-1(align='right')
                   = player.score
+
+mixin tournament-info(tournament)
+  .widget
+    .widget-content
+      table.table.table-hover
+        tbody
+          tr
+            th.col-md-3 Status
+            td.col-md-4
+              ul
+                li UPCOMMING
+                li or STARTED
+                li or FINISHED
+          tr
+            th Players
+            td 20/30
+          tr
+            th Start
+            td 07/11/2019 01:00 UTC
+          tr
+            th Total prize
+            td 20.000 VND

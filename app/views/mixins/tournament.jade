@@ -16,11 +16,37 @@ mixin tournament-preview(tournament)
 
 
 mixin tournament-form(tournament, action)
+  h4(style='margin-bottom: 30px;')
+    strong CREATE TOURNAMENT
   form(action=action, method='post')
-    .form-group
-      label(for='name') Name
-      input#title.form-control(type='text', name='name', placeholder='Name', value=tournament.name)
-    button.btn.button-submit(type='submit') Submit
+    .rows
+      .col-md-6.no-padding
+        .form-group
+          label(for='name') Name
+          .input-group
+            span.input-group-addon
+              i.fa.fa-question.fa-fw
+            input.form-control(type='text', name='name', placeholder='Name', value=tournament.name)
+        .form-group
+          label(for='') Start
+          .input-group
+            span.input-group-addon
+              i.fa.fa-calendar.fa-fw
+            input.form-control(type='date', name='start', placeholder='Start date')
+        .form-group
+          label(for='') Number of players
+          .input-group
+            span.input-group-addon
+              i.fa.fa-users.fa-fw
+            input.form-control(type='number', name='todoname')
+      .col-md-6
+        .form-group
+          label(for='introduction') Introduction
+          textarea.form-control(name='introduction', rows=10)
+
+      button.btn.button-submit(type='submit') Submit
+
+
 
 mixin tournament(tournament)
   .tournament
@@ -44,16 +70,30 @@ mixin tournament(tournament)
           != tournament.introduction
         #rule.tab-pane.editable
           != tournament.rule
-        #prizes.tab-pane.editable
-          != tournament.faq
+        #prizes.tab-pane
+          .text-center
+            table.table.table-hover
+              thead
+                tr
+                  th.text-center Placement
+                  th.text-center Prize
+              tbody
+                tr
+                  th.text-center 1st
+                  td 1.000.000 VND + Cup
+                tr
+                  th.text-center 2nd
+                  td 500.000 VND
+                tr
+                  th.text-center 3rd - 4th
+                  td 200.000 VND
+                tr
+                  th.text-center 5th - 30th
+                  td Nothing
+
         #schedule.tab-pane
-          if drawer
-            - drawer.groups = ['quarter-finals', 'semi-finals', 'final']
-            - drawer.calculateName()
-            - drawer.calculatePosition()
-            | !{drawer.html()}
-        #faq.tab-pane
-          != 2
+        #faq.tab-pane.editable
+          != tournament.faq
 
 mixin schedule(stages)
   #accordion.panel-group(role='tab-list', aria-multiselectable='true')

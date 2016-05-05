@@ -18,8 +18,6 @@ module.exports = function(app) {
 
   app.use(users.loadCurrentUser)
 
-  app.use(permission.middleware)
-
   app.use(usersMiddleware.checkNotification)
 
   app.use(widgets.recentMatches)
@@ -38,8 +36,8 @@ module.exports = function(app) {
       .get('/login', users.login)
       .get('/register', users.register)
       .get('/:userId', users.show)
-      .get('/:userId/edit', users.edit)
-      .post('/:userId', users.update)
+      .get('/:userId/edit', permission.isSameUser, users.edit)
+      .post('/:userId', permission.isSameUser, users.update)
       .get('/:userId/resend_confirm_email', users.resendConfirmEmail)
       .get('/:userId/confirm/:confirm_token', users.confirm)
   )
@@ -70,10 +68,10 @@ module.exports = function(app) {
       .get('/new', tournaments.new)
       .post('/', tournaments.create)
       .get('/:tournamentId', tournaments.show)
-      .get('/:tournamentId/edit', tournaments.edit)
+      .get('/:tournamentId/edit', permission.isTournamentOwner, tournaments.edit)
       .post('/:tournamentId/register', tournaments.tournamentRegister)
-      .post('/:tournamentId', tournaments.update)
-      .delete('/:tournamentId', tournaments.destroy)
+      .post('/:tournamentId', permission.isTournamentOwner, tournaments.update)
+      .delete('/:tournamentId', permission.isTournamentOwner, tournaments.destroy)
       .post('/:tournamentId/accept/:userId', tournaments.acceptUser)
       .post('/:tournamentId/deny/:userId', tournaments.denyUser)
       .post('/:tournamentId/invitation/:userId', tournaments.invitation)

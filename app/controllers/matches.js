@@ -86,7 +86,7 @@ exports.show = function(req, res) {
 }
 
 exports.edit = function(req, res) {
-  res.render('match/edit', {
+  res.render('matches/edit', {
     match: req.match
   });
 }

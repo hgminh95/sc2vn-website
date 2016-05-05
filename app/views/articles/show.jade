@@ -9,6 +9,7 @@ block content-inside
   +article(article)
 
 block sidebar
-  a.btn.btn-block.button-submit(href=article.getEditPath())
-    i.fa.fa-edit.fa-fw
-    | &nbsp; Edit Article
+  if isLoggedIn && currentUser.isAuthorOf(article)
+    a.btn.btn-block.button-submit(href=article.getEditPath())
+      i.fa.fa-edit.fa-fw
+      | &nbsp; Edit Article

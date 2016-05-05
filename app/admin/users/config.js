@@ -29,8 +29,8 @@ module.exports = function(nga, admin) {
           .targetEntity(admin.getEntity('clans'))
           .targetField(nga.field('name')),
       nga.field('introduction'),
+      nga.field('role', 'choice'),
 
-      // Notifications
       nga.field('notifications', 'embedded_list')
           .targetFields([
             nga.field('message'),
@@ -72,6 +72,12 @@ module.exports = function(nga, admin) {
             { value: 'random', label: 'Random' }
           ]),
       nga.field('introduction', 'wysiwyg'),
+      nga.field('role', 'choice')
+          .choices([
+            { value: 'admin', label: 'admin' },
+            { value: 'moderator', label: 'moderator' },
+            { value: 'user', label: 'user' }
+          ]),
 
       // Notifications
       nga.field('notifications', 'embedded_list')

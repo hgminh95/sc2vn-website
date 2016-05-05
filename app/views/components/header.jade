@@ -11,20 +11,20 @@ nav#nav.navbar.navbar-default.navbar-fixed-top
 
     // Collect the nav links, forms and other content for toggling
     .collapse.navbar-collapse(id='navbar-collapse')
-      if isUser
+      if isLoggedIn
         ul.nav.navbar-nav.navbar-right
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
               - var count= 0
-              each item in current_user.notifications
+              each item in currentUser.notifications
                   - count++
               .fa.fa-bell-o
               .badge=  count
             ul.dropdown-menu
-              if (current_user.notifications.length == 0)
+              if (currentUser.notifications.length == 0)
                 li
                   p.dropdown-item you don't have notifications
-              each notification in current_user.notifications
+              each notification in currentUser.notifications
                 li
                   a(href=notification.link)
                     i.fa.fa-fw(class='fa-' + notification.icon)
@@ -33,12 +33,12 @@ nav#nav.navbar.navbar-default.navbar-fixed-top
 
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-              = current_user.name
+              = currentUser.name
               | &nbsp;
               span.caret
             ul.dropdown-menu
               li
-                a(href=current_user.getShowPath())
+                a(href=currentUser.getShowPath())
                   i.fa.fa-fw.fa-gears
                   | &nbsp;Account
               li
@@ -80,11 +80,11 @@ nav#nav.navbar.navbar-default.navbar-fixed-top
             .input-group
               span.input-group-addon
                 i.fa.fa-envelope.fa-fw
-              input.form-control(type='email', name='email', placeholder='Email')
+              input.form-control.input-lg(type='email', name='email', placeholder='Email')
             .input-group
               span.input-group-addon
                 i.fa.fa-key.fa-fw
-              input.form-control(type='password', name='password', placeholder='Password')
+              input.form-control.input-lg(type='password', name='password', placeholder='Password')
           button.btn.button-submit.btn-block(type='submit') Log in
           h6.text-center
             a(href='#') Forgot your password?

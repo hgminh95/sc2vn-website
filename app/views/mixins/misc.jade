@@ -1,4 +1,17 @@
 mixin breadcrumbs(breadcrumbs)
+
+  script.
+    (function (){
+      var cx = '006213579805173758021:wcc_o_s42ke';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+      '//cse.google.com/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(gcse, s);
+    })();
+
   .breadcrumbs.light
     .container
       .breadcrumbs-left
@@ -9,4 +22,24 @@ mixin breadcrumbs(breadcrumbs)
             = entry.name
 
       .breadcrumbs-right
-        i.fa.fa-search.fa-fw
+        input#cse-search-input.searchbar(type='text', size=23, autocomplete='off', required)
+        i.fa.fa-search.fa-fw.searchbutton(onclick='executeQuery();')
+        script.
+          function executeQuery() {
+            var input = document.getElementById('cse-search-input');
+            var element = google.search.cse.element.getElement('searchresults-only0');
+            if (input.value == '') {
+              element.clearAllResults();
+            } else {
+              element.execute(input.value);
+            }
+            return false;
+          }
+
+        gcse:searchresults-only()
+
+
+
+
+
+

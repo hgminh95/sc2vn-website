@@ -2,61 +2,66 @@
   .nav-tabs {
     float: left;
     border-bottom: 1px;
-    min-width: 150px;
-    max-width: 250px;
+    min-width: 170px;
+    max-width: 220px;
 
     li {
       float: none;
       margin: 0;
+      z-index: 3;
 
       a {
         margin-top: -1px;
+        margin-right: 0px;
         border: 1px solid #ddd;
-        border-left-color: transparent;
+        border-width: 1px 0px 1px 1px;
         transition: 0s;
-
+        
         &:hover {
-          background-color: #fff;
+          background-color: transparent;
+          border-width: 1px 0px 1px 1px;
+        }
+        
+        &:focus {
+          border-width: 1px 0px 1px 1px;
+          border-bottom: 1px solid #ddd;
         }
       }
-
+      
       &:first-child {
         a {
-          border-top-color: transparent;
-        }
-      }
-
-      &:last-child {
-        a {
-          border-bottom-color: transparent;
+          margin-top: 0px;
+          box-shadow: 0px -3px 5px -4px rgba(0, 0, 0, 0.2);
         }
       }
     }
 
     li.active {
       a, a:focus {
-        border-bottom-color: #ddd;
-        border-right-color: transparent;
-        border-left-color: #ddd;
+        border-width: 1px 0px 1px 1px;
+        background-color: #fff;
       }
     }
   }
 
   .tab-content {
     margin-left: 45px;
+    z-index: 1;
 
     .tab-pane {
+      box-shadow: -10px -5px 10px -8px rgba(0, 0, 0, 0.2);
       display: none;
       padding-top: 10px;
       padding-left: 30px;
-      overflow-y: auto;
+      overflow: hidden;
+      min-height: 300px;
+      z-index: 2;
     }
 
     .active {
       display: block;
       border: 1px;
+      border-top: 1px solid #ddd;
     }
   }
 }
-
-
