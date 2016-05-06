@@ -74,6 +74,8 @@ exports.new = function(req, res) {
 
 exports.create = function(req, res, next) {
   var match = new Match(only(req.body, Match.fields()));
+  match.addGames(req.body.gamesCount)
+
   match.save(function(err) {
     if (err) return next(err);
 
