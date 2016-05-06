@@ -90,6 +90,14 @@ MatchSchema.methods = {
     return 0;
   },
 
+  addGames: function(num) {
+    for (var i = 0; i < num; i++) {
+      this.games.push({
+        status: 'not available'
+      })
+    }
+  },
+
   getShowPath: function() {
     return '/matches/' + this._id;
   },
