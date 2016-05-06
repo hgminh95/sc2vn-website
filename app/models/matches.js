@@ -7,7 +7,7 @@ var moment = require('moment')
 var today = moment().startOf('day')
 
 var GameSchema = new Schema({
-  map: { type: Schema.Types.ObjectId, ref: 'Map' },
+  map: { type: Schema.Types.ObjectId, ref: 'Map', required: false},
   status: { type: String, enum: ['win', 'lose', 'draw', 'not available'] },
   duration: { type: String },
   race1: { type: String, enum: ['zerg', 'protoss', 'terran'] },
