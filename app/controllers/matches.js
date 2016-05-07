@@ -3,6 +3,7 @@
 var assign = require('object-assign');
 var only = require('only');
 var Match = require('../models/matches');
+var User = require('../models/users');
 var async = require('async');
 var settings = require('../../config/settings')
 var uploader = require('../uploaders/replay');
@@ -62,14 +63,23 @@ exports.index = function(req, res, next) {
 }
 
 exports.new = function(req, res) {
-  res.render('matches/new', {
-    match: new Match()
-  });
+  User.all(function(err, users) {
+    if (err) return next(err)
+
+    res.render('matches/new', {
+      match: new Match(),
+      users: users
+    });
+  })
 }
 
 exports.create = function(req, res, next) {
   var match = new Match(only(req.body, Match.fields()));
+<<<<<<< HEAD
 
+=======
+  match.addGames(req.body.gamesCount)
+>>>>>>> c450137f5ee8e00732c496178ae6e0f6e2e17cc2
 
   match.save(function(err) {
     if (err) return next(err);
@@ -93,6 +103,7 @@ exports.edit = function(req, res) {
 
 exports.update = function(req, res) {
   var match = req.match;
+<<<<<<< HEAD
 
   assign(match, only(req.body, Match.fields()));
   for(var i = 0 ; i < req.body.games.length(); i++){
@@ -107,6 +118,19 @@ exports.update = function(req, res) {
   }
 
   match.save();
+=======
+  var gamesReq = {games: JSON.parse(req.body.games)}
+  console.log(match)
+  assign(match, only(gamesReq, Match.fields()));
+  console.log(match)
+
+  match.save(function(err, match) {
+    if (err) {
+      console.log(err)
+      return err
+    }
+  });
+>>>>>>> c450137f5ee8e00732c496178ae6e0f6e2e17cc2
 
   res.redirect(match.getShowPath());
 }

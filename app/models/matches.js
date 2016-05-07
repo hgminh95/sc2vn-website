@@ -7,7 +7,7 @@ var moment = require('moment')
 var today = moment().startOf('day')
 
 var GameSchema = new Schema({
-  map: { type: Schema.Types.ObjectId, ref: 'Map' },
+  map: { type: Schema.Types.ObjectId, ref: 'Map', required: false},
   status: { type: String, enum: ['win', 'lose', 'draw', 'not available'] },
   duration: { type: String },
   race1: { type: String, enum: ['zerg', 'protoss', 'terran'] },
@@ -88,6 +88,14 @@ MatchSchema.methods = {
     if (this.player_1.equals(userId)) return wins.length;
     if (this.player_2.equals(userId)) return this.gamePlayed() - wins.length;
     return 0;
+  },
+
+  addGames: function(num) {
+    for (var i = 0; i < num; i++) {
+      this.games.push({
+        status: 'not available'
+      })
+    }
   },
 
   getShowPath: function() {
