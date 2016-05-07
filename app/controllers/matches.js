@@ -75,12 +75,7 @@ exports.new = function(req, res) {
 
 exports.create = function(req, res, next) {
   var match = new Match(only(req.body, Match.fields()));
-<<<<<<< HEAD
-
-=======
   match.addGames(req.body.gamesCount)
->>>>>>> c450137f5ee8e00732c496178ae6e0f6e2e17cc2
-
   match.save(function(err) {
     if (err) return next(err);
 
@@ -103,9 +98,9 @@ exports.edit = function(req, res) {
 
 exports.update = function(req, res) {
   var match = req.match;
-<<<<<<< HEAD
 
-  assign(match, only(req.body, Match.fields()));
+  var gamesReq = {games: JSON.parse(req.body.games)}
+  assign(match, only(gamesReq, Match.fields()));
   for(var i = 0 ; i < req.body.games.length(); i++){
     var game = req.body.games[i];
     var file = req.files[game._id]
@@ -117,20 +112,12 @@ exports.update = function(req, res) {
     });
   }
 
-  match.save();
-=======
-  var gamesReq = {games: JSON.parse(req.body.games)}
-  console.log(match)
-  assign(match, only(gamesReq, Match.fields()));
-  console.log(match)
-
   match.save(function(err, match) {
     if (err) {
       console.log(err)
       return err
     }
   });
->>>>>>> c450137f5ee8e00732c496178ae6e0f6e2e17cc2
 
   res.redirect(match.getShowPath());
 }
