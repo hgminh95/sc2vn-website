@@ -6,6 +6,30 @@ block content-inside
   +match(match, 'edit')
 
 block sidebar
-  button.btn.btn-block.button-submit
+  button#save-button.btn.btn-block.button-submit
     i.fa.fa-edit.fa-fw
     | &nbsp; Save
+  script.
+    $('#save-button').click(function() {
+      $('#save-button').html('<i class="fa fa-circle-o-notch fa-spin"></i>')
+      var gamesChange = []
+      $('.tab-content .tab-pane').each(function(index) {
+        var elementId = '#g' + index
+        var game = {
+          race1: $(elementId + 'p1race').val(),
+          race2: $(elementId + 'p2race').val(),
+          //- map: $(elementId + 'map').val(),
+          replay: null,
+          status: $(elementId + 'status').val()
+        }
+        gamesChange.push(game)
+      })
+      $.post('./', {
+        games: JSON.stringify(gamesChange)
+      },
+      function(data, status) {
+        setTimeout(function() {
+          $('#save-button').html('<i class="fa fa-floppy-o fa-fw"></i> &nbsp;Save')
+        }, 1000);
+      });
+    })

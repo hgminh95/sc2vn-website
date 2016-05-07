@@ -74,6 +74,8 @@ exports.new = function(req, res) {
 
 exports.create = function(req, res, next) {
   var match = new Match(only(req.body, Match.fields()));
+  match.addGames(req.body.gamesCount)
+
   match.save(function(err) {
     if (err) return next(err);
 
@@ -96,9 +98,17 @@ exports.edit = function(req, res) {
 
 exports.update = function(req, res) {
   var match = req.match;
+  var gamesReq = {games: JSON.parse(req.body.games)}
+  console.log(match)
+  assign(match, only(gamesReq, Match.fields()));
+  console.log(match)
 
-  assign(match, only(req.body, Match.fields()));
-  match.save();
+  match.save(function(err, match) {
+    if (err) {
+      console.log(err)
+      return err
+    }
+  });
 
   res.redirect(match.getShowPath());
 }

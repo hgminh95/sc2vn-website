@@ -48,7 +48,7 @@ mixin match-form()
       .input-group
         span.input-group-addon
           i.fa.fa-map.fa-fw
-        select.form-control(name='matchesCount')
+        select.form-control(name='gamesCount')
           option(value='1') 1
           option(value='3') 3
           option(value='5') 5
@@ -111,27 +111,46 @@ mixin game(game)
   p= "Status: " + game.status
 
 mixin game-form(index)
+  - var opsVal = ['zerg', 'protoss', 'terran']
+  - var opsValName = ['Zerg', 'Protoss', 'Terran']
   .form-group
     label Player 1 race
     .input-group
       span.input-group-addon
         i.fa.fa-flag.fa-fw
-      input.form-control(id='#g#{index}p1race', type='text')
+      select.form-control(id='g#{index}p1race')
+        each val, indexVal in opsVal
+          if (val == match.games[index].race1)
+            option(value=val, selected)= opsValName[indexVal]
+          else
+            option(value=val)= opsValName[indexVal]
   .form-group
     label Player 2 race
     .input-group
       span.input-group-addon
         i.fa.fa-flag.fa-fw
-      input.form-control(id='#g#{index}p2race', type='text')
+      select.form-control(id='g#{index}p2race')
+        each val, indexVal in opsVal
+          if (val == match.games[index].race2)
+            option(value=val, selected)= opsValName[indexVal]
+          else
+            option(value=val)= opsValName[indexVal]
   .form-group
     label Map
     .input-group
       span.input-group-addon
         i.fa.fa-map.fa-fw
-      input.form-control(id='#g#{index}map', type='text')
+      input.form-control(id='g#{index}map', type='text')
   .form-group
     label Winner
     .input-group
       span.input-group-addon
         i.fa.fa-trophy.fa-fw
-      input.form-control(id='#g#{index}status', type='text')
+      select.form-control(id='g#{index}status')
+        - var statusVal = ['win', 'lose', 'draw', 'not available']
+        - var statusName = [match.player_1.name, match.player_2.name, 'Draw', 'Not available']
+        each val, indexVal in statusVal
+          if (val == match.games[index].status)
+            option(value=val, selected)= statusName[indexVal]
+          else
+            option(value=val)= statusName[indexVal]
