@@ -3,13 +3,14 @@ extends ../layout.normal
 include ../mixins/tournament
 include ../mixins/widget
 
+block scripts
+  script(src='/javascripts/tournament-drawer.min.js')
+
 block content-header
   img.tournament-banner(src=tournament.banner)
 
 block content-inside
   +tournament(tournament)
-
-p= drawer
 
 block sidebar
   if isLoggedIn

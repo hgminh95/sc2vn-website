@@ -23,7 +23,8 @@ var InvitationSchema = new Schema({
 })
 
 var StageSchema = new Schema({
-  name: String
+  name: { type: String },
+  metadata: { type: String }
 })
 
 var TournamentSchema = new Schema({

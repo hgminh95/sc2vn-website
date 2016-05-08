@@ -46,8 +46,6 @@ mixin tournament-form(tournament, action)
 
       button.btn.button-submit(type='submit') Submit
 
-
-
 mixin tournament(tournament)
   .tournament
     #tournament-title.tournament-title
@@ -92,16 +90,18 @@ mixin tournament(tournament)
                   td Nothing
 
         #schedule.tab-pane
+          each stage in tournament.stages
+            +stage(stage)
         #faq.tab-pane.editable
           != tournament.faq
 
-mixin schedule(stages)
-  #accordion.panel-group(role='tab-list', aria-multiselectable='true')
-    each stage, index in stages
-      .panel.panel-default
-        .panel-heading(role='tab', id='heading' + index)
-          a(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapse' + index, aria-expanded='true', aria-controls='collapse' + index)
-            = stage.name
-        .panel-collapse.collapse(id='collapse' + index, role='tabpanel', aria-labelledby='heading' + index)
-          .panel-body
-            | ABCDEF
+mixin stage(stage)
+  - var canvasName = stage.name.toLowerCase().replace(" ", "-") + "-canvas"
+
+  canvas(width='500px', height='500px', id=canvasName)
+
+  script.
+    var data = !{stage.metadata};
+    var ctx = $("#!{canvasName}").get(0).getContext("2d");
+    ctx.translate(.5, .5);
+    var tour = new Tournament.Elimination(data, {}, ctx);

@@ -44,7 +44,8 @@ module.exports = function(nga, admin) {
       // Schedule
       nga.field('stages', 'embedded_list')
         .targetFields([
-          nga.field('name')
+          nga.field('name'),
+          nga.field('metadata')
         ]),
 
       nga.field('created_at', 'datetime'),
@@ -79,7 +80,8 @@ module.exports = function(nga, admin) {
       // Schedule
       nga.field('stages', 'embedded_list')
         .targetFields([
-          nga.field('name')
+          nga.field('name'),
+          nga.field('metadata', 'text')
         ])
     ]);
 

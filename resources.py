@@ -52,6 +52,11 @@ resources = [
         "name": "Pace",
         "url": "https://raw.githubusercontent.com/HubSpot/pace/v1.0.0/pace.min.js",
         "dir": "public/javascripts/pace.min.js"
+    },
+    {
+        "name": "Tournament Drawer",
+        "url": "http://hgminh95.github.io/tournament-drawer/tournament-drawer.min.js",
+        "dir": "public/javascripts/tournament-drawer.min.js"
     }
 ]
 
@@ -61,9 +66,9 @@ def getResource(res):
 
     fetcher = urllib.URLopener()
     fetcher.retrieve(res["url"], res["dir"])
-    
+
     sys.stdout.write("\r{0} - Done          \n".format(res["name"]))
-    sys.stdout.flush()    
+    sys.stdout.flush()
 
 if not os.path.exists("public/fonts"):
     os.makedirs("public/fonts")
