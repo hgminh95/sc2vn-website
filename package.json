@@ -43,7 +43,6 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
-    "express-debug": "^1.1.1",
     "mocha": "^2.4.5",
     "webpack": "^1.12.14"
   }

@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var debug = require('express-debug');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var sass = require('node-sass-middleware');
@@ -87,8 +86,5 @@ function connect () {
   var options = { server: { socketOptions: { keepAlive: 1 } } };
   return mongoose.connect(config.db, options).connection;
 }
-
-if (app.get('env') === 'development')
-  debug(app, { depth: 5 })
 
 module.exports = app;
