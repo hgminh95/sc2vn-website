@@ -41,9 +41,6 @@ exports.index = function(req, res, next) {
     upcomming: function(callback) {
       return Match.upcomming(callback)
     },
-    live: function(callback) {
-      return Match.live(callback)
-    },
     past: function(callback) {
       return Match.past({
         perPage: settings.matches_per_page,
@@ -55,7 +52,6 @@ exports.index = function(req, res, next) {
 
     res.render('matches/index', {
       title: 'Matches',
-      live: results.live,
       upcomming: results.upcomming,
       past: results.past
     })

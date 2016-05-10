@@ -133,21 +133,6 @@ MatchSchema.statics = {
     return this.find({}).exec(callback);
   },
 
-  live: function(callback) {
-    return this.find({
-        "date" : {
-          "$lt" : today.toDate()
-        }
-      })
-      .sort({ date: 'desc' })
-      .populate('player_1')
-      .populate('player_2')
-      .populate('tournament', 'name banner')
-      .exec(function(err, matches) {
-        callback(err, matches.filter(match => match.winner() == null))
-      })
-  },
-
   upcomming: function(callback) {
     return this.find({
         "date": {
