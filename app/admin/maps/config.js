@@ -27,4 +27,3 @@ module.exports = function(nga, admin) {
 
   maps.editionView().fields(maps.creationView().fields());
 }
-
