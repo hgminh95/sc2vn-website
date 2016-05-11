@@ -33,7 +33,7 @@ exports.load = function(req, res, next, id) {
 }
 
 exports.index = function(req, res, next) {
-  Tournament.all(function(err, tournaments) {
+  Tournament.find({status: 'normal'}).exec(function(err, tournaments) {
     if (err) return next(err);
 
     res.render('tournaments/index', {
@@ -41,6 +41,17 @@ exports.index = function(req, res, next) {
       tournaments: tournaments
     });
   });
+}
+
+exports.pendingTournaments = function(req, res, next) {
+  Tournament.find({status: 'pending'}).exec(function(err, tournaments){
+    if (err) return next(err);
+
+    res.render('tournaments/index',{
+      title: 'Tournament',
+      tournaments : tournaments
+    })
+  })
 }
 
 exports.new = function(req, res) {
@@ -52,13 +63,11 @@ exports.new = function(req, res) {
 exports.create = function(req, res, next) {
   var tournament = new Tournament(only(req.body, Tournament.fields()));
 
-  uploader.upload(tournament, req.file, function(tournament) {
-    tournament.save(function(err, tournament) {
-      if (err) return next(err);
-      res.redirect(tournament.getShowPath());
-    });
-  });
+  uploader.upload(tournament, req.file);
 
+  if(req.user.role == 'admin'){
+    tournament.status = 'normal'
+  }
   tournament.save(function(err) {
     if (err) return next(err);
 
@@ -89,16 +98,10 @@ exports.update = function(req, res) {
 
   assign(tournament, only(req.body, Tournament.fields()));
 
-  uploader.upload(tournament, req.file, function(tournament) {
-    tournament.save(function(err, tournament) {
-      if (err) return next(err);
-      res.redirect(tournament.getShowPath());
-    });
-  });
+  uploader.upload(tournament, req.file);
 
   tournament.save(function(err) {
     if (err) return res.sendStatus(406)
-
     return res.json(req.body)
   })
 }
@@ -248,4 +251,25 @@ exports.removeStaff = function(req, res){
   tournament.removeStaff(user);
   user.addNotification(notification);
   res.sendStatus(201);
+}
+
+exports.acceptTournament = function(req, res, next){
+  if(req.user.role != 'admin') return next(new Error('Permission Denied'));
+  var tournament = req.tournament;
+  tournament.status = 'normal'
+  tournament.save(function(err){
+    if (err) return res.sendStatus(406);
+
+    res.sendStatus(201);
+  })
+}
+
+exports.declineTournament = function(req, res, next){
+  if(req.user.role != 'admin') return next(new Error('Permission Denied'));
+  var tournaments = req.tournament;
+  tournament.remove(function(err){
+    if (err) return res.sendStatus(406);
+
+    res.sendStatus(201);
+  });
 }
