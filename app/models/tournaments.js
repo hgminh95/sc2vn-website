@@ -35,7 +35,8 @@ var TournamentSchema = new Schema({
   faq: { type: String },
   registration: { type: RegistrationSchema, required: true, default: {}  },
   invitation: { type: InvitationSchema, required: true, default: {} },
-  stages: { type: [Stage.schema] }
+  stages: { type: [Stage.schema] },
+  status: { type: String, enum: ['pending', 'normal'], default: 'pending'}
 },
 {
   timestamps: {

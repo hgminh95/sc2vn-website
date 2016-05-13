@@ -79,6 +79,9 @@ module.exports = function(app) {
       .post('/:tournamentId/declineInvitation', tournaments.declineInvitation)
       .post('/:tournamentId/addStaff/:userId', tournaments.addStaff)
       .post('/:tournamentId/removeStaff/:userId', tournaments.removeStaff)
+      .get('/adminarea', tournaments.pendingTournaments)
+      .post('/:tournamentId/acceptTournament', tournaments.acceptTournament)
+      .post('/:tournamentId/declineTournament', tournaments.declineTournament)
   )
 
   // Match Routes
