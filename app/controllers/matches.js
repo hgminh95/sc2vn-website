@@ -4,6 +4,7 @@ var assign = require('object-assign');
 var only = require('only');
 var Match = require('../models/matches');
 var User = require('../models/users');
+var Map = require('../models/maps');
 var async = require('async');
 var settings = require('../../config/settings')
 var uploader = require('../uploaders/replay');
@@ -33,6 +34,7 @@ exports.load = function(req, res, next, id) {
   })
   .populate('player_1')
   .populate('player_2')
+  .populate('games.map')
   .populate('tournament', 'name banner')
 }
 
@@ -87,9 +89,14 @@ exports.show = function(req, res) {
 }
 
 exports.edit = function(req, res) {
-  res.render('matches/edit', {
-    match: req.match
-  });
+  Map.all(function(err, maps) {
+    if (err) return next(err)
+
+    res.render('matches/edit', {
+      match: req.match,
+      maps: maps
+    });
+  })
 }
 
 exports.update = function(req, res) {

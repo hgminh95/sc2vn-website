@@ -108,6 +108,10 @@ mixin game(game)
   img.img.pull-right(width='200px', height='200px')
   p= "Player 1 race: " + game.race1
   p= "Player 2 race: " + game.race2
+  if (game.map)
+    p= "Map: " + game.map.name
+  else
+    p= "Map: not available" 
   p= "Status: " + game.status
 
 mixin game-form(index)
@@ -140,7 +144,13 @@ mixin game-form(index)
     .input-group
       span.input-group-addon
         i.fa.fa-map.fa-fw
-      input.form-control(id='g#{index}map', type='text')
+      select.form-control(id='g#{index}map')
+        each map, indexVal in maps
+          if (match.games[index].map)
+            if (match.games[index].map._id.equals(map._id))
+              option(value=map._id, selected)= map.name
+          else
+            option(value=map._id)= map.name
   .form-group
     label Winner
     .input-group
