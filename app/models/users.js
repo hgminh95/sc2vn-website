@@ -290,4 +290,3 @@ UserSchema.statics = {
 var User = mongoose.model('User', UserSchema);
 
 module.exports = User;
-

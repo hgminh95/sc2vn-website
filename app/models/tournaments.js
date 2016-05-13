@@ -1,8 +1,9 @@
 'use strict';
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 var Match = require('./matches')
+var Stage = require('./stages')
 
 var RegistrationSchema = new Schema({
   registrable: { type: Boolean },
@@ -16,15 +17,12 @@ var RegistrationSchema = new Schema({
   _id: false
 })
 
-
 var InvitationSchema = new Schema({
   pending: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   participants: [{ type: Schema.Types.ObjectId, ref: 'User' }]
-})
-
-var StageSchema = new Schema({
-  name: { type: String },
-  metadata: { type: String }
+},
+{
+  _id: false
 })
 
 var TournamentSchema = new Schema({
@@ -37,7 +35,7 @@ var TournamentSchema = new Schema({
   faq: { type: String },
   registration: { type: RegistrationSchema, required: true, default: {}  },
   invitation: { type: InvitationSchema, required: true, default: {} },
-  stages: [StageSchema]
+  stages: { type: [Stage.schema] }
 },
 {
   timestamps: {
@@ -117,7 +115,7 @@ TournamentSchema.methods = {
 
 TournamentSchema.statics = {
   all: function(callback) {
-    return this.find({}).exec(callback);
+    return this.find({}).exec(callback)
   },
 
   fields: function() {
@@ -125,10 +123,10 @@ TournamentSchema.statics = {
   },
 
   getNewPath: function() {
-    return '/tournaments/new';
+    return '/tournaments/new'
   }
 }
 
-var Tournament = mongoose.model('Tournament', TournamentSchema);
+var Tournament = mongoose.model('Tournament', TournamentSchema)
 
-module.exports = Tournament;
+module.exports = Tournament

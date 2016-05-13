@@ -13,6 +13,9 @@ var GameSchema = new Schema({
   race1: { type: String, enum: ['zerg', 'protoss', 'terran'] },
   race2: { type: String, enum: ['zerg', 'protoss', 'terran'] },
   replay: { type: String }
+},
+{
+  _id: false
 })
 
 var MatchSchema = new Schema({
