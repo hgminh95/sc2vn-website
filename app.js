@@ -31,7 +31,7 @@ if (app.get('env') === 'development')
     src: path.join(__dirname, 'app/resources/sass'),
     dest: path.join(__dirname, 'public/stylesheets'),
     includePaths: [path.join(__dirname, 'node_modules/bootstrap-sass/assets/stylesheets'), path.join(__dirname, 'node_modules/tournament-drawer/css')],
-    debug: true,
+    debug: false,
     prefix: '/stylesheets'
   }))
 

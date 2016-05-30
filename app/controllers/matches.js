@@ -2,10 +2,11 @@
 
 var assign = require('object-assign');
 var only = require('only');
+var async = require('async');
+
 var Match = require('../models/matches');
 var User = require('../models/users');
 var Map = require('../models/maps');
-var async = require('async');
 var settings = require('../../config/settings')
 var uploader = require('../uploaders/replay');
 
@@ -50,8 +51,6 @@ exports.index = function(req, res, next) {
       }, callback)
     }
   }, function(err, results) {
-    console.log(results)
-
     res.render('matches/index', {
       title: 'Matches',
       upcomming: results.upcomming,
