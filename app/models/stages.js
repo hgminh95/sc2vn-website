@@ -15,7 +15,7 @@ var StageSchema = new Schema({
 })
 
 StageSchema.methods = {
-  save: function(metadata, callback) {
+  updateFromMetadata: function(metadata, callback) {
     var opts = [
       { path: 'matches' },
       { path: 'players' }
