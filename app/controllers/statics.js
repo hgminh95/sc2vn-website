@@ -1,5 +1,9 @@
 'use strict'
 
+var async = require('async')
+
+var Tournament = require('../models/tournaments')
+
 exports.admin = function(req, res) {
   res.render('admin/index')
 }
@@ -10,9 +14,15 @@ exports.adminarea = function(req, res) {
     address: '/adminarea'
   })
 
-  res.render('admin/area', {
-    title: 'Admin area',
-    pending: [{name: 'ABCDEF'}, {name: 'DEFGHI'}, {name: 'KLMNPQRS'}]
+  async.parallel({
+    pending: function(callback) {
+      return Tournament.pending(callback)
+    }
+  }, function(err, results) {
+    res.render('admin/area', {
+      title: 'Admin area',
+      pending: results.pending
+    })
   })
 }
 

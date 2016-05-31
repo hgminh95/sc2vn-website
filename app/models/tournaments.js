@@ -119,6 +119,14 @@ TournamentSchema.statics = {
     return this.find({}).exec(callback)
   },
 
+  pending: function(callback) {
+    return this.find({status: 'pending'}).exec(callback)
+  },
+
+  normal: function(callback) {
+    return this.find({status: 'normal'}).exec(callback)
+  },
+
   fields: function() {
     return 'name owner staffs banner introduction rule faq price registration invitation stages'
   },

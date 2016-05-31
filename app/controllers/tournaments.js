@@ -33,14 +33,14 @@ exports.load = function(req, res, next, id) {
 }
 
 exports.index = function(req, res, next) {
-  Tournament.find({status: 'normal'}).exec(function(err, tournaments) {
-    if (err) return next(err);
+  Tournament.normal(function(err, tournaments) {
+    if (err) return next(err)
 
     res.render('tournaments/index', {
       title: 'Tournaments',
       tournaments: tournaments
-    });
-  });
+    })
+  })
 }
 
 exports.new = function(req, res) {
@@ -50,18 +50,15 @@ exports.new = function(req, res) {
 }
 
 exports.create = function(req, res, next) {
-  var tournament = new Tournament(only(req.body, Tournament.fields()));
+  var tournament = new Tournament(only(req.body, Tournament.fields()))
 
-  uploader.upload(tournament, req.file);
+  uploader.upload(tournament, req.file, function(tournament) {
+    tournament.save(function(err) {
+      if (err) return next(err)
 
-  if(req.user.role == 'admin'){
-    tournament.status = 'normal'
-  }
-  tournament.save(function(err) {
-    if (err) return next(err);
-
-    res.redirect(tournament.getShowPath());
-  });
+      res.redirect(tournament.getShowPath())
+    })
+  })
 }
 
 exports.show = function(req, res) {
