@@ -43,17 +43,6 @@ exports.index = function(req, res, next) {
   });
 }
 
-exports.pendingTournaments = function(req, res, next) {
-  Tournament.find({status: 'pending'}).exec(function(err, tournaments){
-    if (err) return next(err);
-
-    res.render('tournaments/index',{
-      title: 'Tournament',
-      tournaments : tournaments
-    })
-  })
-}
-
 exports.new = function(req, res) {
   res.render('tournaments/new', {
     tournament: new Tournament()
