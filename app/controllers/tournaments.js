@@ -83,15 +83,15 @@ exports.edit = function(req, res) {
 }
 
 exports.update = function(req, res) {
-  var tournament = req.tournament;
+  var tournament = req.tournament
 
-  assign(tournament, only(req.body, Tournament.fields()));
+  assign(tournament, only(req.body, Tournament.fields()))
 
-  uploader.upload(tournament, req.file);
-
-  tournament.save(function(err) {
-    if (err) return res.sendStatus(406)
-    return res.json(req.body)
+  uploader.upload(tournament, req.file, function(tournament) {
+    tournament.save(function(err) {
+      if (err) return res.sendStatus(406)
+      res.sendStatus(204)
+    })
   })
 }
 
