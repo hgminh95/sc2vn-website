@@ -1,0 +1,266 @@
+[
+    {
+        "_id" : ObjectId("56f7a2a367206148278d09e2"),
+        "updated_at" : ISODate("2016-04-03T06:32:21.707Z"),
+        "created_at" : ISODate("2016-03-27T09:06:43.000Z"),
+        "name" : "Doctor",
+        "bnet_id" : "90318009",
+        "access_token" : "mnjvv7nn82c75dz5vw377vht",
+        "notifications" : [],
+        "race" : "zerg",
+        "avatar" : "http://orig03.deviantart.net/a00f/f/2013/050/d/f/oracle_by_alianys-d5virem.gif",
+        "introduction" : "",
+        "role" : "user"
+    },
+
+    {
+        "_id" : ObjectId("56f7a80e67206148278d09e3"),
+        "updated_at" : ISODate("2016-04-03T06:32:21.711Z"),
+        "created_at" : ISODate("2016-03-27T09:29:50.000Z"),
+        "name" : "Player1",
+        "email" : "",
+        "race" : "terran",
+        "bnet_id" : "12345678",
+        "notifications" : [],
+        "avatar" : "http://starcraft2.judgehype.com/screenshots/database/rewards_portraits/094.jpg"
+    },
+
+    {
+        "_id" : ObjectId("56f7a82867206148278d09e5"),
+        "updated_at" : ISODate("2016-04-03T06:32:21.741Z"),
+        "created_at" : ISODate("2016-03-27T09:30:16.000Z"),
+        "name" : "Player2",
+        "email" : "email@gmail",
+        "race" : "protoss",
+        "bnet_id" : "87654321",
+        "notifications" : [],
+        "avatar" : "http://forums.ffshrine.org/customavatars/avatar519924_2.gif"
+    },
+
+    {
+        "_id" : ObjectId("56fe58cac48bfc915a8fc461"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.605Z"),
+        "created_at" : ISODate("2016-04-01T11:17:30.825Z"),
+        "name" : "DEF",
+        "race" : "terran",
+        "notifications" : []
+    },
+
+    {
+        "_id" : ObjectId("56fe5554c14495fc57c3ec33"),
+        "updated_at" : ISODate("2016-04-03T06:32:21.742Z"),
+        "created_at" : ISODate("2016-04-01T11:02:44.096Z"),
+        "email" : "a@b",
+        "name" : "Hades",
+        "race" : "zerg",
+        "notifications" : [],
+        "clan" : ObjectId("56fea9402dcc0ae07ab177cb")
+    },
+
+    {
+        "_id" : ObjectId("56fe58f0c48bfc915a8fc462"),
+        "updated_at" : ISODate("2016-04-03T06:32:21.779Z"),
+        "created_at" : ISODate("2016-04-01T11:18:08.861Z"),
+        "name" : "ThuocLao",
+        "race" : "protoss",
+        "notifications" : [],
+        "clan" : ObjectId("56fea94c2dcc0ae07ab177cc")
+    },
+
+    {
+        "_id" : ObjectId("56fe5906c48bfc915a8fc463"),
+        "updated_at" : ISODate("2016-04-03T06:32:21.808Z"),
+        "created_at" : ISODate("2016-04-01T11:18:30.625Z"),
+        "name" : "Meomaika",
+        "race" : "zerg",
+        "notifications" : [],
+        "clan" : ObjectId("56fea9552dcc0ae07ab177cd")
+    },
+
+    {
+        "_id" : ObjectId("56fe5914c48bfc915a8fc464"),
+        "updated_at" : ISODate("2016-04-03T06:32:21.823Z"),
+        "created_at" : ISODate("2016-04-01T11:18:44.017Z"),
+        "name" : "Hunterxx",
+        "race" : "zerg",
+        "notifications" : [],
+        "clan" : ObjectId("56fea9662dcc0ae07ab177ce")
+    },
+
+    {
+        "_id" : ObjectId("56fe592dc48bfc915a8fc466"),
+        "updated_at" : ISODate("2016-04-03T06:32:21.852Z"),
+        "created_at" : ISODate("2016-04-01T11:19:09.615Z"),
+        "name" : "KubeR",
+        "race" : "zerg",
+        "notifications" : [],
+        "clan" : ObjectId("56fea9662dcc0ae07ab177ce")
+    },
+
+    {
+        "_id" : ObjectId("56fe5920c48bfc915a8fc465"),
+        "updated_at" : ISODate("2016-04-03T06:32:21.827Z"),
+        "created_at" : ISODate("2016-04-01T11:18:56.280Z"),
+        "name" : "ShiveR",
+        "race" : "terran",
+        "notifications" : [],
+        "clan" : ObjectId("56fea94c2dcc0ae07ab177cc")
+    },
+
+    {
+        "_id" : ObjectId("56fe593dc48bfc915a8fc467"),
+        "updated_at" : ISODate("2016-04-03T06:32:21.854Z"),
+        "created_at" : ISODate("2016-04-01T11:19:25.324Z"),
+        "name" : "BBoy",
+        "race" : "terran",
+        "notifications" : [],
+        "clan" : ObjectId("56fea9402dcc0ae07ab177cb")
+    },
+
+    {
+        "_id" : ObjectId("56fe5948c48bfc915a8fc468"),
+        "updated_at" : ISODate("2016-04-03T06:32:21.859Z"),
+        "created_at" : ISODate("2016-04-01T11:19:36.708Z"),
+        "name" : "ShiOne",
+        "race" : "protoss",
+        "notifications" : [],
+        "clan" : ObjectId("56fea9552dcc0ae07ab177cd")
+    },
+
+    {
+        "_id" : ObjectId("56fe5952c48bfc915a8fc469"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.618Z"),
+        "created_at" : ISODate("2016-04-01T11:19:46.282Z"),
+        "name" : "TheMon",
+        "race" : "zerg",
+        "notifications" : [],
+        "clan" : ObjectId("56fea9402dcc0ae07ab177cb")
+    },
+
+    {
+        "_id" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "updated_at" : ISODate("2016-04-03T06:32:21.694Z"),
+        "created_at" : ISODate("2016-03-26T09:33:34.000Z"),
+        "name" : "admin",
+        "email" : "admin@email.com",
+        "race" : "terran",
+        "password" : "$2a$08$V3EqfxLG4nbXjXf0GF183uVmtMeQ8TsqZJWa8vS/6Xid0zmec9kgC",
+        "notifications" : [],
+        "bnet_id" : "",
+        "avatar" : "http://vignette1.wikia.nocookie.net/starcraft/images/d/de/Oracle_SC2_Head2.jpg/revision/latest?cb=20121101113927",
+        "role" : "user"
+    },
+
+    {
+        "_id" : ObjectId("56fe5964c48bfc915a8fc46a"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.623Z"),
+        "created_at" : ISODate("2016-04-01T11:20:04.729Z"),
+        "name" : "Parkson",
+        "race" : "terran",
+        "notifications" : [],
+        "clan" : ObjectId("56fea9772dcc0ae07ab177cf")
+    },
+
+    {
+        "_id" : ObjectId("56fe598bc48bfc915a8fc46b"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.632Z"),
+        "created_at" : ISODate("2016-04-01T11:20:43.106Z"),
+        "name" : "sOsFanboy",
+        "race" : "protoss",
+        "notifications" : [],
+        "clan" : ObjectId("56feabadac1369bd7d7f3a99")
+    },
+
+    {
+        "_id" : ObjectId("56fe59fac48bfc915a8fc46e"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.633Z"),
+        "created_at" : ISODate("2016-04-01T11:22:34.280Z"),
+        "name" : "SOK",
+        "avatar" : "",
+        "race" : "terran",
+        "notifications" : [],
+        "clan" : ObjectId("56fea9552dcc0ae07ab177cd")
+    },
+
+    {
+        "_id" : ObjectId("56fe5a12c48bfc915a8fc470"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.636Z"),
+        "created_at" : ISODate("2016-04-01T11:22:58.386Z"),
+        "name" : "DD",
+        "race" : "terran",
+        "notifications" : []
+    },
+
+    {
+        "_id" : ObjectId("56fe5a07c48bfc915a8fc46f"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.634Z"),
+        "created_at" : ISODate("2016-04-01T11:22:47.079Z"),
+        "name" : "HMT",
+        "race" : "zerg",
+        "notifications" : [],
+        "clan" : ObjectId("56fea9662dcc0ae07ab177ce")
+    },
+
+    {
+        "_id" : ObjectId("56fe5a1ec48bfc915a8fc471"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.636Z"),
+        "created_at" : ISODate("2016-04-01T11:23:10.010Z"),
+        "name" : "Adios",
+        "race" : "protoss",
+        "notifications" : []
+    },
+
+    {
+        "_id" : ObjectId("56fe5a2dc48bfc915a8fc472"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.641Z"),
+        "created_at" : ISODate("2016-04-01T11:23:25.316Z"),
+        "name" : "Psycho",
+        "race" : "zerg",
+        "notifications" : []
+    },
+
+    {
+        "_id" : ObjectId("56fe5a47c48bfc915a8fc474"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.643Z"),
+        "created_at" : ISODate("2016-04-01T11:23:51.385Z"),
+        "name" : "Elusory",
+        "race" : "terran",
+        "notifications" : []
+    },
+
+    {
+        "_id" : ObjectId("56fe5a3dc48bfc915a8fc473"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.642Z"),
+        "created_at" : ISODate("2016-04-01T11:23:41.903Z"),
+        "name" : "Justice Simon",
+        "race" : "protoss",
+        "notifications" : []
+    },
+
+    {
+        "_id" : ObjectId("56fe5a50c48bfc915a8fc475"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.644Z"),
+        "created_at" : ISODate("2016-04-01T11:24:00.561Z"),
+        "name" : "VuHoan",
+        "race" : "zerg",
+        "notifications" : []
+    },
+
+    {
+        "_id" : ObjectId("56fe5a5dc48bfc915a8fc476"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.644Z"),
+        "created_at" : ISODate("2016-04-01T11:24:13.128Z"),
+        "name" : "Farseer",
+        "race" : "zerg",
+        "notifications" : []
+    },
+
+    {
+        "_id" : ObjectId("56fe5a69c48bfc915a8fc477"),
+        "updated_at" : ISODate("2016-04-02T07:14:27.648Z"),
+        "created_at" : ISODate("2016-04-01T11:24:25.277Z"),
+        "name" : "chiOt",
+        "race" : "protoss",
+        "notifications" : []
+    }
+]

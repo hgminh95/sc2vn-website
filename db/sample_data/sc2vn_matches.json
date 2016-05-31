@@ -1,0 +1,310 @@
+[
+    {
+        "_id" : ObjectId("56f7a97467206148278d09e7"),
+        "updated_at" : ISODate("2016-03-31T03:11:27.516Z"),
+        "created_at" : ISODate("2016-03-27T09:35:48.000Z"),
+        "player_1" : ObjectId("56f7a80e67206148278d09e3"),
+        "player_2" : ObjectId("56f7a2a367206148278d09e2"),
+        "date" : ISODate("2016-03-25T17:00:00.000Z"),
+        "games" : [
+            {
+                "race1" : "protoss",
+                "race2" : "terran",
+                "replay" : null,
+                "status" : "lose"
+            },
+            {
+                "race1" : "protoss",
+                "race2" : "terran",
+                "replay" : null,
+                "status" : "lose"
+            }
+        ]
+    },
+
+    {
+        "_id" : ObjectId("56f7a96567206148278d09e6"),
+        "updated_at" : ISODate("2016-04-01T11:51:47.794Z"),
+        "created_at" : ISODate("2016-03-27T09:35:33.000Z"),
+        "player_1" : ObjectId("56f7a80e67206148278d09e3"),
+        "player_2" : ObjectId("56f7a82867206148278d09e5"),
+        "date" : ISODate("2016-03-26T17:00:00.000Z"),
+        "games" : [
+            {
+                "race1" : "zerg",
+                "race2" : "terran",
+                "replay" : null,
+                "status" : "win"
+            },
+            {
+                "race1" : "zerg",
+                "race2" : "terran",
+                "replay" : null,
+                "status" : "lose"
+            },
+            {
+                "race1" : "zerg",
+                "race2" : "terran",
+                "replay" : null,
+                "status" : "win"
+            }
+        ],
+        "tournament" : ObjectId("56e2543914f979e610b28ffd")
+    },
+
+    {
+        "_id" : ObjectId("56f7a98f67206148278d09e9"),
+        "updated_at" : ISODate("2016-04-01T02:51:19.532Z"),
+        "created_at" : ISODate("2016-03-27T09:36:15.000Z"),
+        "player_1" : ObjectId("56f7a2a367206148278d09e2"),
+        "player_2" : ObjectId("56f7a80e67206148278d09e3"),
+        "date" : ISODate("2016-03-27T17:00:00.000Z"),
+        "games" : [],
+        "tournament" : ObjectId("56e2543914f979e610b28ffd")
+    },
+
+    {
+        "_id" : ObjectId("56f7a99b67206148278d09ea"),
+        "updated_at" : ISODate("2016-03-27T09:36:27.000Z"),
+        "created_at" : ISODate("2016-03-27T09:36:27.000Z"),
+        "player_1" : ObjectId("56f7a2a367206148278d09e2"),
+        "player_2" : ObjectId("56f7a82867206148278d09e5"),
+        "date" : ISODate("2016-04-04T17:00:00.000Z"),
+        "games" : []
+    },
+
+    {
+        "_id" : ObjectId("56fe5dc9c48bfc915a8fc47f"),
+        "updated_at" : ISODate("2016-04-03T06:04:45.660Z"),
+        "created_at" : ISODate("2016-04-01T11:38:49.433Z"),
+        "player_1" : ObjectId("56fe5906c48bfc915a8fc463"),
+        "player_2" : ObjectId("56fe5914c48bfc915a8fc464"),
+        "tournament" : ObjectId("56fe5ba1c48bfc915a8fc47a"),
+        "games" : [
+            {
+                "race1" : "zerg",
+                "race2" : "zerg",
+                "replay" : null,
+                "status" : "lose"
+            }
+        ],
+        "date" : ISODate("2016-03-29T17:00:00.000Z")
+    },
+
+    {
+        "_id" : ObjectId("56fe5d89c48bfc915a8fc47b"),
+        "updated_at" : ISODate("2016-04-03T06:04:32.323Z"),
+        "created_at" : ISODate("2016-04-01T11:37:45.714Z"),
+        "player_1" : ObjectId("56fe5554c14495fc57c3ec33"),
+        "player_2" : ObjectId("56fe58f0c48bfc915a8fc462"),
+        "tournament" : ObjectId("56fe5ba1c48bfc915a8fc47a"),
+        "games" : [
+            {
+                "race1" : "zerg",
+                "race2" : "protoss",
+                "replay" : null,
+                "status" : "lose"
+            },
+            {
+                "race1" : "zerg",
+                "race2" : "protoss",
+                "replay" : null,
+                "status" : "win"
+            },
+            {
+                "race1" : "zerg",
+                "race2" : "protoss",
+                "replay" : null,
+                "status" : "lose"
+            }
+        ],
+        "date" : ISODate("2016-03-29T17:00:00.000Z")
+    },
+
+    {
+        "_id" : ObjectId("56fe5e00c48bfc915a8fc481"),
+        "updated_at" : ISODate("2016-04-03T06:04:59.222Z"),
+        "created_at" : ISODate("2016-04-01T11:39:44.096Z"),
+        "player_1" : ObjectId("56fe5920c48bfc915a8fc465"),
+        "player_2" : ObjectId("56fe592dc48bfc915a8fc466"),
+        "tournament" : ObjectId("56fe5ba1c48bfc915a8fc47a"),
+        "games" : [
+            {
+                "race1" : "protoss",
+                "race2" : "protoss",
+                "replay" : null,
+                "status" : "win"
+            }
+        ],
+        "date" : ISODate("2016-03-27T17:00:00.000Z")
+    },
+
+    {
+        "_id" : ObjectId("56fe5e30c48bfc915a8fc483"),
+        "updated_at" : ISODate("2016-04-03T06:05:34.927Z"),
+        "created_at" : ISODate("2016-04-01T11:40:32.269Z"),
+        "player_1" : ObjectId("56fe593dc48bfc915a8fc467"),
+        "player_2" : ObjectId("56fe5948c48bfc915a8fc468"),
+        "tournament" : ObjectId("56fe5ba1c48bfc915a8fc47a"),
+        "games" : [
+            {
+                "race1" : "terran",
+                "race2" : "terran",
+                "replay" : null,
+                "status" : "win"
+            }
+        ],
+        "date" : ISODate("2016-03-26T17:00:00.000Z")
+    },
+
+    {
+        "_id" : ObjectId("56fe5e6fc48bfc915a8fc485"),
+        "updated_at" : ISODate("2016-04-03T06:05:27.305Z"),
+        "created_at" : ISODate("2016-04-01T11:41:35.077Z"),
+        "player_1" : ObjectId("56fe58f0c48bfc915a8fc462"),
+        "player_2" : ObjectId("56fe5914c48bfc915a8fc464"),
+        "tournament" : ObjectId("56fe5ba1c48bfc915a8fc47a"),
+        "games" : [
+            {
+                "race1" : "protoss",
+                "race2" : "zerg",
+                "replay" : null,
+                "status" : "win"
+            }
+        ],
+        "date" : ISODate("2016-03-26T17:00:00.000Z")
+    },
+
+    {
+        "_id" : ObjectId("56fe5eb5c48bfc915a8fc489"),
+        "updated_at" : ISODate("2016-04-03T06:05:18.237Z"),
+        "created_at" : ISODate("2016-04-01T11:42:45.385Z"),
+        "player_1" : ObjectId("56fe5920c48bfc915a8fc465"),
+        "player_2" : ObjectId("56fe593dc48bfc915a8fc467"),
+        "tournament" : ObjectId("56fe5ba1c48bfc915a8fc47a"),
+        "games" : [
+            {
+                "race1" : "zerg",
+                "race2" : "terran",
+                "replay" : null,
+                "status" : "lose"
+            }
+        ],
+        "date" : ISODate("2016-03-26T17:00:00.000Z")
+    },
+
+    {
+        "_id" : ObjectId("56f7a98167206148278d09e8"),
+        "updated_at" : ISODate("2016-04-01T11:51:57.703Z"),
+        "created_at" : ISODate("2016-03-27T09:36:01.000Z"),
+        "player_1" : ObjectId("56f7a2a367206148278d09e2"),
+        "player_2" : ObjectId("56f7a80e67206148278d09e3"),
+        "date" : ISODate("2016-03-29T17:00:00.000Z"),
+        "games" : [
+            {
+                "race1" : "terran",
+                "race2" : "terran",
+                "replay" : null,
+                "status" : "lose"
+            },
+            {
+                "race1" : "terran",
+                "race2" : "terran",
+                "replay" : null,
+                "status" : "win"
+            },
+            {
+                "race1" : "terran",
+                "race2" : "terran",
+                "replay" : null,
+                "status" : "lose"
+            },
+            {
+                "race1" : "terran",
+                "race2" : "terran",
+                "replay" : null,
+                "status" : "win"
+            },
+            {
+                "race1" : "terran",
+                "race2" : "terran",
+                "replay" : null,
+                "status" : "lose"
+            }
+        ],
+        "tournament" : ObjectId("56e2543914f979e610b28ffd")
+    },
+
+    {
+        "_id" : ObjectId("5700b2ef32ef191524b63d44"),
+        "updated_at" : ISODate("2016-04-03T06:06:39.124Z"),
+        "created_at" : ISODate("2016-04-03T06:06:39.124Z"),
+        "player_1" : ObjectId("56fe58f0c48bfc915a8fc462"),
+        "player_2" : ObjectId("56fe5906c48bfc915a8fc463"),
+        "date" : ISODate("2016-04-02T17:00:00.000Z"),
+        "games" : []
+    },
+
+    {
+        "_id" : ObjectId("56fe5ef1c48bfc915a8fc48b"),
+        "updated_at" : ISODate("2016-04-03T06:05:08.774Z"),
+        "created_at" : ISODate("2016-04-01T11:43:45.485Z"),
+        "player_1" : ObjectId("56fe58f0c48bfc915a8fc462"),
+        "player_2" : ObjectId("56fe593dc48bfc915a8fc467"),
+        "tournament" : ObjectId("56fe5ba1c48bfc915a8fc47a"),
+        "games" : [
+            {
+                "race1" : "protoss",
+                "race2" : "terran",
+                "replay" : null,
+                "status" : "win"
+            }
+        ],
+        "date" : ISODate("2016-03-28T17:00:00.000Z")
+    },
+
+    {
+        "_id" : ObjectId("5700b50ce090f2e426aecee5"),
+        "updated_at" : ISODate("2016-04-03T06:15:40.698Z"),
+        "created_at" : ISODate("2016-04-03T06:15:40.698Z"),
+        "player_1" : ObjectId("56fe58f0c48bfc915a8fc462"),
+        "player_2" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "date" : ISODate("2016-03-27T17:00:00.000Z"),
+        "games" : [
+            {
+                "map" : "Just another map",
+                "race1" : "protoss",
+                "race2" : "zerg",
+                "replay" : null,
+                "status" : "lose"
+            }
+        ]
+    },
+
+    {
+        "_id" : ObjectId("5700b86538501bbb29b30636"),
+        "updated_at" : ISODate("2016-04-03T06:29:57.079Z"),
+        "created_at" : ISODate("2016-04-03T06:29:57.079Z"),
+        "player_1" : ObjectId("56fe5554c14495fc57c3ec33"),
+        "player_2" : ObjectId("56fe593dc48bfc915a8fc467"),
+        "date" : ISODate("2016-05-04T17:00:00.000Z"),
+        "games" : []
+    },
+
+    {
+        "_id" : ObjectId("5700b572e090f2e426aecf03"),
+        "updated_at" : ISODate("2016-04-03T06:17:22.987Z"),
+        "created_at" : ISODate("2016-04-03T06:17:22.987Z"),
+        "player_1" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "player_2" : ObjectId("56fe58f0c48bfc915a8fc462"),
+        "date" : ISODate("2016-04-02T17:00:00.000Z"),
+        "games" : [
+            {
+                "race1" : "protoss",
+                "race2" : "protoss",
+                "replay" : null,
+                "status" : "lose"
+            }
+        ]
+    }
+]

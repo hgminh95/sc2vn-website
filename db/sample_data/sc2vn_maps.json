@@ -1,0 +1,50 @@
+[
+    {
+        "_id" : ObjectId("574c214a0c591c97319aec7f"),
+        "updated_at" : ISODate("2016-05-30T11:17:30.532Z"),
+        "created_at" : ISODate("2016-05-30T11:17:30.532Z"),
+        "name" : "Orbital Shipyard"
+    },
+
+    {
+        "_id" : ObjectId("574c21550c591c97319aec80"),
+        "updated_at" : ISODate("2016-05-30T11:17:41.041Z"),
+        "created_at" : ISODate("2016-05-30T11:17:41.041Z"),
+        "name" : "Dusk Towers"
+    },
+
+    {
+        "_id" : ObjectId("574c215d0c591c97319aec81"),
+        "updated_at" : ISODate("2016-05-30T11:17:55.810Z"),
+        "created_at" : ISODate("2016-05-30T11:17:49.545Z"),
+        "name" : "Prion Terraces"
+    },
+
+    {
+        "_id" : ObjectId("574c216c0c591c97319aec82"),
+        "updated_at" : ISODate("2016-05-30T11:18:04.452Z"),
+        "created_at" : ISODate("2016-05-30T11:18:04.452Z"),
+        "name" : "Lerilak Crest"
+    },
+
+    {
+        "_id" : ObjectId("574c21740c591c97319aec83"),
+        "updated_at" : ISODate("2016-05-30T11:18:12.126Z"),
+        "created_at" : ISODate("2016-05-30T11:18:12.126Z"),
+        "name" : "Ruins of Seras"
+    },
+
+    {
+        "_id" : ObjectId("574c217c0c591c97319aec84"),
+        "updated_at" : ISODate("2016-05-30T11:18:20.699Z"),
+        "created_at" : ISODate("2016-05-30T11:18:20.699Z"),
+        "name" : "GSL Sky Shield"
+    },
+
+    {
+        "_id" : ObjectId("574c21840c591c97319aec85"),
+        "updated_at" : ISODate("2016-05-30T11:18:28.411Z"),
+        "created_at" : ISODate("2016-05-30T11:18:28.411Z"),
+        "name" : "GSL Rak'Shir"
+    }
+]

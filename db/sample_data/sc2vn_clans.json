@@ -1,0 +1,60 @@
+[
+    {
+        "_id" : ObjectId("56fea9552dcc0ae07ab177cd"),
+        "updated_at" : ISODate("2016-04-01T17:01:09.286Z"),
+        "created_at" : ISODate("2016-04-01T17:01:09.286Z"),
+        "name" : "BoB",
+        "member" : [],
+        "staffs" : []
+    },
+
+    {
+        "_id" : ObjectId("56fea94c2dcc0ae07ab177cc"),
+        "updated_at" : ISODate("2016-04-01T17:01:00.317Z"),
+        "created_at" : ISODate("2016-04-01T17:01:00.317Z"),
+        "name" : "VK",
+        "owner" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "member" : [],
+        "staffs" : []
+    },
+
+    {
+        "_id" : ObjectId("56feabadac1369bd7d7f3a99"),
+        "updated_at" : ISODate("2016-04-01T17:11:09.980Z"),
+        "created_at" : ISODate("2016-04-01T17:11:09.980Z"),
+        "name" : "BoA",
+        "owner" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "member" : [],
+        "staffs" : []
+    },
+
+    {
+        "_id" : ObjectId("56fea9402dcc0ae07ab177cb"),
+        "updated_at" : ISODate("2016-04-01T17:00:48.346Z"),
+        "created_at" : ISODate("2016-04-01T17:00:48.346Z"),
+        "name" : "HOG",
+        "owner" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "member" : [],
+        "staffs" : []
+    },
+
+    {
+        "_id" : ObjectId("56fea9662dcc0ae07ab177ce"),
+        "updated_at" : ISODate("2016-04-01T17:01:26.183Z"),
+        "created_at" : ISODate("2016-04-01T17:01:26.183Z"),
+        "name" : "EZ",
+        "owner" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "member" : [],
+        "staffs" : []
+    },
+
+    {
+        "_id" : ObjectId("56fea9772dcc0ae07ab177cf"),
+        "updated_at" : ISODate("2016-04-01T17:01:43.018Z"),
+        "created_at" : ISODate("2016-04-01T17:01:43.018Z"),
+        "name" : "Marines",
+        "owner" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "member" : [],
+        "staffs" : []
+    }
+]

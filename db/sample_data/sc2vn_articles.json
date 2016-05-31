@@ -1,0 +1,79 @@
+[
+    {
+        "_id" : ObjectId("56f6c215ed14ee1a0ff5bbc0"),
+        "updated_at" : ISODate("2016-03-26T17:11:16.198Z"),
+        "created_at" : ISODate("2016-03-26T17:08:37.000Z"),
+        "author" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "brief" : "Sau 2 năm chờ đợi,  phiên bản thứ 3 và cũng là cuối cùng trong loạt gameStarCraft II – Legacy of the Void đã rục rịch chuẩn bị ra mắt chỉ trong khoảng 24 tiếng đồng hồ nữa. Nó hứa hẹn sẽ mang tới cái kết viên mãn cho câu chuyện xoay quanh 3 chủng tộc Terran,  Zerg,  Protoss khởi đầu từ năm 1998 với huyền thoại chiến thuật StarCraft. Nhưng còn về phần dòng game thì sao? Tin mừng cho các fan hâm mộ là StarCraft II sẽ chưa dừng lại ở thời điểm hiện tại...",
+        "content" : "Content here",
+        "title" : "StarCraft II ngay lập tức được tiếp nối với tựa game mới",
+        "thumbnail" : "http://clansf.net/wp-content/uploads/2015/11/starcraft-ii-ngay-lap-tuc-duoc-tiep-noi-voi-tua-game-moi-770x427.jpg"
+    },
+
+    {
+        "_id" : ObjectId("56f671466354d50e75a7d87b"),
+        "updated_at" : ISODate("2016-03-26T11:24:15.830Z"),
+        "created_at" : ISODate("2016-03-26T11:23:50.000Z"),
+        "title" : "Biên niên sử StarCraft: Chương VIII – Trái tim bầy Swarm (phần I)",
+        "content" : "Content here",
+        "thumbnail" : "http://clansf.net/wp-content/uploads/2014/07/sc2_1.jpg",
+        "author" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "brief" : "Sau trận tử chiến với liên minh Terran tại hành tinh Char (gồm lực lượng Dominion cùng với quân của Jim Raynor),  quân Zerg bị đánh tan tác. Quân Terran sử dụng cổ vật Xel’naga để biến Nữ hoàng Ánh sáng (tên gọi của Sarah Kerrigan khi làm lãnh đạo quân Zerg) trở về thành người bình thường. Dù vậy,  trong người cô vẫn còn gen của loài Zerg,  biểu hiện ở mái tóc..."
+    },
+
+    {
+        "_id" : ObjectId("56f9fa5a292acca71263f7ad"),
+        "updated_at" : ISODate("2016-03-29T03:46:31.881Z"),
+        "created_at" : ISODate("2016-03-29T03:45:30.000Z"),
+        "title" : "Blizzard xác nhận AlphaGo sẽ tuyên chiến với con người ở bộ môn StarCraft 2",
+        "content" : "Content here",
+        "brief" : "Theo một số phương tiện truyền thông tại Trung Quốc đã đưa tin tại sự kiện WCS,  giám đốc sản xuất Tim Morten của Blizzard Entertainment đã chính thức xác nhận việc trí tuệ nhân tạo AlphaGo đưa ra lời thách thức với trò chơi StarCraft 2.\r\nRất có thể Google đang cùng làm với với Blizzard để hiểu hơn về tựa game chiến thuật mà họ đã tạo ra,  nhằm giúp AlphaGo có thể thành thạo tựa game mới này và giành chiến thắng trước con người. Đây sẽ là một sự kiện rất đáng mong đợi,  một cơ hội để đại diện loại người phục hận trước cỗ máy này....",
+        "thumbnail" : "http://clansf.net/wp-content/uploads/2014/12/maxresdefault-770x433.jpg",
+        "author" : ObjectId("56f6576ef9ba29ba69ca1b82")
+    },
+
+    {
+        "_id" : ObjectId("56f657bff9ba29ba69ca1b83"),
+        "updated_at" : ISODate("2016-03-26T10:36:16.707Z"),
+        "created_at" : ISODate("2016-03-26T09:34:55.000Z"),
+        "title" : "Cận cảnh showmatch StarCraft 2 cực đỉnh giữa ThuocLao và Hunterxx",
+        "author" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "__v" : 0,
+        "content" : "Content here",
+        "thumbnail" : "http://clansf.net/wp-content/uploads/2015/09/banner-showmatch-770x285.jpg",
+        "brief" : "Như chúng tôi từng đưa tin,  vào ngày thứ 7 26/09 vừa qua đã có một trận showmatch StarCraft 2 giữa ThuocLao và Hunterxx do Gigabyte tài trợ. Trận đấu diễn ra tại tầng lửng An Phát PC showroom 49 Thái Hà,  Đống Đa,  Hà Nội. Sau đây là tường thuật chi tiết về trận đấu hết sức thú vị này ..."
+    },
+
+    {
+        "_id" : ObjectId("56f9f99b292acca71263f7ab"),
+        "updated_at" : ISODate("2016-03-29T03:44:28.808Z"),
+        "created_at" : ISODate("2016-03-29T03:42:19.000Z"),
+        "title" : "Đây là nguyên nhân máy tính không thể chơi StarCraft thắng người",
+        "content" : "Content here",
+        "brief" : "Như chúng ta đã biết,  mới đây,  hệ thống trí tuệ nhân tạo AlphaGo đã đánh bại kỳ thủ cờ vây Lee Sedol với tỷ số 4-1. Và tiếp theo,  Google sẽ tiếp tục phát triển hệ thống trí tuệ nhân tạo này cho tựa game StarCraft. Tuy nhiên,  game thủ StarCraft (StarCraft: Brood War) số 1 thế giới Flash (Lee Young Ho) đã tự tin khẳng định rằng chuyện máy tính có thể đánh bại con người là không thể xảy ra....",
+        "thumbnail" : "http://clansf.net/wp-content/uploads/2012/04/bisu-flash-2.jpg",
+        "author" : ObjectId("56f6576ef9ba29ba69ca1b82")
+    },
+
+    {
+        "_id" : ObjectId("56f9faf8292acca71263f7b0"),
+        "updated_at" : ISODate("2016-04-01T16:43:44.961Z"),
+        "created_at" : ISODate("2016-03-29T03:48:08.000Z"),
+        "title" : "Huyền thoại Starcraft đang stream đám cưới của mình trên Twitch",
+        "content" : "Content here",
+        "thumbnail" : "http://clansf.net/wp-content/uploads/2015/11/huyen-thoai-starcraft-mot-thoi-dang-stream-dam-cuoi-cua-minh-tren-twitch-770x432.jpg",
+        "author" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "brief" : "Hiện tại,  huyền thoại NaDa của bộ môn eSport Starcraft: Brood Warđang hết sức hạnh phúc với lễ cưới của mình. Thậm chí,  anh cùng những người bạn của mình còn stream đám cưới của mình trên kênh Twitch..."
+    },
+
+    {
+        "_id" : ObjectId("56f9f4b1292acca71263f7aa"),
+        "updated_at" : ISODate("2016-03-29T03:41:08.895Z"),
+        "created_at" : ISODate("2016-03-29T03:21:21.000Z"),
+        "title" : "Máy tính AlphaGo có thể chơi cờ thắng người,  chứ chiến StarCraft thì không bao giờ",
+        "content" : "Content here",
+        "brief" : "Vừa qua,  sau khi Google tiết lộ sẽ phát triển tiếp dự án AlphaGo trở thành một AI cho tựa game chiến thuật StarCraft,  đài truyền hình Hàn Quốc đã thực hiện một cuộc phỏng vấn ngắn với Flash – Lee Young Ho,  một trong những game thủ StarCraft được coi là xuất sắc nhất thế giới từ trước tới nay....",
+        "thumbnail" : "http://clansf.net/wp-content/uploads/2014/01/flash.jpg",
+        "author" : ObjectId("56f6576ef9ba29ba69ca1b82")
+    }
+]

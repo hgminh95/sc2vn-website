@@ -1,0 +1,56 @@
+[
+    {
+        "_id" : ObjectId("56fe5ba1c48bfc915a8fc47a"),
+        "updated_at" : ISODate("2016-05-30T12:11:02.066Z"),
+        "created_at" : ISODate("2016-04-01T11:29:37.269Z"),
+        "name" : "Vietnam Starcraft II Arena 21 (VSA)",
+        "stages" : [
+            {
+                "name" : "a",
+                "metadata" : "{\n        meta: {\n            height: 50\n        },\n        groups: [\"Quater-final\", \"Semi-final\", \"Final\"],\n        matches: [\n            {\n                player1: 'Player 1',\n                player2: 'Player 2',\n                score1: 3,\n                score2: 2,\n                group: 0,\n                position: 0\n            },\n            {\n                player1: 'Player 3',\n                player2: 'Player 4',\n                score1: 3,\n                score2: 0,\n                group: 0,\n                position: 80\n            },\n            {\n                player1: 'Very long player\"s name',\n                player2: 'short',\n                score1: 1,\n                score2: 3,\n                group: 0,\n                position: 160\n            },\n            {\n                player1: 'Player 5',\n                player2: 'Player 6',\n                group: 0,\n                position: 240\n            },\n            {\n                player1: 'Player 1',\n                player2: 'Player 3',\n                link1: 0,\n                link2: 1,\n                group: 1,\n                position: 40\n            },\n            {\n                player1: 'short',\n                link1: 2,\n                link2: 3,\n                group: 1,\n                position: 200\n            },\n            {\n                link1: 4,\n                link2: 5,\n                group: 2,\n                position: 120\n            }\n        ]\n    }",
+                "players" : [],
+                "matches" : []
+            }
+        ],
+        "staffs" : [],
+        "status" : "normal",
+        "introduction" : "Insert Introduction here",
+        "rule" : "<p><br data-mce-bogus=\"1\"></p>",
+        "owner" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "banner" : "http://www.gosugamers.net/uploads/images/events/event-page/2013/december/180-1388150707.jpeg",
+        "invitation" : {
+            "participants" : [],
+            "pending" : []
+        },
+        "registration" : {
+            "participants" : [],
+            "pending" : []
+        }
+    },
+
+    {
+        "_id" : ObjectId("56e2543914f979e610b28ffd"),
+        "updated_at" : ISODate("2016-04-01T04:18:47.437Z"),
+        "created_at" : ISODate("2016-03-11T05:14:33.000Z"),
+        "name" : "Gold Series International 2016",
+        "sections" : [],
+        "staffs" : [],
+        "status" : "normal",
+        "faq" : "FAQ",
+        "introduction" : "Introduction here",
+        "rule" : "Rule here",
+        "banner" : "http://www.gosugamers.net/uploads/images/events/event-page/2016/march/469-1457632134.jpeg",
+        "owner" : ObjectId("56f6576ef9ba29ba69ca1b82"),
+        "stages" : [
+            {
+                "name" : "Playoff"
+            },
+            {
+                "name" : "Group stage"
+            },
+            {
+                "name" : "Main Event"
+            }
+        ]
+    }
+]
