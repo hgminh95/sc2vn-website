@@ -1,7 +1,9 @@
 'use strict'
 
+var async = require('async')
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
+
 var Match = require('./matches')
 
 var StageSchema = new Schema({
@@ -15,37 +17,61 @@ var StageSchema = new Schema({
 })
 
 StageSchema.methods = {
-  updateFromMetadata: function(metadata, callback) {
+  updateMetadata: function(callback) {
     var opts = [
       { path: 'matches' },
       { path: 'players' }
     ]
 
-    var stage = JSON.parse(metadata)
+    var stageMeta = JSON.parse(metadata)
 
     Stage.populate(this, opts, function(err, stage) {
-      for (var match of stage.matches) {
-        // convert user to user._id
-        match.player_1 = toUserId(player1)
-        match.player_2 = toUserId(player2)
+      if (err) return callback(err)
 
-        // create new match if match.id does not exist
-        if (match.id == null) {
-          Match.create(match, function(err, match) {
-            if (err) throw err
-          })
-        }
-        // otherwise, update match info
-        else {
-          Match.update({ _id: match.id }, match, {}, function(err, numAffected) {
-            if (err) throw err
-          })
-        }
+      for (let match of stageMeta.matches) {
+        if (match._id == null) return callback(err)
       }
     })
   },
 
-  toUserId(userName) {
+  createFromMetadata: function(metadata, callback) {
+    var opts = [
+      { path: 'matches' },
+      { path: 'players' }
+    ]
+
+    this.matches = []
+
+    var stageMeta = JSON.parse(metadata)
+
+    Stage.populate(this, opts, function(err, stage) {
+      if (err) return callback(err)
+
+      var self = this
+      async.each(stageMeta.matches, function(match, callback) {
+        match.player_1 = self.toUserId(player1, stage.players)
+        match.player_2 = self.toUserId(player2, stage.players)
+
+        Match.create(match, function(err, match) {
+          if (err) return callback(err)
+
+          stage.matches.push(match)
+
+          callback(null)
+        })
+      }, function(err) {
+        if (err) return callback(err)
+
+        stage.save(function(err, stage) {
+          if (err) return callback(err)
+
+          callback(err, stage)
+        })
+      })
+    })
+  },
+
+  toUserId: function(userName, players) {
     var player = players.find(user => user.name == userName)
 
     return player == null ? null : player._id

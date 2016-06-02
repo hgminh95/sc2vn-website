@@ -3,7 +3,6 @@
 var assign = require('object-assign');
 var only = require('only');
 var Tournament = require('../models/tournaments');
-var Drawer = require('tournament-drawer');
 var User = require('../models/users');
 var Notification = require('../models/notifications');
 var uploader = require('../uploaders/banner');
@@ -66,8 +65,7 @@ exports.show = function(req, res) {
   tournament.toJson(function(err, json) {
     res.render('tournaments/show', {
       title: tournament.name,
-      tournament: tournament,
-      drawer: new Drawer(json)
+      tournament: tournament
     })
   })
 }

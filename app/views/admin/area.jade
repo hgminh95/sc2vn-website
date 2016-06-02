@@ -24,7 +24,7 @@ block content
 
       .tab-content
         #overview.tab-pane.active
-          p Overview
+          h3 Overview
 
           table.table.table-hover
             tbody
@@ -41,7 +41,8 @@ block content
                 th Number of abcxyz
                 td(align='center') 3
 
-        #tournaments.tab-pane Tournament
+        #tournaments.tab-pane
+          h3 Pending Tournaments
           #tournaments-accordion.panel-group(role='tablist', aria-multiselectable='true')
             each tournament, index in pending
               .panel.panel-default
@@ -63,7 +64,8 @@ block content
                   .panel-body
                     | TODO
 
-        #settings.tab-pane Settings
+        #settings.tab-pane
+          h3 Settings
           form(action='todo', method='post')
             .checkbox
               label

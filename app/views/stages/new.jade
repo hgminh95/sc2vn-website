@@ -1,0 +1,13 @@
+include ../mixins/stage
+
+| $('#edit-content').html('
+.modal-header
+  button.close(type='button', data-dismiss='modal' aria-label='close')
+    span(aria-hidden='true')
+      | &times;
+  h4.modal-title.text-center
+    | New stage
+.modal-body
+  +stage-form({}, 'stages')
+| ');
+| $('#edit-modal').modal();

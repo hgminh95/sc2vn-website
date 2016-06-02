@@ -21,12 +21,19 @@ block scripts
     });
 
 block content-header
+  #edit-modal.modal.fade(tabindex='-1', role='dialog')
+    .modal-dialog(role='document')
+      #edit-content.modal-content
+
   img.tournament-banner(src=tournament.banner)
 
 block content-inside
   +tournament(tournament)
 
 block sidebar
+  a#new-stage.btn.btn-block.button-submit
+    | New Stage
+
   button#save-button.btn.btn-block.button-submit
     i.fa.fa-floppy-o.fa-fw
     | &nbsp; Save
@@ -45,4 +52,10 @@ block sidebar
           $('#save-button').html('<i class="fa fa-floppy-o fa-fw"></i> &nbsp;Save')
         }, 1000);
       });
+    })
+
+    $('#new-stage').click(function() {
+      $.getScript("stages/new", function(data, textStatus, jqxhr) {
+
+      })
     })

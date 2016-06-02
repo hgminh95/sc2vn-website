@@ -1,0 +1,6 @@
+mixin stage-form(article, action)
+  form(action=action, method='post')
+    .form-group
+      label(for='name') Title
+      input#name.form-control(type='text', name='name', placeholder='Name', value=article.name)
+    button.btn.button-submit(type='submit') Submit
