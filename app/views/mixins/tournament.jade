@@ -46,7 +46,7 @@ mixin tournament-form(tournament, action)
 
       button.btn.button-submit(type='submit') Submit
 
-mixin tournament(tournament)
+mixin tournament(tournament, action)
   .tournament
     #tournament-title.tournament-title
       = tournament.name
@@ -62,6 +62,9 @@ mixin tournament(tournament)
           a(href='#schedule', data-toggle='tab') Schedule
         li
           a(href='#faq', data-toggle='tab') FAQ
+        if action === 'edit'
+          li
+            a(href='#players', data-toggle='tab') Players
 
       .tab-content
         #introduction.tab-pane.editable.active
@@ -90,18 +93,33 @@ mixin tournament(tournament)
                   td Nothing
 
         #schedule.tab-pane
-          each stage in tournament.stages
-            +stage(stage)
+          #stages-accordion.panel-group(role='tab-list', aria-multiselectable='true')
+            each stage, index in tournament.stages
+              +stage(stage, index)
+
         #faq.tab-pane.editable
           != tournament.faq
 
-mixin stage(stage)
-  - var canvasName = stage.name.toLowerCase().replace(" ", "-") + "-canvas"
+        if action === 'edit'
+          #players.tab-pane
+            p Pending players
+            p Not pending players
 
-  canvas(width='500px', height='500px', id=canvasName)
+mixin stage(stage, index)
+  .panel.panel-default
+    .panel-heading(role='tab', id='heading' + index)
+      h4.panel-title
+        a(role='button' data-toggle='collapse', data-parent='#stages-accordion', href='#collapse' + index,
+            aria-expanded='true', aria-controls='collapse' + index)
+          =stage.name
+    .panel-collapse.collapse(id='collapse' + index, role='tabpanel', aria-controls='collapse' + index)
+      .panel-body
+        - var canvasName = stage.name.toLowerCase().replace(" ", "-") + "-canvas"
 
-  script.
-    var data = !{stage.metadata};
-    var ctx = $("#!{canvasName}").get(0).getContext("2d");
-    ctx.translate(.5, .5);
-    var tour = new Tournament.Elimination(data, {}, ctx);
+        canvas(width='500px', height='500px', id=canvasName)
+
+        script.
+          var data = !{stage.metadata};
+          var ctx = $("#!{canvasName}").get(0).getContext("2d");
+          ctx.translate(.5, .5);
+          var tour = new Tournament.Elimination(data, {}, ctx);
