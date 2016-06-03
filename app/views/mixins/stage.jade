@@ -3,4 +3,16 @@ mixin stage-form(article, action)
     .form-group
       label(for='name') Title
       input#name.form-control(type='text', name='name', placeholder='Name', value=article.name)
+    .form-group
+      label(for='rounds') Number of rounds
+      input#rounds.form-control(type='number', name='rounds', value=article.round)
+    input#metadata(type='hidden' name='metadata')
     button.btn.button-submit(type='submit') Submit
+
+  script.
+    $("input[name=rounds]").change(function() {
+      alert(JSON.stringify(Tournament.Elimination.generate("single", { round: 3 })));
+      $("input[name=metadata]").val(
+        JSON.stringify(Tournament.Elimination.generate("single", { round: 3 }))
+      );
+    });
