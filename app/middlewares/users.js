@@ -18,3 +18,31 @@ exports.checkNotification = function(req, res, next) {
   }
   next();
 }
+
+exports.cachePreviousPage = function(req, res, next) {
+  if (req.user) return next()
+
+  var staticRoutes = [
+    /^\/fonts/,
+    /^\/javascripts/,
+    /^\/stylesheets/,
+    /^\/images/
+  ]
+
+  var irrelevantRoutes = [
+    '/users/login',
+    '/auth/bnet',
+    '/auth/bnet/callback'
+  ]
+
+  if (req.method == 'GET') {
+    for (var i = 0; i < staticRoutes.length; i ++) {
+      if (staticRoutes[i].test(req.path)) return next()
+    }
+    for (var i = 0; i < irrelevantRoutes.length; i ++) {
+      if (irrelevantRoutes[i] == req.path) return next()
+    }
+    req.session.returnTo = req.path
+  }
+  next()
+}
