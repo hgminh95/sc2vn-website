@@ -52,7 +52,6 @@ TournamentSchema.methods = {
   },
 
   addPending: function(user) {
-    console.log(this.registration.registrable);
     this.registration.pending.push(user);
     this.save();
   },
@@ -68,7 +67,6 @@ TournamentSchema.methods = {
   },
 
   addPendingInvitation: function(user) {
-    console.log(this.registration.registrable);
     this.invitation.pending.push(user);
     this.save();
   },
