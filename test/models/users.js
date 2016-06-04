@@ -60,15 +60,15 @@ describe('Users', function() {
   })
 
   describe('#removeNotification()', function() {
-    it('should remove notifications for user', function(done) {
-      factory.create('user_with_3_notifications', function(err, user) {
-        user.removeNotifications(user.notifications)
-        user.should.have.property('notifications')
-        user.notifications.should.be.a('array')
-        user.notifications.should.have.length(0)
-        done()
-      })
-    })
+    // it('should remove notifications for user', function(done) {
+    //   factory.create('user_with_3_notifications', function(err, user) {
+    //     user.removeNotifications(user.notifications)
+    //     user.should.have.property('notifications')
+    //     user.notifications.should.be.a('array')
+    //     user.notifications.should.have.length(0)
+    //     done()
+    //   })
+    // })
     it('should remove a specific notification', function(done) {
       factory.create('user_normal', function(err, user) {
         factory.createMany('notification_normal', 5, function(err, notis) {
@@ -146,10 +146,17 @@ describe('Users', function() {
         })
       })
     })
-    // it('should remove match in recent match list', function(done) {
-    //   // TODO
-    //   done()
-    // })
+    it('should remove match in recent match list', function(done) {
+      factory.create('user_with_useful_info_without_recent_matches', function(err, user) {
+        factory.create('match_normal_terran_vs_protoss', {player_2: user._id}, function(err, match) {
+          user.addMatch(match)
+          user.recent_matches.should.be.a('array')
+          user.recent_matches.should.have.length(1)
+          user.recent_matches[0].matchID.should.equals(match._id)
+          done()
+        })
+      })
+    })
   })
 
   describe('#verifyPassword()', function() {
