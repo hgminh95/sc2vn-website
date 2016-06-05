@@ -51,18 +51,26 @@ block content
                     a(role='button', data-toggle='collapse', data-parent='#tournaments-accordion', href='#collapse' + index, aria-expanded='true', aria-controls='collapse' + index)
                       = tournament.name
                     .pull-right
-                      a(href='#')
+                      a.approve-button(id= tournament._id)
                         small.text-success
                           i.fa.fa-check.fa-fw
                           | Approve
                       | &nbsp;
-                      a(href='#')
+                      a.reject-button(href='#' id= tournament._id)
                         small.text-danger
                           i.fa.fa-close.fa-fw
                           | Reject
                 .panel-collapse.collapse(role='tabpanel', aria-labelledby='heading' + index, id='collapse' + index)
                   .panel-body
                     | TODO
+                script.
+                  $('.approve-button').click(function() {
+                    $.post('/tournaments/' + this.id + '/acceptTournament', {}, function(data, status) {})
+                  })
+                  
+                  $('.reject-button').click(function() {
+                    $.post('/tournaments/' + this.id + '/declineTournament', {}, function(data, status) {})
+                  })
 
         #settings.tab-pane
           h3 Settings
@@ -72,3 +80,4 @@ block content
                 input(type='checkbox')
                 | Check me out
             button.btn.button-submit Submit
+    

@@ -61,6 +61,11 @@ TournamentSchema.methods = {
     this.save();
   },
 
+  removePaticipant: function(user) {
+    this.registration.participants.remove(user._id);
+    this.save();
+  },
+
   addInvitation: function(user) {
     this.invitation.participants.push(user);
     this.save();

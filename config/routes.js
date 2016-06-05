@@ -77,6 +77,7 @@ module.exports = function(app) {
       .delete('/:tournamentId', permission.isTournamentOwner, tournaments.destroy)
       .post('/:tournamentId/accept/:userId', tournaments.acceptUser)
       .post('/:tournamentId/deny/:userId', tournaments.denyUser)
+      .post('/:tournamentId/denyPaticipant/:userId', tournaments.denyPaticipant)
       .post('/:tournamentId/invitation/:userId', tournaments.invitation)
       .post('/:tournamentId/acceptInvitation', tournaments.acceptInvitation)
       .post('/:tournamentId/declineInvitation', tournaments.declineInvitation)
