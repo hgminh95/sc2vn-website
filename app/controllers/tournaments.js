@@ -28,7 +28,9 @@ exports.load = function(req, res, next, id) {
       address: tournament.getShowPath()
     })
     next();
-  });
+  })
+  .populate('registration.pending')
+  .populate('registration.participants');
 }
 
 exports.index = function(req, res, next) {
