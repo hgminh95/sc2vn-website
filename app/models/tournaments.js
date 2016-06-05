@@ -52,13 +52,18 @@ TournamentSchema.methods = {
   },
 
   addPending: function(user) {
-    console.log(this.registration.registrable);
+    console.log('addsafasd');
     this.registration.pending.push(user);
     this.save();
   },
 
   removePending: function(user) {
     this.registration.pending.remove(user._id);
+    this.save();
+  },
+
+  removePaticipant: function(user) {
+    this.registration.participants.remove(user._id);
     this.save();
   },
 

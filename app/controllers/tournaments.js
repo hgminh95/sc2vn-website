@@ -97,18 +97,19 @@ exports.destroy = function(req, res) {
 }
 
 exports.tournamentRegister = function (req, res, next) {
-  var user = res.locals.current_user;
+  var user = req.user;
   var tournament = req.tournament;
   var ownerId = tournament.owner;
   var notification = new Notification({
-    message: user.name + ' muốn đăng ký tham gia vào ' + tournament.name,
-    link: '/tournaments/' + tournament._id
+    message:  ' want to register to ' + tournament.name,
+    link: '/tournaments/' + tournament._id,
+    icon: 'fa-smile-o'
   });
   tournament.addPending(user);
   User.findById(ownerId, function(err, owner){
     if (err) next(err);
 
-    console.log(tournament.registration);
+    console.log(tournament.registration.pending);
     owner.addNotification(notification);
   });
 
@@ -139,6 +140,20 @@ exports.denyUser = function(req, res) {
   tournament.removePending(user);
   user.addNotification(notification);
 }
+
+exports.denyPaticipant = function(req, res) {
+  var user =  req.profile
+  var tournament = req.tournament;
+  var notification = new Notification({
+    message: ' bạn bị loại ra khỏi ' + tournament.name,
+    link: '/tournaments/' + tournament._id
+  })
+
+  tournament.removePaticipant(user);
+  user.addNotification(notification);
+}
+
+
 
 exports.invitation = function(req, res) {
   var owner = req.user;
@@ -238,22 +253,23 @@ exports.removeStaff = function(req, res){
 }
 
 exports.acceptTournament = function(req, res, next){
-  if(req.user.role != 'admin') return next(new Error('Permission Denied'));
+  //if(req.user.role != 'admin') return next(new Error('Permission Denied'));
   var tournament = req.tournament;
   tournament.status = 'normal'
   tournament.save(function(err){
     if (err) return res.sendStatus(406);
 
-    res.sendStatus(201);
+    res.redirect('/adminarea')
   })
 }
 
 exports.declineTournament = function(req, res, next){
-  if(req.user.role != 'admin') return next(new Error('Permission Denied'));
-  var tournaments = req.tournament;
+  //if(req.user.role != 'admin') return next(new Error('Permission Denied'));
+  var tournament = req.tournament;
+
   tournament.remove(function(err){
     if (err) return res.sendStatus(406);
-
-    res.sendStatus(201);
+    console.log('addaad');
+    res.redirect('/adminarea')
   });
 }
