@@ -104,30 +104,38 @@ mixin tournament(tournament, action)
           #players.tab-pane
             h5 Pening players
             .list-group
-              each pending in tournament.registration.pending
-                .list-group-item 
-                  = pending
-                  .pull-right.list-player(id = tournament._id)
-                    a.approve-button(id= pending)
-                      small.text-success
-                        i.fa.fa-check.fa-fw
-                        | Approve
-                    | &nbsp;
-                    a.reject-button( id= pending)
-                      small.text-danger
-                        i.fa.fa-close.fa-fw
-                        | Reject
+              if(tournament.registration.pending.length == 0 )
+                p there are no players
+              else
+                each pending in tournament.registration.pending
+                  if (pending != null)
+                    .list-group-item 
+                      = pending.name
+                      .pull-right.list-player(id = tournament._id)
+                        a.approve-button(id= pending._id)
+                          small.text-success
+                            i.fa.fa-check.fa-fw
+                            | Approve
+                        | &nbsp;
+                        a.reject-button( id= pending._id)
+                          small.text-danger
+                            i.fa.fa-close.fa-fw
+                            | Reject
               h5 Accepted players
               .list-group
-                each participant in tournament.registration.participants
-                  .list-group-item 
-                    = participant
-                    .pull-right.list-player(id = tournament._id)
-                      a.reject-button-participant(id= participant)
-                        small.text-danger
-                          i.fa.fa-close.fa-fw
-                          | Reject
-            
+                if(tournament.registration.pending.length == 0 )
+                  p there are no players
+                else
+                  each participant in tournament.registration.participants
+                    if (pending != null)
+                      .list-group-item 
+                        = participant.name
+                        .pull-right.list-player(id = tournament._id)
+                          a.reject-button-participant(id= participant._id)
+                            small.text-danger
+                              i.fa.fa-close.fa-fw
+                              | Reject
+
           script.
             $('.list-player').click(function() {
               //alert(this.id)
