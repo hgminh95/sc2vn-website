@@ -68,11 +68,15 @@ module.exports = function(app) {
   app.get('/auth/bnet/callback',
           passport.authenticate('bnet', { failureRedirect: '/' }),
           function(req, res) {
-            res.redirect('/users');
+            var returnTo = req.session.returnTo ? req.session.returnTo : '/'
+            delete req.session.returnTo
+            res.redirect(returnTo)
           });
 
   app.post('/auth/local', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
-    res.redirect('/');
+    var returnTo = req.session.returnTo ? req.session.returnTo : '/'
+    delete req.session.returnTo
+    res.redirect(returnTo)
   });
 
   app.get('/logout', function(req, res) {

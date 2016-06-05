@@ -20,6 +20,7 @@ module.exports = function(app) {
   app.use(users.loadCurrentUser)
 
   app.use(usersMiddleware.checkNotification)
+  app.use(usersMiddleware.cachePreviousPage)
 
   app.use(widgets.recentMatches)
   app.use(widgets.topPlayers)
