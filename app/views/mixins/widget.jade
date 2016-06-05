@@ -53,17 +53,19 @@ mixin tournament-info(tournament)
         tbody
           tr
             th.col-md-3 Status
-            td.col-md-4
-              ul
-                li UPCOMMING
-                li or STARTED
-                li or FINISHED
+            if (tournament.status == 'pending')
+              td.col-md-4 Pending
+            else 
+              td.col-md-4 Normal
           tr
             th Players
-            td 20/30
+            td= tournament.registration.participants.length + tournament.invitation.participants.length
           tr
             th Start
-            td 07/11/2019 01:00 UTC
+            td= tournament.registration.startDate
           tr
-            th Total prize
-            td 20.000 VND
+            th End
+            td= tournament.registration.endDate
+          //- tr
+          //-   th Total prize
+          //-   td 20.000 VND
