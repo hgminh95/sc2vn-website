@@ -7,75 +7,87 @@ var Schema = mongoose.Schema
 var Match = require('./matches')
 
 var StageSchema = new Schema({
-  name: { type: String },
-  metadata: { type: String },
-  matches: [{ type: Schema.Types.ObjectId, ref: 'Match' }],
-  players: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+    name: { type: String },
+    metadata: { type: String },
+    matches: [{ type: Schema.Types.ObjectId, ref: 'Match' }],
+    players: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 },
 {
-  _id: false
+    _id: false
+})
+
+StageSchema.pre('save', function(next) {
+    if (this.isNew)
+        this.createFromMetadata(this.metadata, next)
+    else
+        next()
+})
+
+StageSchema.post('save', function(next) {
+    console.log("Stage save successfully")
 })
 
 StageSchema.methods = {
-  updateMetadata: function(callback) {
-    var opts = [
-      { path: 'matches' },
-      { path: 'players' }
-    ]
+    updateMetadata: function(callback) {
+        var opts = [
+            { path: 'matches' },
+            { path: 'players' }
+        ]
 
-    var stageMeta = JSON.parse(metadata)
+        var stageMeta = JSON.parse(metadata)
 
-    Stage.populate(this, opts, function(err, stage) {
-      if (err) return callback(err)
+        Stage.populate(this, opts, function(err, stage) {
+            if (err) return callback(err)
 
-      for (let match of stageMeta.matches) {
-        if (match._id == null) return callback(err)
-      }
-    })
-  },
-
-  createFromMetadata: function(metadata, callback) {
-    var opts = [
-      { path: 'matches' },
-      { path: 'players' }
-    ]
-
-    this.matches = []
-
-    var stageMeta = JSON.parse(metadata)
-
-    Stage.populate(this, opts, function(err, stage) {
-      if (err) return callback(err)
-
-      var self = this
-      async.each(stageMeta.matches, function(match, callback) {
-        match.player_1 = self.toUserId(player1, stage.players)
-        match.player_2 = self.toUserId(player2, stage.players)
-
-        Match.create(match, function(err, match) {
-          if (err) return callback(err)
-
-          stage.matches.push(match)
-
-          callback(null)
+            for (let match of stageMeta.matches) {
+                if (match._id == null) return callback(err)
+            }
         })
-      }, function(err) {
-        if (err) return callback(err)
+    },
 
-        stage.save(function(err, stage) {
-          if (err) return callback(err)
+    createFromMetadata: function(metadata, callback) {
+        var opts = [
+            { path: 'matches' },
+            { path: 'players' }
+        ]
 
-          callback(err, stage)
+        console.log("Call again")
+
+        this.matches = []
+
+        var stageMeta = JSON.parse(metadata)
+
+        Stage.populate(this, opts, function(err, stage) {
+            if (err) return callback(err)
+
+            console.log("Populate success " + JSON.stringify(stage))
+
+            async.each(stageMeta.matches, function(match, cb) {
+                console.log("Update match " + JSON.stringify(match))
+                match.player_1 = stage.toUserId(match.player1, stage.players)
+                match.player_2 = stage.toUserId(match.player2, stage.players)
+
+                Match.create(match, function(err, match) {
+                    if (err) return cb(err)
+
+                    console.log("Create match successfully")
+                    stage.matches.push(match)
+
+                    cb(null)
+                })
+            }, function(err) {
+                if (err) return callback(err)
+
+                callback()
+            })
         })
-      })
-    })
-  },
+    },
 
-  toUserId: function(userName, players) {
-    var player = players.find(user => user.name == userName)
+    toUserId: function(userName, players) {
+        var player = players.find(user => user.name == userName)
 
-    return player == null ? null : player._id
-  }
+        return player == null ? null : player._id
+    }
 }
 
 StageSchema.statics = {
