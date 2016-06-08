@@ -97,7 +97,7 @@ mixin tournament(tournament, action)
             var tour = []
           #stages-accordion.panel-group(role='tab-list', aria-multiselectable='true')
             each stage, index in tournament.stages
-              +stage(stage, index)
+              +stage(stage, index, action)
 
         #faq.tab-pane.editable
           != tournament.faq
@@ -182,6 +182,9 @@ mixin stage(stage, index, action)
     .panel-collapse.collapse(id='collapse' + index, role='tabpanel', aria-controls='collapse' + index)
       .panel-body
         - var canvasName = stage.name.toLowerCase().replace(" ", "-") + "-canvas"
+        - var suffixURL = action == 'edit' ? '/edit' : ''
+        p
+          = suffixURL
 
         canvas(width='500px', height='500px', id=canvasName)
 
@@ -193,7 +196,7 @@ mixin stage(stage, index, action)
 
           tour[tour.length - 1].addMatchClickEventListener(function(match) {
             console.log("Clicked " + match.raw._id);
-            $.getScript("../../matches/" + match.raw._id, function(data, textStatus, jqxhr) {
+            $.getScript("../../matches/" + match.raw._id + "!{suffixURL}", function(data, textStatus, jqxhr) {
 
             })
           })

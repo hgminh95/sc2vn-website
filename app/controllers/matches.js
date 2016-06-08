@@ -81,7 +81,7 @@ exports.create = function(req, res, next) {
 }
 
 exports.show = function(req, res) {
-    if (req.accepts('text/javascript')) {
+    if (req.accepts('text/javascript') && req.xhr) {
         res.type('application/javascript')
 
         res.render('matches/showjs', {
@@ -89,7 +89,6 @@ exports.show = function(req, res) {
         })
     }
     else if (req.accepts('html')) {
-        console.log("Render html")
         res.render('matches/show', {
             title: 'View matches',
             match: req.match
@@ -98,14 +97,30 @@ exports.show = function(req, res) {
 }
 
 exports.edit = function(req, res) {
-  Map.all(function(err, maps) {
-    if (err) return next(err)
+    Map.all(function(err, maps) {
+        if (err) return next(err)
 
-    res.render('matches/edit', {
-      match: req.match,
-      maps: maps
-    });
-  })
+        if (req.accepts('text/javascript') && req.xhr) {
+            User.all(function(err, users) {
+                res.type('application/javascript')
+
+                res.render('matches/editjs', {
+                    match: req.match,
+                    maps: maps,
+                    users: users
+                })
+            })
+        }
+        else if (req.accepts('html')) {
+            console.log("Render html")
+            res.render('matches/edit', {
+                title: 'Edit match',
+                match: req.match,
+                maps: maps,
+                users: users
+            })
+        }
+    })
 }
 
 exports.update = function(req, res) {

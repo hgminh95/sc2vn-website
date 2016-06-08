@@ -1,0 +1,13 @@
+include ../mixins/match
+
+| $('#popup-content').html(`
+.modal-header
+  button.close(type='button', data-dismiss='modal' aria-label='close')
+    span(aria-hidden='true')
+      | &times;
+  h4.modal-title.text-center
+    | Edit match
+.modal-body
+  +match-form(match)
+| `);
+| $('#popup-modal').modal();
