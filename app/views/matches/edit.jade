@@ -13,7 +13,8 @@ block sidebar
     $('#save-button').click(function() {
       $('#save-button').html('<i class="fa fa-circle-o-notch fa-spin"></i>')
       var gamesChange = []
-      $('.tab-content .tab-pane').each(function(index) {
+      for(index = 0; index < $('#gamesCount').val(); index++) {
+        console.log(index)
         var elementId = '#g' + index
         var game = {
           race1: $(elementId + 'p1race').val(),
@@ -22,10 +23,17 @@ block sidebar
           replay: null,
           status: $(elementId + 'status').val()
         }
-        gamesChange.push(game)
-      })
+          gamesChange.push(game)
+      }
+      console.log(JSON.stringify(gamesChange))
       $.post('./', {
-        games: JSON.stringify(gamesChange)
+        games: JSON.stringify(gamesChange),
+        date: $('#date').val(),
+        success: function(data, textStatus, jqXHR){
+          var loc = window.location.pathname;
+          var dir = loc.substring(0, loc.lastIndexOf('/'));
+          window.location.href = dir;
+        }
       },
       function(data, status) {
         setTimeout(function() {
