@@ -101,17 +101,23 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {
   var match = req.match;
 
-  var gamesReq = {games: JSON.parse(req.body.games)}
+  var gamesReq = {games: JSON.parse(req.body.games), date: req.body.date}
+  console.log(gamesReq)
   assign(match, only(gamesReq, Match.fields()));
-  for(var i = 0 ; i < req.body.games.length(); i++){
-    var game = req.body.games[i];
-    var file = req.files[game._id]
-
-    uploader.upload(game, file, function(match) {
-      match.save(function(err, match) {
-        if (err) return next(err);
+  console.log(gamesReq.games.length)
+  if(req.files != null){
+    for(var i = 0 ; i < gamesReq.games.length; i++){
+    var game = gamesReq.games[i]
+    console.log(req.files)
+    if(req.files[i] != null){
+      var file = req.files[i]
+      uploader.upload(game, file, function(match) {
+        match.save(function(err, match) {
+          if (err) return next(err);
+        });
       });
-    });
+    }
+  }
   }
 
   match.save(function(err, match) {
