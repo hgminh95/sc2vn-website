@@ -15,9 +15,22 @@ block content-inside
 block sidebar
   if isLoggedIn
     if !currentUser.isOwnerOf(tournament)
-      a#register-button.btn.btn-block.button-submit
-        i.fa.fa-edit.fa-fw
-        | &nbsp; Register
+      
+      if(tournament.registration.pending.length != 0 )
+        -var t = 0
+        each pending in tournament.registration.pending
+          - if (pending._id.equals(currentUser._id))
+            - t = 1
+        if(tournament.registration.participants.length == 0 )
+          each participant in tournament.registration.participants
+            - if (participant._id.equals(currentUser._id))
+              - t = 2
+        if(t == 0)
+          a#register-button.btn.btn-block.button-submit
+            i.fa.fa-edit.fa-fw
+            | &nbsp; Register
+        if(t == 1)
+          h3 Watting to accept
   else
     a#register-without-login-button.btn.btn-block.button-submit
       .fa.fa-edit.fa-fw
@@ -34,6 +47,9 @@ block sidebar
       $.post('#{tournament.getRegisterPath()}', {}, function(data, status) {})
         .fail(function() {
           alert("You must login in order to register");
+        })
+        .done(function() {
+          location.reload();
         })
         .always(function() {
           setTimeout(function() {

@@ -129,6 +129,7 @@ exports.acceptUser = function(req, res) {
   tournament.removePending(user);
   tournament.addParticipant(user);
   user.addNotification(notification);
+  res.sendStatus(201);
 }
 
 exports.denyUser = function(req, res) {
@@ -141,6 +142,7 @@ exports.denyUser = function(req, res) {
 
   tournament.removePending(user);
   user.addNotification(notification);
+  res.sendStatus(201);
 }
 
 exports.denyPaticipant = function(req, res) {
@@ -153,6 +155,7 @@ exports.denyPaticipant = function(req, res) {
 
   tournament.removePaticipant(user);
   user.addNotification(notification);
+  res.sendStatus(201);
 }
 
 
@@ -261,7 +264,7 @@ exports.acceptTournament = function(req, res, next){
   tournament.save(function(err){
     if (err) return res.sendStatus(406);
 
-    res.redirect('/adminarea')
+    res.sendStatus(201);
   })
 }
 
@@ -272,6 +275,6 @@ exports.declineTournament = function(req, res, next){
   tournament.remove(function(err){
     if (err) return res.sendStatus(406);
     console.log('addaad');
-    res.redirect('/adminarea')
+    res.sendStatus(201);
   });
 }
