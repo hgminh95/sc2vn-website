@@ -23,10 +23,6 @@ StageSchema.pre('save', function(next) {
         next()
 })
 
-StageSchema.post('save', function(next) {
-    console.log("Stage save successfully")
-})
-
 StageSchema.methods = {
     updateMetadata: function(callback) {
         var opts = [
@@ -57,6 +53,8 @@ StageSchema.methods = {
 
         var stageMeta = JSON.parse(metadata)
 
+        var self = this;
+
         Stage.populate(this, opts, function(err, stage) {
             if (err) return callback(err)
 
@@ -67,17 +65,19 @@ StageSchema.methods = {
                 match.player_1 = stage.toUserId(match.player1, stage.players)
                 match.player_2 = stage.toUserId(match.player2, stage.players)
 
-                Match.create(match, function(err, match) {
+                Match.create(match, function(err, m) {
                     if (err) return cb(err)
 
                     console.log("Create match successfully")
-                    stage.matches.push(match)
+                    match._id = m._id
+                    stage.matches.push(m)
 
                     cb(null)
                 })
             }, function(err) {
                 if (err) return callback(err)
 
+                self.metadata = JSON.stringify(stageMeta)
                 callback()
             })
         })

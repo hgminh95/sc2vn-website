@@ -81,10 +81,20 @@ exports.create = function(req, res, next) {
 }
 
 exports.show = function(req, res) {
-  res.render('matches/show', {
-    title: 'View matches',
-    match: req.match
-  });
+    if (req.accepts('text/javascript')) {
+        res.type('application/javascript')
+
+        res.render('matches/showjs', {
+            match: req.match
+        })
+    }
+    else if (req.accepts('html')) {
+        console.log("Render html")
+        res.render('matches/show', {
+            title: 'View matches',
+            match: req.match
+        })
+    }
 }
 
 exports.edit = function(req, res) {

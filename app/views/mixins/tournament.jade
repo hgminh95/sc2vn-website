@@ -93,6 +93,8 @@ mixin tournament(tournament, action)
                   td Nothing
 
         #schedule.tab-pane
+          script.
+            var tour = []
           #stages-accordion.panel-group(role='tab-list', aria-multiselectable='true')
             each stage, index in tournament.stages
               +stage(stage, index)
@@ -109,7 +111,7 @@ mixin tournament(tournament, action)
               else
                 each pending in tournament.registration.pending
                   if (pending != null)
-                    .list-group-item 
+                    .list-group-item
                       = pending.name
                       .pull-right.list-player(id = tournament._id)
                         a.approve-button(id= pending._id)
@@ -128,7 +130,7 @@ mixin tournament(tournament, action)
                 else
                   each participant in tournament.registration.participants
                     if (participant != null)
-                      .list-group-item 
+                      .list-group-item
                         = participant.name
                         .pull-right.list-player(id = tournament._id)
                           a.reject-button-participant(id= participant._id)
@@ -142,21 +144,21 @@ mixin tournament(tournament, action)
               tournamentId = this.id
               //- $.post('/tournaments/' + tournament._id + '/accept/' + this.id, {}, function(data, status) {})
             })
-            
+
             $('.approve-button').click(function() {
               $.post('/tournaments/' + tournamentId + '/accept/' + this.id, {}, function(data, status) {})
                 .done(function() {
                   location.reload();
                 })
             })
-            
+
             $('.reject-button').click(function() {
               $.post('/tournaments/' + tournamentId + '/deny/' + this.id, {}, function(data, status) {})
                 .done(function() {
                   location.reload();
                 })
             })
-            
+
             $('.reject-button-participant').click(function() {
               $.post('/tournaments/' + tournamentId + '/denyPaticipant/' + this.id, {}, function(data, status) {})
                 .done(function() {
@@ -165,7 +167,7 @@ mixin tournament(tournament, action)
             })
 
 
-mixin stage(stage, index)
+mixin stage(stage, index, action)
   .panel.panel-default
     .panel-heading(role='tab', id='heading' + index)
       h4.panel-title
@@ -187,4 +189,11 @@ mixin stage(stage, index)
           var data = !{stage.metadata};
           var ctx = $("#!{canvasName}").get(0).getContext("2d");
           ctx.translate(.5, .5);
-          var tour = new Tournament.Elimination(data, {}, ctx);
+          tour.push(new Tournament.Elimination(data, {}, ctx));
+
+          tour[tour.length - 1].addMatchClickEventListener(function(match) {
+            console.log("Clicked " + match.raw._id);
+            $.getScript("../../matches/" + match.raw._id, function(data, textStatus, jqxhr) {
+
+            })
+          })
