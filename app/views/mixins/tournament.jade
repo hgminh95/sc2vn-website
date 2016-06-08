@@ -105,7 +105,7 @@ mixin tournament(tournament, action)
             h5 Pening players
             .list-group
               if(tournament.registration.pending.length == 0 )
-                p there are no players
+                p there are no pending players
               else
                 each pending in tournament.registration.pending
                   if (pending != null)
@@ -123,11 +123,11 @@ mixin tournament(tournament, action)
                             | Reject
               h5 Accepted players
               .list-group
-                if(tournament.registration.pending.length == 0 )
+                if(tournament.registration.participants.length == 0 )
                   p there are no players
                 else
                   each participant in tournament.registration.participants
-                    if (pending != null)
+                    if (participant != null)
                       .list-group-item 
                         = participant.name
                         .pull-right.list-player(id = tournament._id)
@@ -145,14 +145,23 @@ mixin tournament(tournament, action)
             
             $('.approve-button').click(function() {
               $.post('/tournaments/' + tournamentId + '/accept/' + this.id, {}, function(data, status) {})
+                .done(function() {
+                  location.reload();
+                })
             })
             
             $('.reject-button').click(function() {
               $.post('/tournaments/' + tournamentId + '/deny/' + this.id, {}, function(data, status) {})
+                .done(function() {
+                  location.reload();
+                })
             })
             
             $('.reject-button-participant').click(function() {
               $.post('/tournaments/' + tournamentId + '/denyPaticipant/' + this.id, {}, function(data, status) {})
+                .done(function() {
+                  location.reload();
+                })
             })
 
 
@@ -165,9 +174,9 @@ mixin stage(stage, index)
           =stage.name
         .pull-right
           a#delete-stage-button(href='#')
-            small.text-success
-              i.fa.fa-check.fa-fw
-              | delete
+            small.text-danger
+              i.fa.fa-close.fa-fw
+              | Reject
     .panel-collapse.collapse(id='collapse' + index, role='tabpanel', aria-controls='collapse' + index)
       .panel-body
         - var canvasName = stage.name.toLowerCase().replace(" ", "-") + "-canvas"

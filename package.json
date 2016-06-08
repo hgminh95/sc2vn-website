@@ -7,7 +7,7 @@
     "test": "mocha $(find test -name '*.js')",
     "build-admin": "node_modules/.bin/webpack",
     "get-resources": "python resources.py",
-    "mongo-seed": "python bin/seed.py"
+    "mongo-seed": "python db/seed.py"
   },
   "dependencies": {
     "async": "^1.5.2",

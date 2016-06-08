@@ -66,10 +66,16 @@ block content
                 script.
                   $('.approve-button').click(function() {
                     $.post('/tournaments/' + this.id + '/acceptTournament', {}, function(data, status) {})
+                      .done(function() {
+                        location.reload();
+                      })
                   })
                   
                   $('.reject-button').click(function() {
                     $.post('/tournaments/' + this.id + '/declineTournament', {}, function(data, status) {})
+                      .done(function() {
+                        location.reload();
+                      })
                   })
 
         #settings.tab-pane
