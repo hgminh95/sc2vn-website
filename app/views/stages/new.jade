@@ -1,6 +1,6 @@
 include ../mixins/stage
 
-| $('#edit-content').html(`
+| $('#popup-content').html(`
 .modal-header
   button.close(type='button', data-dismiss='modal' aria-label='close')
     span(aria-hidden='true')
@@ -10,4 +10,4 @@ include ../mixins/stage
 .modal-body
   +stage-form({}, 'stages')
 | `);
-| $('#edit-modal').modal();
+| $('#popup-modal').modal();

@@ -1,6 +1,6 @@
 include ../mixins/match
 
-| $('#edit-content').html(`
+| $('#popup-content').html(`
 .modal-header
   button.close(type='button', data-dismiss='modal' aria-label='close')
     span(aria-hidden='true')
@@ -8,6 +8,6 @@ include ../mixins/match
   h4.modal-title.text-center
     | Match Details
 .modal-body
-  +match(match)
+  +match-brief(match)
 | `);
-| $('#edit-modal').modal();
+| $('#popup-modal').modal();

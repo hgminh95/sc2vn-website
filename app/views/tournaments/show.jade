@@ -7,6 +7,10 @@ block scripts
   script(src='/javascripts/tournament-drawer.min.js')
 
 block content-header
+  #popup-modal.modal.fade(tabindex='-1', role='dialog')
+    .modal-dialog(role='document')
+      #popup-content.modal-content
+
   img.tournament-banner(src=tournament.banner)
 
 block content-inside
@@ -15,7 +19,7 @@ block content-inside
 block sidebar
   if isLoggedIn
     if !currentUser.isOwnerOf(tournament)
-      
+
       if(tournament.registration.pending.length != 0 )
         -var t = 0
         each pending in tournament.registration.pending

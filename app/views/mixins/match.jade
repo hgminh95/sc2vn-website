@@ -62,6 +62,48 @@ mixin match-form()
 
     button.btn.button-submit(type='submit') Submit
 
+mixin match-brief(match)
+  table.table.table-borderless
+      tbody
+        tr
+          td.col-md-2(align='left')
+            h5
+              strong= match.player1 ? match.player_1.name : ""
+            = '#' + (match.player1 ? match.player_1.rank : "")
+          td.col-md-3(align='right')
+            img.avatar(src=match.player1 ? match.player_1.avatar : "", class='race-' + (match.player1 ? match.player_1.race : ""))
+          td.col-md-2(align='center')
+            button.btn.btn-default
+              = match.winner() ? match.winner().name + ' wins' : 'Draw'
+            if type != 'edit'
+              h5
+                = 'Best of ' + match.games.length
+              h6
+                if match.date
+                  = match.date.getDate() + '/' + (match.date.getMonth() + 1) + '/' + match.date.getUTCFullYear()
+            else
+              .form-group
+                label Number of matches
+                .input-group
+                  span.input-group-addon
+                    i.fa.fa-map.fa-fw
+                  select.form-control(name='gamesCount', id ='gamesCount')
+                    option(value='1', selected = (match.games.length == 1)) 1
+                    option(value='3', selected = (match.games.length == 3)) 3
+                    option(value='5', selected = (match.games.length == 5)) 5
+                    option(value='7', selected = (match.games.length == 7)) 7
+              .form-group
+                label Start date
+                .input-group
+                  span.input-group-addon
+                    i.fa.fa-calendar.fa-fw
+                  input.form-control(id='date', type='date', name='date', value=match.date.getUTCFullYear() + '-' + ('0' + (match.date.getMonth() + 1)).slice(-2) + '-' + ('0' + match.date.getDate()).slice(-2))
+          td.col-md-3(align='left')
+            img.avatar(src=match.player1 ? match.player_2.avatar : "", class='race-' + (match.player1 ? match.player_2.race : ""))
+          td.col-md-3(align='right')
+            h5
+              strong= match.player1 ? match.player_2.name : ""
+            = '#' + (match.player1 ? match.player_2.rank : "")
 
 mixin match(match, type)
   .box
