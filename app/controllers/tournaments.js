@@ -52,6 +52,7 @@ exports.new = function(req, res) {
 
 exports.create = function(req, res, next) {
   var tournament = new Tournament(only(req.body, Tournament.fields()))
+  tournament.owner = req.user._id
 
   uploader.upload(tournament, req.file, function(tournament) {
     tournament.save(function(err) {
