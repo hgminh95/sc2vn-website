@@ -112,12 +112,10 @@ exports.edit = function(req, res) {
             })
         }
         else if (req.accepts('html')) {
-            console.log("Render html")
             res.render('matches/edit', {
                 title: 'Edit match',
                 match: req.match,
                 maps: maps,
-                users: users
             })
         }
     })
