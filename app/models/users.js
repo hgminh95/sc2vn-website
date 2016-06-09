@@ -191,11 +191,11 @@ UserSchema.methods = {
   },
 
   isAdmin: function() {
-    return this.type === 'admin'
+    return this.role === 'admin'
   },
 
   isModerator: function() {
-    return this.type === 'mod'
+    return this.role === 'mod'
   },
 
   isPlayer: function() {

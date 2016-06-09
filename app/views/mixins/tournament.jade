@@ -104,10 +104,10 @@ mixin tournament(tournament, action)
 
         if action === 'edit'
           #players.tab-pane
-            h5 Pening players
+            h4 Pending players
             .list-group
               if(tournament.registration.pending.length == 0 )
-                p there are no pending players
+                p There are no pending players
               else
                 each pending in tournament.registration.pending
                   if (pending != null)
@@ -123,10 +123,10 @@ mixin tournament(tournament, action)
                           small.text-danger
                             i.fa.fa-close.fa-fw
                             | Reject
-              h5 Accepted players
+              h4 Accepted players
               .list-group
                 if(tournament.registration.participants.length == 0 )
-                  p there are no players
+                  p There are no players
                 else
                   each participant in tournament.registration.participants
                     if (participant != null)
@@ -174,17 +174,16 @@ mixin stage(stage, index, action)
         a(role='button' data-toggle='collapse', data-parent='#stages-accordion', href='#collapse' + index,
             aria-expanded='true', aria-controls='collapse' + index)
           =stage.name
-        .pull-right
-          a#delete-stage-button(href='#')
-            small.text-danger
-              i.fa.fa-close.fa-fw
-              | Reject
+        if action === 'edit'
+          .pull-right
+            a#delete-stage-button(href='#')
+              small.text-danger
+                i.fa.fa-close.fa-fw
+                | Remove
     .panel-collapse.collapse(id='collapse' + index, role='tabpanel', aria-controls='collapse' + index)
       .panel-body
         - var canvasName = stage.name.toLowerCase().replace(" ", "-") + "-canvas"
         - var suffixURL = action == 'edit' ? '/edit' : ''
-        p
-          = suffixURL
 
         canvas(width='500px', height='500px', id=canvasName)
 

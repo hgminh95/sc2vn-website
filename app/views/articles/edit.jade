@@ -31,7 +31,8 @@ block sidebar
       },
       function(data, status) {
         setTimeout(function() {
-          $('#save-button').html('<i class="fa fa-floppy-o fa-fw"></i> &nbsp;Save')
+          $('#save-button').html('<i class="fa fa-floppy-o fa-fw"></i> &nbsp;Save');
+          alert("Save successfully");
         }, 1000);
       });
     })

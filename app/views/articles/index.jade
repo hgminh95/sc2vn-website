@@ -37,7 +37,7 @@ block content-inside
       |  This site is under construction. Please be careful!
 
 block sidebar
-  if isLoggedIn && currentUser.isModerator()
+  if isLoggedIn && (currentUser.isModerator() || currentUser.isAdmin())
     a.btn.btn-block.button-submit(href='/articles/new')
       i.fa.fa-plus.fa-fw
       | &nbsp; New Article
