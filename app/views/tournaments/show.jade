@@ -19,22 +19,24 @@ block content-inside
 block sidebar
   if isLoggedIn
     if !currentUser.isOwnerOf(tournament)
+      - var t = 0
+      each pending in tournament.registration.pending
+        if (pending._id.equals(currentUser._id))
+          - t = 1
+      each participant in tournament.registration.participants
+        if (participant._id.equals(currentUser._id))
+          - t = 2
 
-      if(tournament.registration.pending.length != 0 )
-        -var t = 0
-        each pending in tournament.registration.pending
-          - if (pending._id.equals(currentUser._id))
-            - t = 1
-        if(tournament.registration.participants.length == 0 )
-          each participant in tournament.registration.participants
-            - if (participant._id.equals(currentUser._id))
-              - t = 2
-        if(t == 0)
-          a#register-button.btn.btn-block.button-submit
-            i.fa.fa-edit.fa-fw
-            | &nbsp; Register
-        if(t == 1)
-          h3 Watting to accept
+      if (t == 0)
+        a#register-button.btn.btn-block.button-submit
+          i.fa.fa-edit.fa-fw
+          | &nbsp; Register
+      else if (t == 1)
+        .btn.btn-block.button-success
+          | Waiting for accept
+      else if (t == 2)
+        .btn.btn-block.button-success
+          | Registered
   else
     a#register-without-login-button.btn.btn-block.button-submit
       .fa.fa-edit.fa-fw
@@ -50,14 +52,14 @@ block sidebar
       $('#register-button').html('<i class="fa fa-circle-o-notch fa-spin"></i>');
       $.post('#{tournament.getRegisterPath()}', {}, function(data, status) {})
         .fail(function() {
-          alert("You must login in order to register");
+          alert("Failed to register");
         })
-        .done(function() {
-          location.reload();
-        })
-        .always(function() {
+        .success(function() {
           setTimeout(function() {
-            $('#register-button').html('<i class="fa fa-floppy-o fa-fw"></i> &nbsp;Register')
+            $('#register-button')
+                .html('Waiting for accept')
+                .removeClass('button-submit')
+                .addClass('button-success')
           }, 1000);
         });
     });

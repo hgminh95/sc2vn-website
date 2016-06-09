@@ -53,6 +53,16 @@
   }
 }
 
+.button-success {
+  @extend .button-submit;
+
+  background-color: rgb(60, 118, 61);
+
+  &:hover {
+    background-color: mediumseagreen;
+  }
+}
+
 .button-small {
   font-size: $font-size-default;
   padding: 5px 15px 5px 15px;
