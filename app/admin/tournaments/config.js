@@ -11,6 +11,7 @@ module.exports = function(nga, admin) {
           .targetEntity(admin.getEntity('users'))
           .targetField(nga.field('name'))
           .label('Owner'),
+      nga.field('status'),
       nga.field('created_at', 'datetime'),
       nga.field('updated_at', 'datetime')
     ]);
@@ -22,6 +23,9 @@ module.exports = function(nga, admin) {
           .targetEntity(admin.getEntity('users'))
           .targetField(nga.field('name'))
           .label('Owner'),
+      nga.field('status'),
+
+      // Basic info
       nga.field('banner'),
       nga.field('introduction', 'wysiwyg'),
       nga.field('rule', 'wysiwyg'),
@@ -59,6 +63,9 @@ module.exports = function(nga, admin) {
           .targetEntity(admin.getEntity('users'))
           .targetField(nga.field('name'))
           .label('Owner'),
+      nga.field('status'),
+
+      // Basic info
       nga.field('banner'),
       nga.field('introduction', 'wysiwyg'),
       nga.field('rule', 'wysiwyg'),
@@ -73,7 +80,7 @@ module.exports = function(nga, admin) {
       nga.field('startDate', 'date'),
       nga.field('endDate', 'date'),
       nga.field('inforRequire', 'string')
-        .label('Required Information'),
+          .label('Required Information'),
 
       // Invitation
 
