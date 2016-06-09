@@ -1,5 +1,3 @@
-include ../mixins/match
-
 | $('#popup-content').html(`
 .modal-header
   button.close(type='button', data-dismiss='modal' aria-label='close')
@@ -8,6 +6,57 @@ include ../mixins/match
   h4.modal-title.text-center
     | Edit match
 .modal-body
-  +match-form(match)
+  .rows
+    .col-md-6
+      .form-group
+        label Player 1
+        .input-group
+          span.input-group-addon
+            i.fa.fa-user.fa-fw
+          select#player1select.form-control(name='player1')
+            each user in users
+              option(value=user.name)= user.name
+      .form-group
+        label Player 2
+        .input-group
+          span.input-group-addon
+            i.fa.fa-user.fa-fw
+          select#player2select.form-control(name='player2')
+            each user in users
+              option(value=user.name)= user.name
+    .col-md-6
+      .form-group
+        label Score
+        .input-group
+          span.input-group-addon
+            i.fa.fa-user.fa-fw
+          input.form-control(type='number', name='score1')
+      .form-group
+        label Score
+        .input-group
+          span.input-group-addon
+            i.fa.fa-user.fa-fw
+          input.form-control(type='number', name='score2')
+    .col-md-12
+      .form-group
+        label Start date
+        .input-group
+          span.input-group-addon
+            i.fa.fa-calendar.fa-fw
+          input.form-control(type='date', name='date')
+
+  button#edit-match-submit-button.btn.button-submit.text-center Submit
 | `);
 | $('#popup-modal').modal();
+| $('#player1select').val(selectedMatch.player1.player);
+| $('#player2select').val(selectedMatch.player2.player);
+| $('input[name=score1]').val(selectedMatch.player1.score);
+| $('input[name=score2]').val(selectedMatch.player2.score);
+| $('#edit-match-submit-button').click(function() {
+|   console.log('OK');
+|   selectedMatch.player1.player = $('#player1select').val();
+|   selectedMatch.player2.player = $('#player2select').val();
+|   selectedMatch.player1.score = $('input[name=score1]').val();
+|   selectedMatch.player2.score = $('input[name=score2]').val();
+|   $('#popup-modal').modal('hide');
+| });

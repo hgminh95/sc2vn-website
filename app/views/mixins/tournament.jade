@@ -193,7 +193,9 @@ mixin stage(stage, index, action)
           ctx.translate(.5, .5);
           tour.push(new Tournament.Elimination(data, {}, ctx));
 
+          var selectedMatch = {}
           tour[tour.length - 1].addMatchClickEventListener(function(match) {
+            selectedMatch = match;
             console.log("Clicked " + match.raw._id);
             $.getScript("../../matches/" + match.raw._id + "!{suffixURL}", function(data, textStatus, jqxhr) {
 
