@@ -39,9 +39,13 @@ exports.update = function(req, res) {
   var tournament = req.tournament;
 
   assign(tournament, only(req.body, Tournament.fields()));
-  tournament.save();
-
-  res.sendStatus(204);
+  tournament.save(function(err, tournament) {
+    if (err) {
+      console.log(err)
+      res.sendStatus(406)
+    }
+    else res.sendStatus(201)
+  });
 }
 
 exports.destroy = function(req, res) {

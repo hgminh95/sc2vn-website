@@ -47,8 +47,6 @@ StageSchema.methods = {
             { path: 'players' }
         ]
 
-        console.log("Call again")
-
         this.matches = []
 
         var stageMeta = JSON.parse(metadata)
@@ -64,6 +62,8 @@ StageSchema.methods = {
                 console.log("Update match " + JSON.stringify(match))
                 match.player_1 = stage.toUserId(match.player1, stage.players)
                 match.player_2 = stage.toUserId(match.player2, stage.players)
+
+                if (match._id != null) return cb(null)
 
                 Match.create(match, function(err, m) {
                     if (err) return cb(err)

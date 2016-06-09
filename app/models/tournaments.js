@@ -33,8 +33,8 @@ var TournamentSchema = new Schema({
   introduction: { type: String },
   rule: { type: String },
   faq: { type: String },
-  registration: { type: RegistrationSchema, required: true, default: {}  },
-  invitation: { type: InvitationSchema, required: true, default: {} },
+  registration: { type: RegistrationSchema, default: {}  },
+  invitation: { type: InvitationSchema, default: {} },
   stages: { type: [Stage.schema] },
   status: { type: String, enum: ['pending', 'normal'], default: 'pending'}
 },
@@ -131,7 +131,7 @@ TournamentSchema.statics = {
   },
 
   fields: function() {
-    return 'name owner staffs banner introduction rule faq price registration invitation stages'
+    return 'name owner status staffs banner introduction rule faq price registration invitation stages'
   },
 
   getNewPath: function() {
