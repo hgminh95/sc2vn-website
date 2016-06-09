@@ -68,10 +68,10 @@ mixin match-brief(match)
         tr
           td.col-md-2(align='left')
             h5
-              strong= match.player1 ? match.player_1.name : ""
-            = '#' + (match.player1 ? match.player_1.rank : "")
+              strong= match.player_1 ? match.player_1.name : ""
+            = '#' + (match.player_1 ? match.player_1.rank : "")
           td.col-md-3(align='right')
-            img.avatar(src=match.player1 ? match.player_1.avatar : "", class='race-' + (match.player1 ? match.player_1.race : ""))
+            img.avatar(src=match.player_1 ? match.player_1.avatar : "", class='race-' + (match.player_1 ? match.player_1.race : ""))
           td.col-md-2(align='center')
             button.btn.btn-default
               = match.winner() ? match.winner().name + ' wins' : 'Draw'
@@ -99,11 +99,11 @@ mixin match-brief(match)
                     i.fa.fa-calendar.fa-fw
                   input.form-control(id='date', type='date', name='date', value=match.date.getUTCFullYear() + '-' + ('0' + (match.date.getMonth() + 1)).slice(-2) + '-' + ('0' + match.date.getDate()).slice(-2))
           td.col-md-3(align='left')
-            img.avatar(src=match.player1 ? match.player_2.avatar : "", class='race-' + (match.player1 ? match.player_2.race : ""))
+            img.avatar(src=match.player_2 ? match.player_2.avatar : "", class='race-' + (match.player_2 ? match.player_2.race : ""))
           td.col-md-3(align='right')
             h5
-              strong= match.player1 ? match.player_2.name : ""
-            = '#' + (match.player1 ? match.player_2.rank : "")
+              strong= match.player_2 ? match.player_2.name : ""
+            = '#' + (match.player_2 ? match.player_2.rank : "")
 
 mixin match(match, type)
   .box
@@ -114,10 +114,10 @@ mixin match(match, type)
         tr
           td.col-md-2(align='left')
             h5
-              strong= match.player1 ? match.player_1.name : ""
-            = '#' + (match.player1 ? match.player_1.rank : "")
+              strong= match.player_1 ? match.player_1.name : ""
+            = '#' + (match.player_1 ? match.player_1.rank : "")
           td.col-md-3(align='right')
-            img.avatar(src=match.player1 ? match.player_1.avatar : "", class='race-' + (match.player1 ? match.player_1.race : ""))
+            img.avatar(src=match.player_1 ? match.player_1.avatar : "", class='race-' + (match.player_1 ? match.player_1.race : ""))
           td.col-md-2(align='center')
             button.btn.btn-default
               = match.winner() ? match.winner().name + ' wins' : 'Draw'
@@ -145,11 +145,11 @@ mixin match(match, type)
                     i.fa.fa-calendar.fa-fw
                   input.form-control(id='date', type='date', name='date', value=match.date.getUTCFullYear() + '-' + ('0' + (match.date.getMonth() + 1)).slice(-2) + '-' + ('0' + match.date.getDate()).slice(-2))
           td.col-md-3(align='left')
-            img.avatar(src=match.player1 ? match.player_2.avatar : "", class='race-' + (match.player1 ? match.player_2.race : ""))
+            img.avatar(src=match.player_2 ? match.player_2.avatar : "", class='race-' + (match.player_2 ? match.player_2.race : ""))
           td.col-md-3(align='right')
             h5
-              strong= match.player1 ? match.player_2.name : ""
-            = '#' + (match.player1 ? match.player_2.rank : "")
+              strong= match.player_2 ? match.player_2.name : ""
+            = '#' + (match.player_2 ? match.player_2.rank : "")
 
     .tabs-left
       ul.nav.nav-tabs
