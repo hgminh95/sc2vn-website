@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var sass = require('node-sass-middleware');
 var multer = require('multer');
+var i18n = require('i18n-2');
 
 var config = require('./config/config');
 
@@ -23,6 +24,22 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+i18n.expressBind(app, {
+  // setup some locales - other locales default to vi silently
+  locales: ['en', 'vi'],
+  // set the default locale
+  defaultLocale: 'en',
+  // set the cookie name
+  cookieName: 'locale'
+});
+
+// set up the middleware
+app.use(function(req, res, next) {
+  req.i18n.setLocaleFromCookie();
+  next();
+});
+
 app.use(multer({dest: './tmp/'}).single('upload'));
 app.use(multer({dest: './tmp/'}).any());
 

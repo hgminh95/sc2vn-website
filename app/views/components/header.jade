@@ -47,20 +47,26 @@ nav#nav.navbar.navbar-default.navbar-fixed-top
                   | &nbsp;Logout
 
       else
-        a.btn.btn-primary.btn-sm.navbar-btn.navbar-right(href='/users/register') Sign up
+        a.btn.btn-primary.btn-sm.navbar-btn.navbar-right(href='/users/register')= __('Sign up')
         p.navbar-text.navbar-right
-          a(data-toggle='modal', data-target='#login-modal') Log in
+          a(data-toggle='modal', data-target='#login-modal')= __('Log in')
           | &nbsp; or &nbsp;
 
       ul.nav.navbar-nav.navbar-right
         li
-          a(href='/') Home
+          span
+            a(href='/language?lang=en')
+              img(src='http://www.flaginstitute.org/wp/wp-content/uploads/2012/10/UK-Union-Flag.png', height='40', width='40')
+            a(href='/language?lang=vi')
+              img(src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/2000px-Flag_of_Vietnam.svg.png', height='40', width='40')
         li
-          a(href='/tournaments') Tournaments
+          a(href='/')= __('Home')
         li
-          a(href='/users/rank') Rank
+          a(href='/tournaments')= __('Tournaments')
         li
-          a(href='/matches') Matches
+          a(href='/users/rank')= __('Rank')
+        li
+          a(href='/matches')= __('Matches')
 
 #login-modal.modal.fade(tabindex=-1, role='dialog', aria-labelledby='login-label')
   .modal-dialog.modal-sm(role='document')

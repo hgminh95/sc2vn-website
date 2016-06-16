@@ -12,6 +12,7 @@ var matches = require('../app/controllers/matches')
 var widgets = require('../app/controllers/widgets')
 var base = require('../app/controllers/base')
 var permission = require('../app/middlewares/permission')
+var lang = require('../app/controllers/lang')
 
 module.exports = function(app) {
 
@@ -113,4 +114,5 @@ module.exports = function(app) {
 
   // Root
   app.get('/', articles.index)
+  app.get('/language', lang.set)
 };

@@ -20,8 +20,6 @@ exports.checkNotification = function(req, res, next) {
 }
 
 exports.cachePreviousPage = function(req, res, next) {
-  if (req.user) return next()
-
   var staticRoutes = [
     /^\/fonts/,
     /^\/javascripts/,
@@ -32,7 +30,8 @@ exports.cachePreviousPage = function(req, res, next) {
   var irrelevantRoutes = [
     '/users/login',
     '/auth/bnet',
-    '/auth/bnet/callback'
+    '/auth/bnet/callback',
+    '/language'
   ]
 
   if (req.method == 'GET') {

@@ -69,13 +69,11 @@ module.exports = function(app) {
           passport.authenticate('bnet', { failureRedirect: '/' }),
           function(req, res) {
             var returnTo = req.session.returnTo ? req.session.returnTo : '/'
-            delete req.session.returnTo
             res.redirect(returnTo)
           });
 
   app.post('/auth/local', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
     var returnTo = req.session.returnTo ? req.session.returnTo : '/'
-    delete req.session.returnTo
     res.redirect(returnTo)
   });
 
