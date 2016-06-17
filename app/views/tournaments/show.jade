@@ -60,6 +60,7 @@ block sidebar
                 .html('Waiting for accept')
                 .removeClass('button-submit')
                 .addClass('button-success')
+                .unbind('click')
           }, 1000);
         });
     });
